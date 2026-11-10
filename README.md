@@ -288,5 +288,5 @@ python codes\traj_api.py --build-runs
 
 ## 许可与致谢
 
-- 本仓库尚未附带开源许可证（LICENSE）。如需对外开源，建议补充 MIT / Apache-2.0。
+- 本仓库采用 [MIT License](LICENSE) 许可协议。欢迎学习、交流和二次开发。
 - 感谢 vis.js、ECharts、Flask、PyMySQL、websocket-client、networkx、Ollama/Qwen 等开源项目。
