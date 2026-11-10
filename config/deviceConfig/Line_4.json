@@ -1,0 +1,247 @@
+{
+  "plc": "L3L4",
+  "_comment": "Line_4 滚床订阅配置(骨架, 设备清单生成; 输送连接待补)。\n 节点命名: LT工位=同号RB, 纯LT存位=同号 LT(205/215/300/305), TT以同号RB为可停节点, CP/WT 为机制/承载体不入订阅。\n 纯LT存位与LT工位 tag 均 X1=X2=LT(如 .L3L4_1B_1B095LT_1B095LT.SD…; 现场取 LT_LT, 弃 LT_RB)。",
+  "rollers": [
+    {
+      "node": "Line_4_1A010RB",
+      "device": "1A010LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1A015RB",
+      "device": "1A015LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1A020RB",
+      "device": "1A020LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1A025RB",
+      "device": "1A025LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1A045RB",
+      "device": "1A045LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1A050RB",
+      "device": "1A050LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1B075RB",
+      "device": "1B075RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1B080RB",
+      "device": "1B080RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1B095RB",
+      "device": "1B095LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1B100RB",
+      "device": "1B100LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1B105RB",
+      "device": "1B105LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1B175RB",
+      "device": "1B175LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1B180RB",
+      "device": "1B180LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1B185RB",
+      "device": "1B185LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1C125RB",
+      "device": "1C125LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1C130RB",
+      "device": "1C130LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1C205LT",
+      "device": "1C205LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1C210RB",
+      "device": "1C210LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1C215LT",
+      "device": "1C215LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1C220RB",
+      "device": "1C220LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1C270RB",
+      "device": "1C270RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1C275RB",
+      "device": "1C275RB",
+      "type": "RB",
+      "mid": null,
+      "branch": "ILO"
+    },
+    {
+      "node": "Line_4_1C280RB",
+      "device": "1C280RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1D230RB",
+      "device": "1D230RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1D235RB",
+      "device": "1D235RB",
+      "type": "RB",
+      "mid": null,
+      "branch": "ILO"
+    },
+    {
+      "node": "Line_4_1D240RB",
+      "device": "1D240RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1D245RB",
+      "device": "1D245RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1D250RB",
+      "device": "1D250TT",
+      "type": "TT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1D255RB",
+      "device": "1D255RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1D260RB",
+      "device": "1D260RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1E295RB",
+      "device": "1E295LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1E300LT",
+      "device": "1E300LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1E305LT",
+      "device": "1E305LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1E310RB",
+      "device": "1E310LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1E340RB",
+      "device": "1E340TT",
+      "type": "TT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1E345RB",
+      "device": "1E345RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1E355RB",
+      "device": "1E355TT",
+      "type": "TT",
+      "mid": null
+    },
+    {
+      "node": "Line_4_1E360RB",
+      "device": "1E360RB",
+      "type": "RB",
+      "mid": null
+    }
+  ],
+  "points": [
+    {"node": "Line_4_1D250TT_pos1", "plc": "L3L4", "tag": "L3L4_1D_1D250TT_1D250TT.SB.S1421_DrPos1", "kind": "pos"},
+    {"node": "Line_4_1D250TT_pos2", "plc": "L3L4", "tag": "L3L4_1D_1D250TT_1D250TT.SB.S1421_DrPos2", "kind": "pos"},
+    {"node": "Line_4_1D250TT_pos3", "plc": "L3L4", "tag": "L3L4_1D_1D250TT_1D250TT.SB.S1421_DrPos3", "kind": "pos"},
+    {"node": "Line_4_1E340TT_pos1", "plc": "L3L4", "tag": "L3L4_1E_1E340TT_1E340TT.SB.S1421_DrPos1", "kind": "pos"},
+    {"node": "Line_4_1E340TT_pos2", "plc": "L3L4", "tag": "L3L4_1E_1E340TT_1E340TT.SB.S1421_DrPos2", "kind": "pos"},
+    {"node": "Line_4_1E340TT_pos3", "plc": "L3L4", "tag": "L3L4_1E_1E340TT_1E340TT.SB.S1421_DrPos3", "kind": "pos"},
+    {"node": "Line_4_1E355TT_pos1", "plc": "L3L4", "tag": "L3L4_1E_1E355TT_1E355TT.SB.S1421_DrPos1", "kind": "pos"},
+    {"node": "Line_4_1E355TT_pos2", "plc": "L3L4", "tag": "L3L4_1E_1E355TT_1E355TT.SB.S1421_DrPos2", "kind": "pos"},
+    {"node": "Line_4_1E355TT_pos3", "plc": "L3L4", "tag": "L3L4_1E_1E355TT_1E355TT.SB.S1421_DrPos3", "kind": "pos"}
+  ]
+}

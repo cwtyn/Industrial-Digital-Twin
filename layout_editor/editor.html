@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>输送布局编辑器 · 阶段A</title>
+<style>
+  :root{--bd:#c8c8c8;--ac:#1976D2;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Consolas,"Microsoft YaHei",monospace;display:flex;flex-direction:column;height:100vh;background:#f2f3f5}
+  #bar{display:flex;gap:8px;align-items:center;padding:6px 10px;background:#263238;color:#fff}
+  #bar b{font-size:13px}
+  .btn{background:#37474f;color:#fff;border:none;padding:4px 10px;border-radius:4px;cursor:pointer;font-size:12px}
+  .btn:hover{background:#455a64}
+  .btn.acc{background:var(--ac)}
+  .btn.on{background:#2e7d32;outline:2px solid #81c784}
+  #lineid{background:#fff;color:#222;border:1px solid var(--bd);padding:3px 6px;font-size:12px;width:70px}
+  #main{flex:1;display:flex;min-height:0}
+  #palette{width:118px;background:#fff;border-right:1px solid var(--bd);padding:8px;overflow:auto}
+  #palette h4, #edges h4{font-size:12px;color:#555;margin-bottom:6px}
+  .chip{display:flex;align-items:center;gap:5px;padding:3px 6px;margin:2px 0;border:1px solid var(--bd);
+        border-radius:4px;cursor:grab;font-size:12px;background:#fafafa}
+  .chip:hover{background:#e3f2fd}
+  .sw{width:12px;height:12px;border-radius:3px;display:inline-block;flex:none}
+  .chip .txt{display:block;line-height:1.15;min-width:0}
+  .chip b{display:block;font-size:12px;color:#333}
+  #canvas{flex:1;position:relative;background:#fff;margin:10px;border:1px solid var(--bd);border-radius:6px;overflow:hidden}
+  #world{position:absolute;left:0;top:0;background:#fff;transform-origin:0 0;cursor:grab} /* 可平移内容层 */
+  .node{position:absolute;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;
+        border:1.5px solid #222;border-radius:4px;cursor:move;user-select:none;z-index:3;text-align:center;line-height:1.1}
+  .node.sel{outline:2px solid #ffd600}
+  .node.link{outline:3px dashed #ffd600;box-shadow:0 0 0 1px #333;background:#000 !important}
+  .tbar.hlsel{outline:2px solid #ffd600}                  /* 按位置高亮：点臂只亮这根臂，不连带本体(.1) */
+  .tbar.hllink{outline:3px dashed #ffd600;background:#000 !important}
+  .node.diamond{transform:rotate(45deg)}
+  .node.circle{border-radius:50%}
+  .node.dec{border-radius:2px}
+  .node.dec .ttl{font-size:8px;line-height:1.05;padding:0 2px}
+  .node .ttl{position:relative;z-index:2;padding:0 3px;border-radius:2px}
+  .node .tarm{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+              pointer-events:auto;cursor:move} /* TT 转角位容器：填满节点、绕中心旋转；可点选(事件冒泡到.node)，转过角度的臂也选得中 */
+  .node .tbar{box-sizing:border-box;width:66px;height:22px;border:1.5px solid #222;border-radius:4px;
+              display:flex;align-items:center;justify-content:center} /* 臂高=标准元素高(22), 与 RB/TT 一致 */
+  .node .armlb{font-size:9px;color:#fff;padding:0 3px;white-space:nowrap;background:inherit;border-radius:2px}
+  #edges{width:230px;background:#fff;border-left:1px solid var(--bd);padding:8px;overflow:auto}
+  .edge{display:flex;gap:4px;align-items:center;font-size:11px;padding:3px 0;border-bottom:1px dashed #e0e0e0;cursor:pointer}
+  .edge.sel{background:#fff3b0;outline:1px solid #ffd600}
+  .edge .rm{border:none;background:#e53935;color:#fff;border-radius:3px;cursor:pointer;font-size:10px;padding:1px 5px}
+  .mini{border:1px solid var(--bd);background:#fff;border-radius:3px;cursor:pointer;font-size:11px;padding:1px 6px;line-height:1}
+  .mini:hover{background:#eceff1}
+  .mini.rm2{border-color:#e53935;color:#e53935}
+  select.bg{border:1px solid var(--bd);font-size:11px;background:#fff}
+  #panel{display:none;position:fixed;right:12px;top:12px;bottom:12px;width:250px;background:rgba(255,255,255,.97);
+         border:1px solid var(--bd);border-radius:6px;padding:10px;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:6;font-size:12px;
+         max-height:calc(100vh - 24px);overflow-y:auto}
+  #panel h5{margin-bottom:8px;color:#333}
+  #panel label{display:block;font-size:11px;color:#666;margin:6px 0 2px}
+  #panel input,#panel select,#panel textarea{width:100%;border:1px solid var(--bd);border-radius:3px;padding:3px 5px;font-size:12px;font-family:inherit}
+  #panel textarea{font-size:10px;resize:vertical}
+  #exportwrap{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:20}
+  #exportbox{background:#fff;border-radius:8px;padding:14px;width:680px;max-width:92vw;max-height:90vh;display:flex;flex-direction:column}
+  #exportbox h4{margin-bottom:8px}
+  #exportbox textarea{flex:1;min-height:340px;font-size:11px;font-family:Consolas,monospace;border:1px solid var(--bd);border-radius:4px;padding:8px}
+  #exportbox .row{display:flex;gap:8px;margin-top:10px;justify-content:flex-end}
+  .hint{font-size:11px;color:#888;margin-top:6px}
+</style>
+</head>
+<body>
+<div id="bar">
+  <b>布局编辑器</b>
+  <label style="font-size:12px">线号 <input id="lineid" value="Line_5" placeholder="Line_5" style="width:52px"></label>
+  <select id="projSel" class="bg" style="height:24px"></select>
+  <button class="btn" id="btnNew">＋ 新建线</button>
+  <button class="btn acc" id="btnLink">🔗 连线模式</button>
+  <button class="btn" id="btnS1" title="把当前线 spec 写到专属文件夹(FSA)">S1 导出spec</button>
+  <button class="btn" id="btnS2" title="由当前线 spec 推导生成 deviceConfig 点位，写专属文件夹">S2 点位</button>
+  <button class="btn" id="btnS3" title="校验当前线：id/边/CP/partner，红叉定位">S3 校验</button>
+  <button class="btn" id="btnExport">导出弹窗(多线)</button>
+  <button class="btn" id="btnImport">导入 JSON</button>
+  <button class="btn acc" id="btnSave">💾 保存</button>
+  <button class="btn" id="btnSample">载入示例</button>
+  <button class="btn" id="btnClear">清空</button>
+  <button class="btn" id="btnCenter" title="视图回到内容中心">↺ 复位视图</button>
+  <span style="flex:1"></span>
+  <span style="font-size:11px;opacity:.8">点调色板→画布放置 · 拖拽移动 · 空白拖拽=框选多选 · Ctrl+拖空白/滚轮=平移视口 · 连线模式：点两节点成边 · Delete删除 · 💾保存多线</span>
+</div>
+<div id="main">
+  <div id="palette"></div>
+  <div id="canvas">
+    <div id="world">
+      <svg id="links" style="position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none"></svg>
+    </div>
+    <div id="edgepanel" style="display:none;position:fixed;right:10px;top:10px;bottom:10px;width:220px;background:#fff;border:1px solid var(--bd);border-radius:6px;padding:10px;z-index:15;box-shadow:0 2px 8px rgba(0,0,0,.18);max-height:calc(100vh - 20px);overflow-y:auto">
+      <div style="font-weight:600;font-size:12px;margin-bottom:6px;color:#555">连线 <span id="epName"></span></div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;margin-bottom:8px">类型
+        <select id="epEtri" style="flex:1"></select></div>
+      <div style="display:flex;gap:6px">
+        <button class="btn" id="epDelete" style="flex:1">🗑 删除</button>
+        <button class="btn" id="epClear" title="清空全部连线">清空</button>
+        <button class="btn acc" id="epClose">关闭</button>
+      </div>
+      <div class="hint">连线模式下点中画布连线=选中，可改类型/Delete删除。</div>
+    </div>
+    <div id="panel"></div>
+  </div>
+</div>
+<div id="exportwrap"><div id="exportbox">
+  <h4>导出线路规格（每条线一个 .json，文件名=线号.json）</h4>
+  <div id="expSel" style="display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;margin-bottom:8px;font-size:12px;border:1px solid var(--bd);border-radius:4px;padding:6px 8px;background:#fafafa"></div>
+  <div id="expErr"></div>
+  <textarea id="specout" readonly></textarea>
+  <div class="row">
+    <button class="btn" id="btnCopy">复制当前线</button>
+    <button class="btn acc" id="btnDl">下载所选（一线一文件）</button>
+    <button class="btn" id="btnClose">关闭</button>
+  </div>
+</div></div>
+<input type="file" id="filein" accept=".json,.txt" style="display:none">
+
+<script>
+// ---------- 调色板定义 ----------
+const PAL = [
+  ['RB','辊床(RB)','#E53935','','',null,'主线输送'],
+  ['RB','过渡RB','#EF9A9A','','',{park:false,len:'1/2'},'过渡·不可停·长度可调'],
+  ['LT','升降·工位(LT/RB)','#FB8C00','','',{pair:'RB'},'工位升降'],
+  ['LT','升降·存位(LT/WT)','#BA68C8','','',{pair:'WT'},'存位升降'],
+  ['TT','转台(TT)','#00897B','','',null,'转向 90/180'],
+  ['SL','剪车(SL)','#039BE5','','',null,'剪式升降'],
+  ['HE','提升机(HE)','#8D6E63','','',null,'跨层提升'],
+  ['DEC','决策点(DEC)','#29B6F6','square','',null,'分道决策(Dest映射)'],
+  ['CP','横移链(CP)','#E53935','ellipse','circle',null,'LT 间传送'],
+  ['TC','横移车(TC)','#AB47BC','','diamond',null,'横向搬运'],
+  ['EXT','跨线出口(EXT)','#616161','','',null,'跨线出'],
+  ['ENT','跨线入口(ENT)','#515151','','',null,'跨线入'],
+  ['WT','离线/上线','#BDBDBD','','',null,'车辆上下线(系统边界)']];
+const ETRI = ['roller','load','cross','lift','tt','sl','tc','ext'];
+const ISX = k => k==='EXT' || k==='ENT';           // 出入口统一按跨线接口处理
+
+// ---------- 状态 ----------
+// 节点ID = 线前缀 + '_' + 设备号; 线前缀可能含下划线(Line_5), 不能按 split('_') 拆。
+function lineIdOf(id){ const m=/^(Line_\d+|Exit_\d+)/.exec(String(id||'')); return m?m[1]:''; }
+function devLabelOf(id){ return String(id||'').replace(/^(?:Line_\d+|Exit_\d+)_/,''); }
+const S = { line:'Line_5', elements:[], edges:[], selId:null, selEdge:null, linkMode:false, pan:{x:0,y:0},
+            selPos:null, linkPos:null, selIds:[] };   // 选中位置（{id,arm}）：arm=null 本体(.1)，数字=转台臂；selIds=多选集合
+
+const $ = id => document.getElementById(id);
+const canvas = $('canvas'), world = $('world'), panel = $('panel');
+panel.addEventListener('click', ev=> ev.stopPropagation());   // 面板内点击不落到画布：防控件重建后 target 游离而误关面板
+panel.addEventListener('mousedown', ()=> panelSel=true);       // 记录拖动从面板开始：全选拖出面板也不关
+document.addEventListener('mouseup', ()=> setTimeout(()=>panelSel=false, 0));
+let panelSel=false;
+let _panned=false, panMove=null;                     // 画布平移标志（拖空白平移视口）
+let TTARMS=[];                                       // 本轮 TT 转角臂（{nodeId,el}）命中回退用
+
+function nodeById(id){ return S.elements.find(e=>e.id===id); }
+function edgeFrom(id){ return S.edges.filter(e=>e.from===id||e.to===id); }
+// ---- 多位置设备 SL/HE/TC（一组位置节点 = 线内多台）----
+const MULTI={SL:1,HE:1,TC:1};                                  // TT 除外：转台=单节点单中心，.N 是其转角位(扇臂)
+const SPACING=60;                                            // 标准纵向间隔 px
+function devBase(id){ const m=id.match(/^(.*)\.\d+$/); return m?m[1]:null; }
+function devIdx(id){ const m=id.match(/\.(\d+)$/); return m?+m[1]:null; }
+function devGroup(e){
+  const b=devBase(e.id); if(!b || !MULTI[e.kind]) return [e];
+  return S.elements.filter(x=>x.id.indexOf(b+'.')===0);
+}
+function uid(kind){
+  const suf=kind||'RB';
+  let n=(S.elements.length+1);
+  // TT：每次新基=单节点（id=1A030TT，无 .N；转角位用 attrs.angles 表示）
+  if(suf==='TT'){
+    let base;
+    while(nodeById(base=S.line+'_'+(n*5).toString().padStart(3,'0')+suf)) n++;
+    return base;
+  }
+  if(MULTI[suf]){                                             // SL/HE/TC：每次新基(段号递增)从 .1 起
+    while(true){ const b=S.line+'_'+(n*5).toString().padStart(3,'0')+suf;
+      if(!nodeById(b+'.1')) return b+'.1'; n++; }
+  }
+  let id;
+  while(nodeById(id=S.line+'_'+(n*5).toString().padStart(3,'0')+suf)) n++;
+  return id;
+}
+
+// ---------- 调色板 ----------
+function buildPalette(){
+  $('palette').innerHTML = '<h4>元素<i style="font-style:normal;color:#aaa;font-size:10px;margin-left:4px">点按拖入画布</i></h4>';
+  for(const [kind,name,color,shape,cls,init,desc] of PAL){
+    const d=document.createElement('div'); d.className='chip'; d.title=(desc||name);
+    const sp=document.createElement('span'); sp.className='sw'; sp.style.background=color;
+    const box=document.createElement('span'); box.className='txt';
+    const nm=document.createElement('b'); nm.textContent=name;   // 只显示名称，注释挪到 hover 提示
+    box.append(nm);
+    d.append(sp); d.append(box);
+    d.onclick=()=>addNode(kind, undefined, undefined, init);
+    $('palette').append(d);
+  }
+}
+function addNode(kind, x, y, init){
+  x = x ?? (-S.pan.x + canvas.clientWidth/2 + (Math.random()*40-20));   // 落在当前视口中心
+  y = y ?? (-S.pan.y + canvas.clientHeight/2 + (Math.random()*40-20));
+  const id = uid(kind);
+  const attrs = {park:true, dir:'fwd'};
+  if(kind==='CP') attrs.stops = [];
+  if(kind==='TT'){ delete attrs.park; delete attrs.dir; attrs.angles = [180]; }  // 转台：单中心, 0°接收位 + 转角位
+  if(kind==='DEC'){ delete attrs.park; delete attrs.dir;
+    attrs.device=''; attrs.db=''; attrs.dest_map=[]; }   // 决策点：挂靠设备 + 决策DB + Dest映射
+  if(init) Object.assign(attrs, init);   // 调色板 init 覆盖默认：LT 配位 pair / 过渡滚床 park:false+len
+  S.elements.push({id, kind, label: devLabelOf(id), x, y, attrs, tag:{}});
+  select(id); draw();
+}
+function removeEl(id){
+  S.edges=S.edges.filter(ed=>ed.from!==id&&ed.to!==id);
+  S.elements=S.elements.filter(x=>x.id!==id);
+}
+// 多位置设备：按位置数 n 物化/删减并纵向中心对齐（间隔 SPACING）
+function applyPositions(base, kind, n){
+  n=Math.max(1, Math.min(20, n|0));
+  const prefix=base+'.';
+  S.elements.filter(x=>x.id.indexOf(prefix)===0).forEach(x=>{ if(devIdx(x.id)>n) removeEl(x.id); });
+  const proto=S.elements.filter(x=>x.id.indexOf(prefix)===0).map(x=>nodeById(x.id))[0];   // 原型物化：新位继承同类 attrs(如 TT 转角)
+  for(let i=1;i<=n;i++){ const id=base+'.'+i; if(!nodeById(id))
+    S.elements.push({id,kind,label:devLabelOf(id),x:0,y:0,
+      attrs:proto&&proto.attrs?JSON.parse(JSON.stringify(proto.attrs)):{},tag:{}}); }
+  const g=S.elements.filter(x=>x.id.indexOf(prefix)===0).map(x=>nodeById(x.id));
+  const cx=g.reduce((a,x)=>a+x.x,0)/g.length;
+  for(let i=1;i<=n;i++){ const x=nodeById(base+'.'+i);
+    x.x=Math.round(cx); x.y=Math.round((g[0].y||0) + (i-(n+1)/2)*SPACING); }
+  select(S.selId); renderEdges(); draw();
+}
+// CP：CP 为锚点在一端；传送流向恒为 stops[0]→stops[1]→…（索引序）。dir 只决定 CP 停哪端：
+//   down: 顶=CP, 其下 stops[0..n-1]（车自上往下传）;  up: 底=CP, 其上 stops[n-1..0]（车自下往上传）。
+// 虚线仅 CP→stops[0]（紧邻 CP 的站）。
+function alignCPGroup(cp){
+  const stops=(cp.attrs&&cp.attrs.stops)||[], n=stops.length; if(!n) return;
+  const dir=(cp.attrs&&cp.attrs.dir)||'down', cx=cp.x;
+  for(let i=0;i<n;i++){
+    const lt=nodeById(stops[i]); if(!lt) continue;
+    lt.x=cx;
+    lt.y=Math.round(cp.y + (dir==='down' ? (i+1) : -(i+1))*SPACING); // down 向下铺, up 向上铺
+  }
+  renderEdges(); draw();
+}
+// ---------- 画布 ----------
+function wOf(kind){ return 66; }                // 所有元素统一长度(与 TC 一致)
+function hOf(kind){ return 22; }                // 统一高度：与 RB 一致(扁平)
+const LENV={'1/4':0.25,'1/3':1/3,'1/2':0.5,'1/1':1};   // 过渡滚床长度分数
+function nodeW(e){ const w=wOf(e.kind);                  // 过渡滚床(park:false)按 len 分数缩短长度，宽度不变
+  if(e.kind==='RB'&&e.attrs&&e.attrs.park===false){ const f=LENV[(e.attrs&&e.attrs.len)||'1/2']||0.5; return w*f; }
+  return w; }
+const EDGE_COLOR = {roller:'#666',load:'#1976D2',cross:'#E53935',lift:'#9575CD',tt:'#00897B',sl:'#039BE5',tc:'#AB47BC',ext:'#424242'};
+function drawEdges(){
+  const NS='http://www.w3.org/2000/svg', svg=$('links');
+  svg.innerHTML='';
+  const defs=document.createElementNS(NS,'defs');
+  const mk=document.createElementNS(NS,'marker'); mk.setAttribute('id','arr'); mk.setAttribute('markerWidth','7');
+  mk.setAttribute('markerHeight','7'); mk.setAttribute('refX','6'); mk.setAttribute('refY','3'); mk.setAttribute('orient','auto'); mk.setAttribute('markerUnits','strokeWidth');
+  const p=document.createElementNS(NS,'path'); p.setAttribute('d','M0,0 L0,6 L7,3 z'); p.setAttribute('fill','#333');
+  mk.appendChild(p); defs.appendChild(mk); svg.appendChild(defs);
+  function devBars(e){                       // 设备=一组杆件(含旋转臂)，每杆沿自身角度延伸
+    const hl=wOf(e.kind)/2, hp=hOf(e.kind)/2;
+    if(e.kind==='TT'){ const bs=[{theta:0,hl,hp}];
+      for(const aa of ((e.attrs&&e.attrs.angles)||[])) if(isFinite(aa)) bs.push({theta:aa,hl,hp});
+      return bs; }
+    const turn=(e.attrs&&e.attrs.turn)||0;
+    return [{theta:e.kind==='RB'?turn:0, hl, hp}];
+  }
+  function barExit(ux,uy,th,hl,hp){         // 射线enter方向(u)与绕th的矩形杆的交点距离（局域坐标）
+    const c=Math.cos(-th*Math.PI/180), s=Math.sin(-th*Math.PI/180);
+    const vx=ux*c-uy*s, vy=ux*s+uy*c;
+    return Math.min(vx?hl/Math.abs(vx):Infinity, vy?hp/Math.abs(vy):Infinity);
+  }
+  function edgeOffset(e,ux,uy){             // 沿射线取所有杆(含旋转臂)的外侧出口，贴真实可见边
+    let m=0; for(const b of devBars(e)){ const d=barExit(ux,uy,b.theta,b.hl,b.hp); if(d>m) m=d; }
+    return m;
+  }
+  function edgeEnd(a,b){
+    const dx=b.x-a.x, dy=b.y-a.y, len=Math.hypot(dx,dy); if(!len) return null;
+    const ux=dx/len, uy=dy/len;
+    // 按方向求线与设备(含旋转臂)真实外缘的交点距离：横连半宽、竖连半高、斜连先触边，旋转设备按旋转后的杆算
+    const tA=edgeOffset(a,ux,uy);
+    const tB=edgeOffset(b,ux,uy);
+    return {x1:a.x+ux*tA, y1:a.y+uy*tA, x2:b.x-ux*tB, y2:b.y-uy*tB};
+  }
+  for(const e of S.edges){
+    const a=nodeById(e.from), b=nodeById(e.to); if(!a||!b) continue;   // 端点不存在(导入脏spec)则跳过
+    const ep=edgeEnd(a,b); if(!ep) continue;
+    const isSel=(S.linkMode && e===S.selEdge);              // 仅连线模式可选中连线
+    if(S.linkMode){                                          // 连线模式才有命中层：点线=选中高亮(Delete删)
+      const H=document.createElementNS(NS,'line');
+      H.setAttribute('x1',ep.x1); H.setAttribute('y1',ep.y1); H.setAttribute('x2',ep.x2); H.setAttribute('y2',ep.y2);
+      H.setAttribute('stroke','transparent'); H.setAttribute('stroke-width', isSel?16:11);
+      H.setAttribute('pointer-events','stroke'); H.style.cursor='pointer';
+      H.addEventListener('mousedown', ev=> ev.stopPropagation());
+      H.addEventListener('click', ev=>{ ev.stopPropagation();
+        S.selEdge=(S.selEdge===e)? null : e; draw(); renderEdges(); });
+      svg.appendChild(H);
+    }
+    const L=document.createElementNS(NS,'line');
+    L.setAttribute('x1',ep.x1); L.setAttribute('y1',ep.y1); L.setAttribute('x2',ep.x2); L.setAttribute('y2',ep.y2);
+    L.setAttribute('pointer-events','none');
+    // 虚线 = (a)同一多位置设备(SL/TC/HE)内部的连线(如 .1↔.2)：设备还是同一个，只是位置变了→虚线；
+    // 或 (b)跨线接口(etri=ext)：灰虚线表示"跨线传递"。
+    // 跨设备(如 TC.2→HE.1、SL→RB)是真实转运→实线。
+    const _db=devBase(a.id);
+    const sameDev=!!_db && a.id!==b.id && _db===devBase(b.id);
+    const crossLine=e.etri==='ext';
+    L.setAttribute('stroke-dasharray', (sameDev||crossLine)?'6 4':'none');
+    if(isSel){ L.setAttribute('stroke','#FF6F00'); L.setAttribute('stroke-width','4'); }   // 选中高亮（橙）
+    else { L.setAttribute('stroke', EDGE_COLOR[e.etri]||'#666');
+           L.setAttribute('stroke-width', e.etri==='cross'?3:2); }
+    L.setAttribute('marker-end','url(#arr)');
+    svg.appendChild(L);
+  }
+  // CP 控制线：机制点→stops[0]（紧邻 CP 的站；紫色虚线，表示"控制组交付"，非真实传送边）
+  for(const cp of S.elements){
+    if(cp.kind!=='CP') continue;
+    const ss=(cp.attrs&&cp.attrs.stops)||[]; if(!ss.length) continue;
+    const b=nodeById(ss[0]); if(!b) continue;
+    const L=document.createElementNS(NS,'line');
+    L.setAttribute('x1',cp.x); L.setAttribute('y1',cp.y); L.setAttribute('x2',b.x); L.setAttribute('y2',b.y);
+    L.setAttribute('stroke','#AB47BC'); L.setAttribute('stroke-width',1); L.setAttribute('stroke-dasharray','3 2');
+    svg.appendChild(L);
+  }
+}
+function contentExtent(){
+  let mx=0,my=0,x0=Infinity,x1=-Infinity,y0=Infinity,y1=-Infinity;
+  for(const e of S.elements){
+    x0=Math.min(x0,e.x-33); x1=Math.max(x1,e.x+33);
+    y0=Math.min(y0,e.y-11); y1=Math.max(y1,e.y+11);
+    mx=Math.max(mx,e.x+33); my=Math.max(my,e.y+11);
+  }
+  if(x0===Infinity){ x0=y0=0; x1=y1=40; }
+  return {x0,x1,y0,y1,mx,my};
+}
+function clampPan(){
+  const b=contentExtent(), vw=canvas.clientWidth||800, vh=canvas.clientHeight||600;
+  // 松对齐：内容任一时点至少留一小条可见（永不拖丢），且四周可留出空白画布继续摆放
+  const loX = -b.x1 + 8,     hiX = vw - b.x0 - 8;
+  const loY = -b.y1 + 8,     hiY = vh - b.y0 - 8;
+  if(loX <= hiX) S.pan.x = Math.max(loX, Math.min(hiX, S.pan.x));
+  if(loY <= hiY) S.pan.y = Math.max(loY, Math.min(hiY, S.pan.y));
+}
+function centerView(){
+  const b=contentExtent(), vw=canvas.clientWidth||800, vh=canvas.clientHeight||600;
+  if(!S.elements.length){ S.pan={x:0,y:0}; return; }
+  S.pan.x = vw/2 - (b.x0+b.x1)/2;                       // 让内容中心落到视口中心
+  S.pan.y = vh/2 - (b.y0+b.y1)/2;
+  clampPan();
+}
+function draw(){
+  drawEdges();
+  const b=contentExtent(), vw=canvas.clientWidth||800, vh=canvas.clientHeight||600;
+  world.style.width=Math.max(vw,b.mx+40)+'px';
+  world.style.height=Math.max(vh,b.my+40)+'px';
+  world.style.transform='translate('+S.pan.x+'px,'+S.pan.y+'px)';
+  world.querySelectorAll('.node').forEach(n=>n.remove());
+  TTARMS=[];                                   // 本轮重建 TT 臂几何存取（点击命中回退用）
+  for(const e of S.elements){
+    const w=nodeW(e), h=hOf(e.kind), isTT=e.kind==='TT';
+    const d=document.createElement('div'); d.className='node'; d.dataset.id=e.id;
+    d.style.left=(e.x-w/2)+'px'; d.style.top=(e.y-h/2)+'px';
+    d.style.width=w+'px'; d.style.height=h+'px';
+    if(e.kind==='DEC'){ const s=34; d.style.width=s+'px'; d.style.height=s+'px'; d.classList.add('dec'); }   // 决策点=正方形
+    const color = e.kind==='LT'
+      ? ((e.attrs&&e.attrs.pair==='WT') ? '#BA68C8' : '#FB8C00')      // LT 单节点，按配位着色
+      : (e.kind==='RB'&&e.attrs&&e.attrs.park===false ? '#EF9A9A'     // 过渡滚床(不可停)浅红，与常规辊床区分
+        : (PAL.find(p=>p[0]===e.kind)||PAL[0])[2]);
+    d.style.background = color;
+    if(e.kind==='CP') d.classList.add('circle');
+    if(!e.attrs) e.attrs={};
+    if(e.kind==='RB' && e.attrs.turn) d.style.transform='rotate('+e.attrs.turn+'deg)';  // RB 角度：绕中心旋转(仍单RB)
+    // 标签（0°接收位=节点本体，标签 .1）
+    const devlbl=(e.label||devLabelOf(e.id));       // 如 1A030TT
+    const lb=document.createElement('span'); lb.className='ttl';
+    lb.style.background=color;
+    lb.textContent=(devlbl+(isTT?'.1':'')).replace(/(.{10}).*/,'$1');  // TT 本体即位置1
+    d.append(lb);
+    // TT = 转台·单设备单中心(内层一个RB)：0°接收位=本体；attrs.angles 每个转角=一条扇臂，臂+标签随中心旋转、随节点移动
+    const isSel=(e.id===S.selId || S.selIds.indexOf(e.id)>=0), isLink=e.id===linkFromId;
+    let hlPos=null;                                            // 高亮位置：'body' 或臂 idx——TT 按点到的位置亮，避免整体(含.1本体)一起亮
+    if(e.kind==='TT'){
+      if(isLink && S.linkPos && S.linkPos.id===e.id) hlPos=(S.linkPos.arm==null?'body':S.linkPos.arm);
+      else if(S.selId===e.id && S.selPos && S.selPos.id===e.id) hlPos=(S.selPos.arm==null?'body':S.selPos.arm);
+      else if(isLink||isSel) hlPos='body';                      // 多选时整体高亮(不做位置级)
+    }
+    const bodyHl=(e.kind!=='TT')||hlPos==='body';
+    if(isTT){
+      const angs=(e.attrs&&e.attrs.angles)||[];
+      angs.forEach((a,idx)=>{
+        if(!isFinite(a)) return;
+        const arm=document.createElement('div'); arm.className='tarm'; arm.setAttribute('data-idx', idx);
+        arm.style.transform='rotate('+a+'deg)';
+        const armHl=(e.kind==='TT'&&hlPos===idx);
+        const bar=document.createElement('div'); bar.className='tbar'+(armHl?(isLink?' hllink':' hlsel'):''); bar.style.background=color;
+        const num=document.createElement('span'); num.className='armlb';
+        num.textContent=(devlbl+'.'+(idx+2)).replace(/(.{10}).*/,'$1');   // .2/.3...
+        bar.append(num); arm.append(bar); d.append(arm);
+        TTARMS.push({nodeId:e.id, el:arm, idx:idx, theta:a, hl:wOf(e.kind)/2, hp:hOf(e.kind)/2});
+      });
+    }
+    d.title = e.id + '\n' + JSON.stringify(e.attrs||{});
+    if(bodyHl && isSel) d.classList.add('sel');
+    if(bodyHl && isLink) d.classList.add('link');
+    d.addEventListener('mousedown', ev => { ev.stopPropagation(); startDrag(ev, e); });
+    d.addEventListener('click', ev => {
+      ev.stopPropagation();
+      if(_dragMoved){ _dragMoved = false; return; }     // 拖拽结束的 click 不算
+      const ai=armIndexOf(ev.target);              // 正常冒泡路径也要记住点中的臂，否则 .2 臂命中会落成本体(.1)
+      if(S.linkMode){ S.linkPos={id:e.id, arm:ai}; makeEdge(e); } else { S.selPos={id:e.id, arm:ai}; select(e.id); }
+    });
+    world.append(d);
+  }
+}
+let drag=null, _dragMoved=false;
+function startDrag(ev,e){
+  const r=canvas.getBoundingClientRect();
+  const sx=ev.clientX, sy=ev.clientY;
+  // 框选多选时拖动其中任一 = 整组同量平移
+  const grp=(S.selIds.length>1 && S.selIds.indexOf(e.id)>=0) ? S.selIds.map(id=>nodeById(id)).filter(Boolean) : [e];
+  const o=grp.map(n=>({x:n.x, y:n.y}));
+  drag={id:e.id, group:grp, o:o, dx:sx-(r.left+e.x+S.pan.x), dy:sy-(r.top+e.y+S.pan.y)}; _dragMoved=false;
+  const move=ev2=>{ if(Math.hypot(ev2.clientX-sx, ev2.clientY-sy)<3) return;  // <3px 微动不算拖拽，确保点击仍可连线/选中
+    _dragMoved=true; const n=nodeById(drag.id); if(!n)return;
+    const ddx=ev2.clientX-sx, ddy=ev2.clientY-sy;
+    for(let i=0;i<drag.group.length;i++){ drag.group[i].x=drag.o[i].x+ddx; drag.group[i].y=drag.o[i].y+ddy; }
+    draw(); };
+  const up=()=>{ document.removeEventListener('mousemove',move); document.removeEventListener('mouseup',up); };
+  document.addEventListener('mousemove',move); document.addEventListener('mouseup',up);
+}
+// 连线：连线模式下 点起点→高亮→点终点 成边；点同一点/点空白取消
+let linkFromId=null;
+function makeEdge(node){
+  if(!S.linkMode) return;
+  if(linkFromId && linkFromId===node.id){ linkFromId=null; S.linkPos=null; draw(); return; }  // 再点同一点=取消
+  if(!linkFromId){ linkFromId=node.id; draw(); return; }
+  S.edges.push({from:linkFromId, to:node.id, etri:'roller'});
+  linkFromId=null; S.linkPos=null; renderEdges(); draw();
+}
+// 画布平移：拖空白=上下左右移动视口；滚轮=双向平移（一行放满可横向移开继续排、往下也可加）
+let _marqed=false;                                    // 框选结束的 click 不清选中
+function startPan(ev){
+  _panned=false; panMove={sx:ev.clientX, sy:ev.clientY, px:S.pan.x, py:S.pan.y};
+  const mv=e2=>{ _panned=true; S.pan.x=panMove.px+(e2.clientX-panMove.sx);
+    S.pan.y=panMove.py+(e2.clientY-panMove.sy); clampPan(); draw(); };
+  const up=()=>{ document.removeEventListener('mousemove',mv); document.removeEventListener('mouseup',up); panMove=null; };
+  document.addEventListener('mousemove',mv); document.addEventListener('mouseup',up);
+}
+function worldXY(ev){ const r=canvas.getBoundingClientRect(); return {x:ev.clientX-r.left-S.pan.x, y:ev.clientY-r.top-S.pan.y}; }
+// 布局模式：空白左键拉虚框 → 多选设备（框内/相交即选中，黄色高亮）；松手后可整组拖动
+function startMarquee(ev){
+  const a=worldXY(ev); let cur=a; _marqed=false;
+  const box=document.createElement('div'); box.id='selbox';
+  box.style.cssText='position:absolute;border:1px dashed #555;background:rgba(51,102,255,.12);pointer-events:none;z-index:20;display:none';
+  world.appendChild(box);
+  const mv=e2=>{ cur=worldXY(e2); const x=Math.min(a.x,cur.x),y=Math.min(a.y,cur.y),w=Math.abs(cur.x-a.x),h=Math.abs(cur.y-a.y);
+    if(w<3&&h<3){ box.style.display='none'; return; } box.style.display='block';
+    box.style.left=x+'px'; box.style.top=y+'px'; box.style.width=w+'px'; box.style.height=h+'px'; };
+  const up=e2=>{ document.removeEventListener('mousemove',mv); document.removeEventListener('mouseup',up);
+    const c=worldXY(e2); box.remove(); _marqed=true;
+    const x0=Math.min(a.x,c.x),y0=Math.min(a.y,c.y),x1=Math.max(a.x,c.x),y1=Math.max(a.y,c.y);
+    if(Math.abs(c.x-a.x)<3 && Math.abs(c.y-a.y)<3){              // 纯点击空白：取消选中
+      S.selIds=[]; S.selId=null; S.selEdge=null; linkFromId=null; panel.style.display='none'; draw(); return; }
+    const sel=[];
+    for(const e of S.elements){ const hw=wOf(e.kind)/2, hh=hOf(e.kind)/2;
+      if(e.x-hw<=x1 && e.x+hw>=x0 && e.y-hh<=y1 && e.y+hh>=y0) sel.push(e.id); }   // 相交即选中
+    S.selIds=sel; S.selId=null; S.selEdge=null; panel.style.display='none';        // 框选不弹属性面板
+    draw(); };
+  document.addEventListener('mousemove',mv); document.addEventListener('mouseup',up);
+}
+canvas.addEventListener('mousedown', ev=>{
+  if(ev.target.closest && ev.target.closest('.node,#panel,#edgepanel')) return;   // 节点拖动/属性面板/边面板不触发
+  if(ev.button===1){ startPan(ev); return; }                          // 中键=平移
+  if(ev.button!==0) return;
+  if(S.linkMode){ startPan(ev); return; }                             // 连线模式：左键仍平移
+  if(ev.ctrlKey){ startPan(ev); return; }                             // 布局模式：Ctrl+左键=平移（左键默认=框选）
+  startMarquee(ev);                                                   // 布局模式：左键=框选
+});
+// TT 转角臂几何命中回退：浏览器对 rotate() 子元素的点点命中可能不落到 .node，
+// 故用 getBoundingClientRect() 按坐标兜底——仅当点击处不是常规 .node(含臂) 时才启用，避免双触发。
+let _armSel=null;                                    // 臂上 mousedown 记录谈到的节点，等 click 落地
+function armIndexOf(t){                              // 从事件冒泡链路找到被点的转台臂 idx（无=本体）
+  let el=t; while(el&&el!==world){ if(el.classList&&el.classList.contains('tarm')) return +el.getAttribute('data-idx'); el=el.parentNode; }
+  return null;
+}
+function insideBar(x,y,cx,cy,th,hl,hp){   // 将点击点旋入杆局域坐标，精确判断是否真在杆(矩形)内
+  const dx=x-cx, dy=y-cy;
+  const c=Math.cos(-th*Math.PI/180), s=Math.sin(-th*Math.PI/180);
+  const lx=dx*c-dy*s, ly=dx*s+dy*c;
+  return Math.abs(lx)<=hl && Math.abs(ly)<=hp;
+}
+function armFromP(e){                     // 取最上层(最后)真含点击点的臂({id,arm})，避免包围盒误命中
+  const x=e.clientX, y=e.clientY; let hit=null;
+  for(const a of TTARMS){ const r=a.el.getBoundingClientRect();
+    const cx=r.left+r.width/2, cy=r.top+r.height/2;
+    if(insideBar(x,y,cx,cy,a.theta,a.hl,a.hp)) hit={id:a.nodeId, arm:a.idx}; }
+  return hit;
+}
+world.addEventListener('mousedown', ev=>{
+  if(ev.button!==0) return;
+  if(ev.target.closest && ev.target.closest('.node')) return;   // 常规命中(含已可点的臂)交给原有逻辑
+  const hit=armFromP(ev); if(!hit) return;
+  const n=nodeById(hit.id); if(!n) return;
+  _armSel={n, arm:hit.arm};
+  ev.stopPropagation(); ev.preventDefault();                   // 别让它触发画布平移
+  startDrag(ev, n);                                            // 与节点本体同一套拖拽逻辑
+}, true);
+world.addEventListener('click', ev=>{
+  const a=_armSel; if(!a) return;
+  const hit=armFromP(ev);
+  if(!hit||hit.id!==a.n.id){ _armSel=null; return; }
+  _armSel=null;
+  ev.stopPropagation(); ev.preventDefault();
+  if(_dragMoved){ _dragMoved=false; return; }
+  if(S.linkMode){ S.linkPos={id:a.n.id, arm:a.arm}; makeEdge(a.n); } else { S.selPos={id:a.n.id, arm:a.arm}; select(a.n.id); }
+  draw();
+}, true);
+canvas.addEventListener('wheel', ev=>{
+  ev.preventDefault();
+  const dx=ev.deltaX||0, dy=ev.deltaY||0;
+  S.pan.x -= dx*0.9; S.pan.y -= dy*0.9; clampPan(); draw();
+}, {passive:false});
+// Delete/Backspace：删除当前选中的连线（在输入框内时交给编辑框，不删）
+document.addEventListener('keydown', ev=>{
+  const t=ev.target;
+  if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.tagName==='SELECT')) return;
+  if(ev.key==='Escape'){ S.selIds=[]; S.selId=null; S.selEdge=null; S.selPos=null; panel.style.display='none'; draw(); ev.preventDefault(); return; }
+  if(S.linkMode && (ev.key==='Delete'||ev.key==='Backspace') && S.selEdge){
+    ev.preventDefault();
+    const i=S.edges.indexOf(S.selEdge); if(i>=0) S.edges.splice(i,1);
+    S.selEdge=null; renderEdges(); draw();
+  }
+});
+canvas.addEventListener('dblclick', ev=>{
+  if(S.linkMode) return;
+  if(ev.target.closest && ev.target.closest('.node')) return;   // 双击已有元素=选属性，不新建（防误生成游离节点）
+  const r=canvas.getBoundingClientRect();
+  addNode(undefined, ev.clientX-r.left-S.pan.x, ev.clientY-r.top-S.pan.y);
+  select(S.selId);
+});
+canvas.addEventListener('click', ev=>{
+  if(ev.target.closest && ev.target.closest('#panel')) return;   // 属性面板内点击不清选中
+  if(panelSel) return;                                           // 拖动全选从面板起始：不关面板
+  if(_panned){ _panned=false; return; }                          // 平移结束的 click 不清选中
+  if(_marqed){ _marqed=false; return; }                          // 框选结束的 click 不清选中
+  if(!S.linkMode){ S.selId=null; S.selEdge=null; S.selIds=[]; panel.style.display='none'; }
+  linkFromId=null; draw();
+});
+// ---------- 选择 / 属性面板 ----------
+// 确定按钮：归集面板当前所有字段并应用 + 保存到工程
+function commitPanel(e){
+  if($('pid')){ const nv=$('pid').value.trim(); if(nv&&nv!==e.id){ const od=e.id; e.id=nv;
+    S.edges.forEach(ed=>{ if(ed.from===od)ed.from=nv; if(ed.to===od)ed.to=nv; }); if(S.selId===od)S.selId=nv; } }
+  if($('plabel')) e.label=$('plabel').value;
+  if($('px')&&$('px').value!=='') e.x=+$('px').value;
+  if($('py')&&$('py').value!=='') e.y=+$('py').value;
+  if($('pattrs')){ try{ e.attrs=JSON.parse($('pattrs').value); }catch(_){} }     // attrs JSON 优先，再被专属控件覆写
+  if($('ptagmanual') && !$('ptagmanual').checked){ delete e.tag.x1; delete e.tag.x2;
+    delete e.tag.mid; delete e.tag.branch; }   // 未手动覆盖=全自动
+  if($('ptagx1')){ const v=$('ptagx1').value.trim(); e.tag=e.tag||{};
+    if(v) e.tag.x1=v; else delete e.tag.x1; }
+  if($('ptagx2')){ const v=$('ptagx2').value.trim(); e.tag=e.tag||{};
+    if(v) e.tag.x2=v; else delete e.tag.x2; }
+  if($('ptagmid')){ const v=$('ptagmid').value.trim(); e.tag=e.tag||{};
+    if(v) e.tag.mid=v; else delete e.tag.mid; }
+  if($('ptagbranch')){ const v=$('ptagbranch').value; e.tag=e.tag||{};
+    if(v && v!=='IL') e.tag.branch=v; else delete e.tag.branch; }
+  if(e.kind==='RB' && $('prang')) e.attrs=(e.attrs||{}), e.attrs.turn=+$('prang').value||0;
+  if(e.kind==='LT' && $('ppair')) e.attrs=(e.attrs||{}), e.attrs.pair=$('ppair').value;
+  if(e.kind==='TT' && $('pangs')) e.attrs=(e.attrs||{}), e.attrs.angles=($('pangs').value.split(',')).map(s=>+s.trim()).filter(n=>!isNaN(n)&&n>0&&n<=360);
+  if(e.kind==='CP' && $('pdir')) e.attrs=(e.attrs||{}), e.attrs.dir=$('pdir').value;
+  if(ISX(e.kind) && $('ppartner')){ const p=$('ppartner').value.trim(); e.attrs=(e.attrs||{});
+    if(p) e.attrs.partner=p; else delete e.attrs.partner; }
+  renderEdges(); draw(); select(null); saveNow();           // 确定=应用并保存, 关闭属性窗
+}
+function select(id){
+  S.selId=id; S.selIds=id?[id]:[]; S.selEdge=null;   // 单选时重置多选集合
+  if(!id){ S.selPos=null; panel.style.display='none'; draw(); return; }
+  const e=nodeById(id); if(!e) return;
+  panel.style.display='block';
+  // kind 下拉：LT 变体用同一 kind，但名取第一个（工位）；复合属性单列
+  let html='<h5>属性 · '+e.id+'</h5>'
+   +'<label>kind</label><select id="pkind">'+[...new Set(PAL.map(p=>p[0]))].map(k=>`<option ${k===e.kind?'selected':''}>${k}</option>`).join('')+'</select>'
+   +'<label>id</label><input id="pid" value="'+e.id+'">'
+   +'<label>label</label><input id="plabel" value="'+e.label+'">'
+   +'<label>位置 x,y</label><div style="display:flex;gap:6px">'
+     +'<input id="px" type="number" value="'+e.x+'" style="width:50%"><input id="py" type="number" value="'+e.y+'" style="width:50%"></div>';
+  if(e.kind==='RB'){
+    const a=(e.attrs=(e.attrs||{}));
+    html+='<label>角度°(默认0,绕中心旋转)</label><input id="prang" type="number" value="'+((a.turn)||0)+'">'
+      +'<label class="cpchk" style="font-weight:400;display:flex;align-items:center;gap:4px;margin-top:2px">'
+        +'<input type="checkbox" id="ptrn" style="width:auto" '+(a.park===false?'checked':'')+'> 过渡滚床(不可停车)</label>';
+    if(a.park===false){
+      const len=a.len||'1/2';
+      html+='<label>长度(正常滚床的几分之一)</label><select id="plen">'
+        +['1/4','1/3','1/2','1/1'].map(v=>`<option ${v===len?'selected':''}>${v}</option>`).join('')
+        +'</select><div class="hint">过渡不可停；宽度一致，仅长度按比例缩短</div>';
+    }
+  } else if(e.kind==='LT'){
+    const pair=(e.attrs&&e.attrs.pair)||'RB';
+    html+='<label>配位 pair</label><select id="ppair"><option '+(pair==='RB'?'selected':'')+'>RB</option>'
+       +'<option '+(pair==='WT'?'selected':'')+'>WT</option></select>';
+  } else if(e.kind==='TT'){                      // 转台：单设备单中心，转角位即 .1/.2/.3 臂
+    const angs=((e.attrs&&e.attrs.angles)||[]).join(',');
+    html+='<label>转角位°（逗号分隔,如 180,90,30）</label>'
+      +'<input id="pangs" value="'+angs+'">'
+      +'<div class="hint">0°接收位=.1(本体)，各转角=臂 .2/.3…，臂+标签随中心旋转；订阅到位后高亮对应臂</div>';
+  } else if(MULTI[e.kind]){                      // 多位置设备 SL/HE/TC：位置数物化
+    const base=devBase(e.id);
+    html+='<label>位置数（基 '+base+'）</label><div style="display:flex;gap:6px">'
+      +'<input id="ppos" type="number" min="1" max="20" value="'+devGroup(e).length+'" style="width:40%">'
+      +'<button class="btn" id="pposApply" style="flex:1">应用/对齐</button></div>';
+  } else if(e.kind==='CP'){                       // CP：绑定 LT 站（有序）+ 传送方向
+    // 已被其它 CP 绑定的 LT 不出现；仅显示 自身已绑 ∪ 未绑
+    const chk=(e.attrs&&e.attrs.stops)||[];
+    const claimed=new Set();
+    for(const c of S.elements) if(c.kind==='CP'&&c.id!==e.id)
+      for(const s of (c.attrs&&c.attrs.stops)||[]) claimed.add(s);
+    const lts=S.elements.filter(x=>x.kind==='LT' && (chk.indexOf(x.id)>=0 || !claimed.has(x.id)));
+    // 有序绑定列表（↑/↓ 调序）列在上
+    html+='<label>绑定LT站（有序，可 ↑/↓ 调序；锁定另CP已绑）</label><div id="pcpstops">'
+       +(chk.length? chk.map((sid,i)=>{ const x=nodeById(sid);
+           return '<div style="display:flex;align-items:center;gap:4px">'
+            +'<button class="mini" data-dir="-1" data-i="'+i+'">↑</button>'
+            +'<button class="mini" data-dir="1" data-i="'+i+'">↓</button>'
+            +'<span style="flex:1;overflow:hidden;white-space:nowrap">'+(x?x.id:sid)+'</span>'
+            +'<button class="mini rm2" data-del data-i="'+i+'">✕</button></div>';
+         }).join('')
+        :'<div class="hint">尚未绑定（下勾选添加）</div>')
+       +'</div>'
+       +'<label>添加（未被他CP绑定）</label><div id="pcpsel">'
+       +(lts.length?lts.map(x=>'<label class="cpchk" style="font-weight:400;display:flex;align-items:center;gap:4px">'
+         +'<input type="checkbox" style="width:auto" value="'+x.id+'" '+((chk.indexOf(x.id)>=0)?'checked':'')+'>'
+         +'<span style="overflow:hidden;white-space:nowrap">'+x.id+'</span></label>').join('')
+         :'<div class="hint">没有可用 LT（或全部已被绑定）</div>')+'</div>';
+    const dir=(e.attrs&&e.attrs.dir)||'down';
+    html+='<label>传送方向</label><select id="pdir"><option '+(dir==='down'?'selected':'')+' value="down">上→下</option>'
+       +'<option '+(dir==='up'?'selected':'')+' value="up">下→上</option></select>'
+       +'<button class="btn" id="palign" style="margin-top:6px">纵向对齐（CP穿插中间）</button>';
+  } else if(ISX(e.kind)){
+    const partner=(e.attrs&&e.attrs.partner)||'';
+    html+='<label>跨线对端(partner)· 对端线真实设备 id</label><input id="ppartner" value="'+partner+'" placeholder="如 Line_7_1A005RB">'
+       +'<div class="hint">'+(e.kind==='ENT'?'ENT=入口(接收对端)；':'EXT=出口(放向)；')+'partner 填对端真实设备号，进出口成对成虚线 ext 边</div>';
+  } else if(e.kind==='DEC'){                       // 决策点：独占表单，不显示 attrs JSON/tag
+    const a=e.attrs=(e.attrs||{}); const dm=a.dest_map=(a.dest_map||[]);
+    const seg=(e.id.match(/(\d*[A-Z]+\d*)/)||['',''])[1]||'1A';
+    const _old=document.getElementById('pdecmap');
+    const prevN=_old?(+(_old.getAttribute('data-n')||0)):0;   // 记录上次行数,供 −/+ 增减后重建保持
+    const dests=dm.map(r=>+r.dest).filter(Number.isFinite);
+    const n=prevN||Math.min(12,Math.max(3,dm.length,...dests));   // 默认3行,ceiling到含全部已有道号
+    html+='<label>决策点DB（PLC 块名，留空自动推导）</label>'
+       +'<input id="pdec_db" value="'+(a.db||'')+'" placeholder="如 L3'+S.line+'_'+seg+'LT025DecVisu">'
+       +'<label>挂靠设备（此处决策设备，如 F'+'/…</label>'
+       +'<input id="pdec_dev" value="'+(a.device||'')+'" placeholder="决策设备 id">'
+       +'<label>Dest 道号 ↦ 后续滚床（道号=PLC 决策结果 1..12；空格=该道不启用）</label>'
+       +'<div id="pdecmap" data-n="'+n+'" style="display:flex;flex-direction:column;gap:2px">'
+       +Array.from({length:n},(_,i)=>{ const row=dm.find(r=>+r.dest===i+1)||{};
+         return '<div style="display:flex;align-items:center;gap:4px;font-size:12px">'
+           +'<input data-decdest="'+(i+1)+'" value="'+(row.to||'')+'" placeholder="道'+(i+1)+'→滚床" style="flex:1"></div>'; }).join('')
+       +'</div>'
+       +'<div style="display:flex;gap:4px;align-items:center;margin-top:3px">'
+         +'<button class="mini" id="pdecDel" style="width:22px">−</button>'
+         +'<button class="mini" id="pdecAdd" style="width:22px">+</button>'
+         +'<span class="hint">增减道号行（1..12）</span></div>'
+       +'<div class="hint">决策表 4页×12行 的规则(VIN/CodeF/CodeB/BodyType/Platform+Use)由工人 HMI 运行期填；这里只映射 Dest 道号→后续滚床，Dest≤12。</div>';
+  }
+  if(e.kind!=='DEC'){
+  html+='<label>attrs JSON</label><textarea id="pattrs" rows="3">'+JSON.stringify(e.attrs||{})+'</textarea>';
+  // tag 覆盖：默认自动推导；勾"手动覆盖"才展开 x1/x2/branch/mid（留空字段仍按 kind 自动推导，推导规则只在 tags.py）
+  const t=e.tag||{}; const tman=!!(t.x1||t.x2||t.branch||t.mid);
+  html+='<div style="margin-top:8px;border-top:1px dashed #ccc;padding-top:6px">'
+   +'<label style="font-weight:600">tag 订阅</label>'
+   +'<label class="cpchk" style="font-weight:400;display:flex;align-items:center;gap:4px;margin-bottom:2px">'
+     +'<input type="checkbox" id="ptagmanual" style="width:auto" '+(tman?'checked':'')+'> 手动覆盖（留空=按 kind 自动推导）</label>'
+   +'<div id="ptagfields" style="display:'+(tman?'block':'none')+'">'
+     +'<label>X1 实际停靠设备（完整串）</label><input id="ptagx1" value="'+(t.x1||'')+'" placeholder="如 1A015LT、1A040TC">'
+     +'<label>X2 该位滚床（完整串）</label><input id="ptagx2" value="'+(t.x2||'')+'" placeholder="如 1A015LT、1A040RB">'
+     +'<label>branch</label><select id="ptagbranch"><option '+(t.branch==='ILO'?'':'selected')+'>IL</option>'
+       +'<option value="ILO" '+(t.branch==='ILO'?'selected':'')+'>ILO</option></select>'
+     +'<label>mid 非标段（可空）</label><input id="ptagmid" value="'+(t.mid||'')+'" placeholder="如 14AS">'
+   +'</div>'
+   +'<div class="hint" style="margin-top:2px">RB/LT 自我、TT/SL/HE/TC 设备体+RB、段号剥前缀、branch 默认 IL；仅特殊设备需覆盖</div></div>';
+  }
+  html+='<button class="btn acc" id="pcommit" style="margin-top:10px">✔ 确定（应用并保存）</button>'
+   +'<button class="btn" id="pdel" style="background:#e53935;margin-top:6px">删除此元素</button>';
+  panel.innerHTML=html;
+  $('pkind').onchange=v=>{e.kind=v.target.value; refreshIdLabel(e); select(e.id);};
+  $('pid').onchange=v=>{ const old=e.id; e.id=v.target.value||e.id;
+    if(e.label===devLabelOf(old)) e.label=devLabelOf(e.id);  // label 仍为旧默认时,随 id 刷新画布显示
+    S.edges.forEach(ed=>{ if(ed.from===old)ed.from=e.id; if(ed.to===old)ed.to=e.id; });
+    if(S.selId===old)S.selId=e.id; renderEdges(); select(e.id); };
+  $('plabel').onchange=v=>{e.label=v.target.value; draw();};
+  $('px').onchange=v=>{e.x=+v.target.value;draw();};
+  $('py').onchange=v=>{e.y=+v.target.value;draw();};
+  if(e.kind==='RB'){
+    e.attrs=(e.attrs||{});
+    $('prang').onchange=v=>{ e.attrs.turn=+v.target.value||0; draw(); };
+    if($('ptrn')) $('ptrn').onchange=v=>{ e.attrs.park=!v.target.checked; e.attrs.len=e.attrs.len||'1/2'; draw(); select(e.id); };  // 切过渡开/关，重建面板显隐长度
+    if($('plen')) $('plen').onchange=v=>{ e.attrs.len=v.target.value; draw(); };
+  } else if(e.kind==='LT'){
+    $('ppair').onchange=v=>{ e.attrs=(e.attrs||{}); e.attrs.pair=v.target.value; draw(); select(e.id); };
+  } else if(e.kind==='TT'){
+    $('pangs').onchange=v=>{ e.attrs=(e.attrs||{});
+      e.attrs.angles=(v.target.value.split(',')).map(s=>+s.trim()).filter(n=>!isNaN(n)&&n>0&&n<=360);
+      draw(); select(e.id); };
+  } else if(MULTI[e.kind]){
+    $('pposApply').onclick=()=>{ applyPositions(devBase(e.id), e.kind, +$('ppos').value); };
+  } else if(e.kind==='CP'){
+    const move=(arr,i,dy)=>{ const j=i+dy; if(j<0||j>=arr.length)return;
+      [arr[i],arr[j]]=[arr[j],arr[i]]; draw(); select(e.id); };
+    const stopsBox=$('pcpstops'); if(stopsBox){
+      const list=e.attrs.stops=(e.attrs.stops||[]);
+      stopsBox.querySelectorAll('[data-dir]').forEach(btn=>{ btn.onclick=()=>{
+        move(list, +btn.getAttribute('data-i'), +btn.getAttribute('data-dir')); }; });
+      stopsBox.querySelectorAll('[data-del]').forEach(btn=>{ btn.onclick=()=>{
+        list.splice(+btn.getAttribute('data-i'),1); draw(); select(e.id); }; });
+    }
+    const selBox=$('pcpsel'); if(selBox)
+      selBox.querySelectorAll('input[type=checkbox]').forEach(cb=>{ cb.onchange=()=>{
+        e.attrs=(e.attrs||{}); const lst=e.attrs.stops=(e.attrs.stops||[]); const i=lst.indexOf(cb.value);
+        if(i>=0) lst.splice(i,1); else lst.push(cb.value); draw(); select(e.id); }; });   // 重排=按已绑顺序列
+    $('pdir').onchange=v=>{ e.attrs=(e.attrs||{}); e.attrs.dir=v.target.value; draw(); };
+    $('palign').onclick=()=>{ alignCPGroup(e); };
+  } else if(ISX(e.kind)){
+    $('ppartner').onchange=v=>{ e.attrs=(e.attrs||{}); const s=v.target.value.trim();
+      if(s) e.attrs.partner=s; else delete e.attrs.partner; draw(); };
+  } else if(e.kind==='DEC'){                       // 决策点：DB/设备/12道 dest_map 写入 e.attrs
+    const a=e.attrs=(e.attrs||{});
+    if($('pdec_db'))  $('pdec_db').onchange=v=>{ a.db=v.target.value.trim()||''; draw(); };
+    if($('pdec_dev')) $('pdec_dev').onchange=v=>{ a.device=v.target.value.trim()||''; draw(); };
+    const mapBox=$('pdecmap');
+    if(mapBox) mapBox.querySelectorAll('[data-decdest]').forEach(inp=>{
+      inp.onchange=v=>{ const d=+inp.getAttribute('data-decdest'); const to=v.target.value.trim();
+        a.dest_map=(a.dest_map||[]);
+        const row=a.dest_map.find(r=>+r.dest===d);
+        if(to){ if(row) row.to=to; else a.dest_map.push({dest:d,to}); }
+        else if(row) a.dest_map=a.dest_map.filter(r=>r!==row);
+        draw(); }; });
+    if($('pdecDel')) $('pdecDel').onclick=()=>{ const mb=$('pdecmap'); if(!mb)return;
+      const c=+(mb.getAttribute('data-n')||0); if(c>1){ a.dest_map=(a.dest_map||[]).filter(r=>+r.dest<=c-1);
+        mb.setAttribute('data-n',c-1); select(e.id); } };      // 减行: 一并丢弃被删道号
+    if($('pdecAdd')) $('pdecAdd').onclick=()=>{ const mb=$('pdecmap'); if(!mb)return;
+      const c=+(mb.getAttribute('data-n')||0); if(c<12){ mb.setAttribute('data-n',c+1); select(e.id); } };   // 加行: 重建(保留已填)
+  }
+  if(e.kind!=='DEC'){
+    if($('pattrs')) $('pattrs').onchange=v=>{ try{e.attrs=JSON.parse(v.target.value); draw(); select(e.id);}catch(_){ e.attrs=e.attrs||{}; } };
+  }
+  // tag 覆盖表单：勾选展开字段；各字段空则从 e.tag 删除(留自动推导)。未勾选=全自动
+  const tagWrite=(ev,key)=>{ e.tag=e.tag||{};
+    const val=(ev.target.value||'').trim();
+    if(key==='branch'){ e.tag.branch=val||'IL'; }
+    else if(val) e.tag[key]=val; else delete e.tag[key];
+    draw(); };
+  const tagManual=$('ptagmanual'), tFields=$('ptagfields');
+  if(tagManual){
+    tagManual.onchange=v=>{ tFields.style.display=v.target.checked?'block':'none';
+      if(!v.target.checked){ delete e.tag.x1; delete e.tag.x2; delete e.tag.mid; delete e.tag.branch; }
+      draw(); };
+    if($('ptagx1'))  $('ptagx1')  .onchange=v=>tagWrite(v,'x1');
+    if($('ptagx2'))  $('ptagx2')  .onchange=v=>tagWrite(v,'x2');
+    if($('ptagmid')) $('ptagmid') .onchange=v=>tagWrite(v,'mid');
+    if($('ptagbranch')) $('ptagbranch').onchange=v=>tagWrite(v,'branch');
+  }
+  $('pcommit').onclick=()=> commitPanel(e);
+  $('pdel').onclick=()=>{ S.edges=S.edges.filter(ed=>ed.from!==e.id&&ed.to!==e.id);
+    S.elements=S.elements.filter(x=>x.id!==e.id); S.selId=null; panel.style.display='none'; draw(); renderEdges(); };
+  draw();
+}
+function refreshIdLabel(e){ if(e.kind==='RB'||e.kind==='WT')e.label=devLabelOf(e.id); }
+// ---------- 连线操作：点选画布选中边 → 迷你属性面板 ----------
+function renderEdges(){                     // 刷新边属性面板（无选中则隐藏）
+  const ep=$('edgepanel');
+  if(!S.selEdge){ if(ep)ep.style.display='none'; return; }
+  const ed=S.selEdge;
+  $('epName').textContent=short(ed.from)+' → '+short(ed.to);
+  $('epEtri').innerHTML=ETRI.map(t=>`<option value="${t}" ${t===ed.etri?'selected':''}>${t}</option>`).join('');
+  ep.style.display='block';
+}
+function short(id){ return id.split('_').pop(); }
+$('edgepanel').addEventListener('click', ev=> ev.stopPropagation());   // 面板内点击不落到画布（防误触发框选/平移）
+$('edgepanel').addEventListener('mousedown', ev=> ev.stopPropagation());
+$('epEtri').onchange=v=>{ if(S.selEdge){ S.selEdge.etri=v.target.value; draw(); } };          // 改边类型→重画更新颜色/线型
+$('epDelete').onclick=()=>{ if(!S.selEdge)return; S.edges=S.edges.filter(e=>e!==S.selEdge); S.selEdge=null; renderEdges(); draw(); };
+$('epClear').onclick=()=>{ if(!S.edges.length)return; if(!confirm('清空全部 '+S.edges.length+' 条连线？'))return; S.edges=[]; S.selEdge=null; renderEdges(); draw(); };
+$('epClose').onclick=()=>{ if(S.selEdge){ S.selEdge=null; draw(); } renderEdges(); };
+// ---------- spec 生成 / 导入 ----------
+function buildSpec(){
+  return {line:S.line||'Line_5', comment:'由 layout_editor 生成',
+    elements:S.elements.map(e=>({id:e.id,kind:e.kind,type:(e.kind==='RB'?'roller':e.kind.toLowerCase()),
+      label:e.label,pos:{x:Math.round(e.x),y:Math.round(e.y)},attrs:e.attrs||{},tag:e.tag||{}})),
+    edges:S.edges.map(e=>({from:e.from,to:e.to,etri:e.etri}))};
+}
+function loadSpec(spec){
+  S.line=spec.line||S.line; $('lineid').value=S.line;
+  const els0=spec.elements||[];
+  // 迁移：旧版 TT 拆成 .1/.2/.3 多节点 → 归并为单基节点(单中心)，转角位并进 attrs.angles
+  const tmap={}; const keep=[];
+  for(const e of els0){
+    if(e.kind==='TT'){
+      const b=devBase(e.id);
+      if(!b){ keep.push(e); continue; }                                  // 已是单基(无 .N)
+      if(!tmap[b]) tmap[b]={id:b,kind:'TT',pos:{x:e.pos?e.pos.x:0,y:e.pos?e.pos.y:0},attrs:Object.assign({},e.attrs||{}),tag:{}};
+      const a=(e.attrs&&e.attrs.angles)||(e.attrs&&e.attrs.turn?[e.attrs.turn]:[])||[];
+      if(a.length) tmap[b].attrs.angles=(tmap[b].attrs.angles||[]).concat(a);
+    } else keep.push(e);
+  }
+  for(const b in tmap) keep.push(tmap[b]);
+  // 边：指向 TT.N 的改为指向其基节点
+  const baseSet=new Set(Object.keys(tmap));
+  const rebase=i=>{ const b=devBase(i); return (b&&baseSet.has(b))?b:i; };
+  S.elements=keep.map(e=>({id:e.id,kind:e.kind,label:e.label||'',x:e.pos?e.pos.x:0,y:e.pos?e.pos.y:0,attrs:e.attrs||{},tag:e.tag||{}}));
+  S.edges=(spec.edges||[]).map(ed=>({from:rebase(ed.from),to:rebase(ed.to),etri:ed.etri||'roller'}));
+  S.selEdge=null;
+  centerView();                                             // 切换线路自动居中内容
+  select(null); draw(); renderEdges();
+}
+// ---------- 事件绑定 ----------
+$('btnLink').onclick=()=>{
+  S.linkMode=!S.linkMode; $('btnLink').classList.toggle('on',S.linkMode);
+  $('btnLink').textContent = S.linkMode?'🔗 连线中(点两节点成边/点线选中+Delete删)':'🔗 连线模式';
+  if(!S.linkMode) S.selEdge=null;              // 退出连线模式清掉连线选中
+  draw(); renderEdges();                        // 刷新命中层
+};
+// ---- 导出（线可选，默认当前线；每条线一个「线号.json」）----
+function buildSpecFor(ln){                                    // 取指定线的内容：当前线=画布最新，其它=工程已保存
+  if(ln===curLine() || ln===(S.line||'Line_5')) return buildSpec();
+  return PROJ[ln]||null;
+}
+function previewLn(){                                       // 预览/校验目标线 = 优先当前线，其次首个勾选线
+  const cur=curLine();
+  const checks=Array.from($('expSel').querySelectorAll('.expLn:checked'));
+  return (checks.find(c=>c.dataset.ln===cur)||checks[0]||{}).dataset.ln||null;
+}
+function showPreview(){
+  const ln=previewLn(); const s=ln&&buildSpecFor(ln);
+  $('specout').value = s?JSON.stringify(s,null,2):'';
+}
+// 客户端校验（与 graph.py validate() 对齐）：导出前发现问题→点条目跳到布局定位修改
+function validateNow(spec){
+  const issues=[];
+  if(!spec||!spec.elements) return [{id:'',msg:'该线无内容'}];
+  const line=spec.line; if(!line) issues.push({id:'',msg:'缺 line（输送编号）'});
+  const els=spec.elements, ids={};
+  const plex = id => /(RB|LT)$/.test(id) ? id.slice(0,-2)+(id.endsWith('RB')?'LT':'RB') : null;  // 同编号绑定对:LT工位滚床 tag 即 LT,LT↔RB 同一物理工位
+  for(const e of els){
+    if(!e.id){ issues.push({id:'',msg:'存在缺 id 的元素'}); continue; }
+    if(ids[e.id]) issues.push({id:e.id,msg:'id 重复: '+e.id});
+    ids[e.id]=1;
+    if(line && !e.id.startsWith(line+'_')) issues.push({id:e.id,msg:'未以线前缀 '+line+'_ 开头'});
+    if(!['RB','LT','TT','SL','HE','CP','TC','EXT','ENT','DEC'].includes(e.kind)) issues.push({id:e.id,msg:'kind 未知: '+(e.kind||'(空)')});
+    if(e.kind==='DEC'){
+      const dm=(e.attrs||{}).dest_map||[];
+      if(!((e.attrs||{}).device||'').trim()) issues.push({id:e.id,msg:'决策点未填挂靠设备 device'});
+      const seen={};
+      for(const r of dm){ if(seen[r.dest]) issues.push({id:e.id,msg:'决策点 Dest 道号重复: '+r.dest}); seen[r.dest]=1;
+        if(r.to && !ids[r.to] && !ids[plex(r.to)]) issues.push({id:e.id,msg:'决策点 Dest 道号'+r.dest+' 的后续滚床不存在: '+r.to}); }
+      if(dm.some(r=>r.to && !ids[r.to])) {}   // 已在循环报
+    }
+    if(e.kind==='LT' && !['RB','WT'].includes(((e.attrs||{}).pair)||'RB')) issues.push({id:e.id,msg:'LT 配位 pair 只能是 RB/WT'});
+  }
+  const seen=new Set();
+  for(const ed of (spec.edges||[])){
+    if(!ids[ed.from]) issues.push({id:ed.from||'',msg:'边的起点不存在: '+ed.from});
+    if(!ids[ed.to]) issues.push({id:ed.to||'',msg:'边的终点不存在: '+ed.to});
+    const k=ed.from+'>'+ed.to;
+    if(seen.has(k)) issues.push({id:ed.from||ed.to,msg:'重复边 '+ed.from+'→'+ed.to});
+    seen.add(k);
+  }
+  for(const e of els){
+    if(e.kind==='CP') for(const s of ((e.attrs||{}).stops)||[]) if(!ids[s]) issues.push({id:e.id,msg:'CP stops 引用不存在元素: '+s});
+    if(ISX(e.kind) && !((e.attrs||{}).partner||'').trim()) issues.push({id:e.id,msg:e.kind+' 未填跨线对端(partner)'});
+  }
+  return issues;
+}
+function renderErr(issues){
+  const box=$('expErr'); if(!box) return;
+  if(!issues.length){ box.innerHTML='<div style="font-size:12px;color:#2e7d32;padding:6px 8px;border:1px solid #2e7d32;border-radius:4px;background:#e8f5e9;margin-bottom:8px">✅ 校验通过，可直接导出</div>'; return; }
+  box.innerHTML='<div style="font-size:12px;color:#b71c1c;padding:6px 8px;border:1px solid #b71c1c;border-radius:4px;background:#ffebee;margin-bottom:6px">⚠ 校验发现 <b>'+issues.length+'</b> 个问题，点条目跳到布局修改</div>'
+    +issues.map((o,i)=>'<div data-i="'+i+'" style="font-size:12px;padding:2px 4px;cursor:pointer;border-radius:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'
+      +(o.id?'<b>'+o.id+'</b>: ':'')+o.msg+'</div>').join('');
+  box.querySelectorAll('[data-i]').forEach(div=>{ const i=+div.getAttribute('data-i');
+    div.onmouseenter=()=>div.style.background='#ffd9d9'; div.onmouseleave=()=>div.style.background='transparent';
+    div.onclick=()=>{ const o=issues[i]; const en=o.id&&nodeById(o.id);
+      if(en){ select(o.id); } else if(o.id){ const ed=S.edges.find(x=>x.from===o.id||x.to===o.id); if(ed) S.selEdge=ed; }
+      $('exportwrap').style.display='none'; draw(); renderEdges(); }; });
+}
+function rerenderErr(){ const pl=previewLn(); renderErr(pl? validateNow(buildSpecFor(pl)) : []); }
+function refreshExport(){                                     // 组装线勾选列表
+  loadProj(); const cur=curLine();
+  const lines=Array.from(new Set(Object.keys(PROJ).concat([cur]))).sort();
+  const box=$('expSel'); box.innerHTML='';
+  const la=document.createElement('label'); la.style.cssText='display:flex;align-items:center;gap:4px;font-weight:600;margin-right:6px';
+  la.innerHTML='<input type="checkbox" id="expAll">全部';
+  la.querySelector('input').onchange=e=>{ const v=e.target.checked;
+    for(const c of box.querySelectorAll('.expLn')) c.checked=v; showPreview(); rerenderErr(); };
+  box.append(la);
+  for(const ln of lines){
+    const l=document.createElement('label'); l.style.cssText='display:flex;align-items:center;gap:4px';
+    l.innerHTML='<input type="checkbox" class="expLn">'+ln.replace(/</g,'&lt;');
+    const chk=l.querySelector('input'); chk.checked=(ln===cur); chk.dataset.ln=ln;
+    chk.onchange=()=>{ const all=box.querySelectorAll('.expLn'), on=box.querySelectorAll('.expLn:checked');
+      $('expAll').checked = all.length>0 && on.length===all.length; showPreview(); rerenderErr(); };
+    box.append(l);
+  }
+  const on=box.querySelectorAll('.expLn:checked');
+  $('expAll').checked = on.length===box.querySelectorAll('.expLn').length;
+  showPreview(); rerenderErr();
+}
+function downloadLine(ln,spec){
+  const a=document.createElement('a');
+  a.download=(ln||'spec').replace(/[^\w一-龥\-]/g,'_')+'.json';
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(spec,null,2)],{type:'application/json'})); a.click();
+}
+$('btnExport').onclick=()=>{ refreshExport(); $('exportwrap').style.display='flex'; };
+$('btnClose').onclick=()=>{ $('exportwrap').style.display='none'; };
+$('btnCopy').onclick=()=> navigator.clipboard.writeText($('specout').value);
+$('btnDl').onclick=()=>{
+  const sel=Array.from($('expSel').querySelectorAll('.expLn:checked')).map(c=>c.dataset.ln);
+  if(!sel.length){ alert('请先勾选要导出的线'); return; }
+  let miss=0;
+  for(const ln of sel){ const s=buildSpecFor(ln); if(!s){ miss++; continue; } downloadLine(ln,s); }
+  if(miss) alert('有 '+miss+' 条线在工程中无内容，已跳过');
+};
+$('btnImport').onclick=()=> $('filein').click();
+$('filein').onchange=ev=>{ const f=ev.target.files[0]; if(!f)return;
+  const r=new FileReader(); r.onload=()=>{ try{ loadSpec(JSON.parse(r.result)); }catch(_){alert('JSON 解析失败');} };
+  r.readAsText(f); ev.target.value=''; };
+const PROJKEY='layout_editor_projects', SAVEKEY='layout_editor_spec';
+let PROJ={};                                                        // {线号: spec}
+function loadProj(){ try{ PROJ=JSON.parse(localStorage.getItem(PROJKEY))||{}; }catch(_){ PROJ={}; } }
+function persistProj(){ localStorage.setItem(PROJKEY, JSON.stringify(PROJ)); }
+function curLine(){ return $('lineid').value.trim()||'Line_5'; }
+// 刷新项目下拉（保持当前线选中）
+function refreshProjSel(){
+  const sel=$('projSel'); const keep=curLine();
+  sel.innerHTML='';
+  const lines=Object.keys(PROJ).sort();
+  for(const ln of lines){ const o=document.createElement('option'); o.value=ln; o.textContent=ln; sel.append(o); }
+  if(PROJ[keep]) sel.value=keep;
+  else if(!sel.value && lines.length) sel.value=lines[0];
+}
+function saveNow(){ loadProj(); PROJ[curLine()]=buildSpec(); persistProj(); refreshProjSel();
+  const b=$('btnSave'); b.textContent='✓ 已保存 '+curLine(); setTimeout(()=>b.textContent='💾 保存',1200); }
+function openLine(ln){ $('lineid').value=ln; S.line=ln; if(PROJ[ln]) loadSpec(PROJ[ln]); else loadSpec(sampleSpec(ln)); refreshProjSel(); }
+$('btnSave').onclick=saveNow;
+$('lineid').oninput=e=>{S.line=e.target.value.trim()||'Line_5'; refreshProjSel();};
+$('projSel').onchange=e=>{ if(e.target.value) openLine(e.target.value); };
+$('btnNew').onclick=()=>{
+  const ln=window.prompt('新线号（如 Line_7）', 'Line_7');
+  if(!ln||!ln.trim()) return;
+  if(PROJ[ln.trim()]){ alert('已存在线 '+ln.trim()+'，已切换'); openLine(ln.trim()); return; }
+  if(!confirm('新建 '+ln.trim()+'（以示例为起点）？')) return;
+  PROJ[ln.trim()]=null; persistProj(); openLine(ln.trim());
+};
+$('btnClear').onclick=()=>{ S.elements=[];S.edges=[]; select(null);renderEdges(); };  // 只清画布，不删工程
+$('btnCenter').onclick=()=>{ centerView(); draw(); };        // 复位视图：内容居中
+// 清空连线已并入边属性面板（epClear）
+// 示例布局（可按线号 ln 重前缀：新建线时以本布局为起点）
+function sampleSpec(ln){
+  const P=(ln||'Line_5')+'_';
+  return {
+    line:ln||'Line_5',
+    elements:[
+      {id:P+'1A010RB',kind:'RB',pos:{x:80,y:120},attrs:{park:true,dir:'fwd'},tag:{}},
+      {id:P+'1A015LT',kind:'LT',pos:{x:250,y:120},attrs:{pair:'RB'},tag:{}},
+      {id:P+'1A020RB',kind:'RB',pos:{x:420,y:120},attrs:{park:true,dir:'fwd'},tag:{}},
+      {id:P+'1A025LT',kind:'LT',pos:{x:590,y:120},attrs:{pair:'WT'},tag:{}},
+      {id:P+'1A045LT',kind:'LT',pos:{x:250,y:260},attrs:{pair:'RB'},tag:{}},   // 第3个LT（CP绑定列演示）
+      {id:P+'1A040TC.1',kind:'TC',pos:{x:800,y:160},attrs:{},tag:{}},
+      {id:P+'1A040TC.2',kind:'TC',pos:{x:800,y:220},attrs:{},tag:{}},
+      {id:P+'1A050HE.1',kind:'HE',pos:{x:800,y:300},attrs:{},tag:{}},
+      {id:P+'1A050HE.2',kind:'HE',pos:{x:800,y:360},attrs:{},tag:{}},
+      {id:P+'1A030CP',kind:'CP',pos:{x:180,y:190},attrs:{stops:[P+'1A045LT',P+'1A015LT',P+'1A025LT'],dir:'down'},tag:{}},
+      {id:P+'1A030TT',kind:'TT',pos:{x:950,y:150},attrs:{angles:[180,90,30]},tag:{}},
+      {id:P+'1A032DT',kind:'DEC',pos:{x:950,y:210},attrs:{device:P+'1A030TT',
+        db:'L3'+ln+'_1A_LT025DecVisu',dest_map:[{dest:1,to:P+'1A020RB'},{dest:2,to:P+'1A030RB'}]},tag:{}},
+      {id:P+'1A035XT',kind:'EXT',pos:{x:1100,y:150},attrs:{},tag:{}}
+    ],
+    edges:[
+      {from:P+'1A010RB',to:P+'1A015LT',etri:'roller'},
+      {from:P+'1A015LT',to:P+'1A020RB',etri:'roller'},
+      {from:P+'1A020RB',to:P+'1A025LT',etri:'load'},
+      {from:P+'1A020RB',to:P+'1A040TC.1',etri:'tc'},
+      {from:P+'1A040TC.1',to:P+'1A040TC.2',etri:'tc'},
+      {from:P+'1A040TC.2',to:P+'1A050HE.1',etri:'lift'},
+      {from:P+'1A050HE.1',to:P+'1A050HE.2',etri:'lift'},
+      {from:P+'1A020RB',to:P+'1A030TT',etri:'tt'},
+      {from:P+'1A030TT',to:P+'1A035XT',etri:'tt'}
+    ]};
+}
+$('btnSample').onclick=()=> loadSpec(sampleSpec('Line_5'));
+
+// 启动：多工程投影。旧单槽(layout_editor_spec)迁入 Line_5；否则载入示例
+buildPalette();
+loadProj();
+const legacy=localStorage.getItem(SAVEKEY);
+if(legacy && !PROJ.Line_5){ try{ PROJ.Line_5=JSON.parse(legacy); persistProj(); }catch(_){} }
+refreshProjSel();
+const lines=Object.keys(PROJ).sort();
+if(lines.length) openLine(lines[0]); else $('btnSample').onclick();
+
+// ================= S1/S2/S3 三键：导出 spec / 点位生成 / 校验 =================
+// 共享目录句柄（File System Access API，Chrome/Edge）。首次授权记忆到 IndexedDB，之后免授权写同一目录。
+const FSDIR_DB='layout_editor_fs', FSDIR_STORE='dirs', FSDIR_KEY='exportdir';
+let fsDir=null;                                // {name, handle}
+function fsOpenDB(){ return new Promise((res,rej)=>{ const rq=indexedDB.open(FSDIR_DB,1);
+  rq.onupgradeneeded=()=>{ if(!rq.result.objectStoreNames.contains(FSDIR_STORE)) rq.result.createObjectStore(FSDIR_STORE); };
+  rq.onsuccess=()=>res(rq.result); rq.onerror=()=>rej(rq.error); }); }
+async function fsLoadDir(){
+  try{ const db=await fsOpenDB(); return new Promise(res=>{ const tx=db.transaction(FSDIR_STORE,'readonly');
+    const rq=tx.objectStore(FSDIR_STORE).get(FSDIR_KEY); rq.onsuccess=()=>res(rq.result||null); rq.onerror=()=>res(null); }); }
+  catch(_){ return null; }
+}
+async function fsSaveDir(entry){ try{ const db=await fsOpenDB(); return new Promise(res=>{ const tx=db.transaction(FSDIR_STORE,'readwrite');
+    tx.objectStore(FSDIR_STORE).put(entry,FSDIR_KEY); tx.oncomplete=()=>res(true); tx.onerror=()=>res(false); }); }
+  catch(_){ return false; } }
+async function fsAdopt(entry){                        // 归一同步句柄（跨刷新恢复权限可能降级为 prompt）
+  fsSaveDir(entry);
+  try{ if((await entry.handle.queryPermission({mode:'readwrite'}))!=='granted'){
+    await entry.handle.requestPermission({mode:'readwrite'}); } }catch(_){}
+  fsDir=entry; return fsDir;
+}
+async function fsPickDir(title){                      // 首次/重选文件夹：弹系统选择器 → 记忆
+  if(!window.showDirectoryPicker) return null;
+  const h=await window.showDirectoryPicker({mode:'readwrite'});
+  return fsAdopt({name:h.name, handle:h});
+}
+async function fsEnsureDir(){                         // 会话内有句柄且已授权直接用；否则先记忆恢复、再弹一次
+  if(fsDir){ try{ if((await fsDir.handle.queryPermission({mode:'readwrite'}))==='granted') return fsDir; }catch(_){} }
+  const saved=await fsLoadDir();
+  if(saved){ try{ if((await saved.handle.queryPermission({mode:'readwrite'}))==='granted'){ fsDir=saved; return fsDir; } }catch(_){} }
+  return await fsPickDir();
+}
+async function fsWrite(relPath, content){             // relPath 含子目录则自动创建。返回 {ok,name,err}
+  const root=await fsEnsureDir(); if(!root) return {ok:false,err:'denied'};
+  const parts=relPath.split('/');
+  let h=root.handle;
+  try{
+    for(let i=0;i<parts.length-1;i++) h=await h.getDirectoryHandle(parts[i],{create:true});
+    const f=await h.getFileHandle(parts[parts.length-1],{create:true});
+    const w=await f.createWritable(); await w.write(content); await w.close();
+    return {ok:true, name:root.name+'/'+relPath};
+  }catch(e){ return {ok:false, err:String(e&&e.message||e)}; }
+}
+function fsPickButton(btn, cb){                       // 三键统一入口：支持自动/手动重选目录
+  if(!window.showDirectoryPicker){ alert('当前浏览器不支持直接写文件夹。请用 Chrome/Edge；或改用「导出弹窗(多线)」下载 spec。'); return; }
+  cb();
+}
+
+// ---- JS 版 tags 推导（与 tags.py 对齐：读 element.tag 覆盖，缺省按 kind 推导）----
+const JS_TAG_NS='.', JS_PLC='L3', JS_BRANCH='IL';
+const JS_TAG_KINDS=['RB','WT','LT','TT','SL','HE','TC'];
+const JS_PT_BODY='M1003_BodyID', JS_PT_SKID='I1030_RBDataSkidNo', JS_PT_TGT='I1031_RBDataTarget';
+function jseg(dev){ const m=/^(\d*[A-Z]+)\d+/.exec(dev||''); return m?m[1]:'1D'; }
+function jdevTokens(full){ const tail=(full.split('.')[0]).split('_').pop();
+  const m=/^(\d*[A-Z]+\d+)([A-Z]+)/.exec(tail);
+  return { seg:jseg(tail), pos:m?m[1]:tail, suf:m?m[2]:'' }; }
+function jx1x2(el){
+  const tag=el.tag||{}, rid=el.id, seg=jdevTokens(rid), kind=el.kind;
+  let x1,x2;
+  if(tag.x1){ x1=String(tag.x1); x2=String(tag.x2||tag.x1); }
+  else if(kind==='RB'){ x1=x2=seg.pos+'RB'; }
+  else if(kind==='LT'){ x1=x2=seg.pos+'LT'; }
+  else if(kind==='WT'){ x1=x2=seg.pos+'WT'; }
+  else { x1=seg.pos+kind; x2=seg.pos+'RB'; }
+  let branch=String(tag.branch||JS_BRANCH).replace(/^\.+|\.+$/g,'')||JS_BRANCH;
+  const mid=tag.mid||null, devArea=seg.seg;
+  return { x1,x2,branch,mid,devArea };
+}
+function jtagPath(line,x1,x2,branch,mid,devArea,point){
+  const midPart=mid?'_'+mid:'';
+  return JS_TAG_NS+JS_PLC+line+'_'+devArea+midPart+'_'+x1+'_'+x2+'.'+branch+'.SD.'+point;
+}
+function jderive(el,line){ if(!JS_TAG_KINDS.includes(el.kind)) return null;
+  const {x1,x2,branch,mid,devArea}=jx1x2(el), short=lineIdOf(el.id);
+  return { node:el.id, device:x1, device_rb:x2,
+    body:jtagPath(short,x1,x2,branch,mid,devArea,JS_PT_BODY),
+    skid:jtagPath(short,x1,x2,branch,mid,devArea,JS_PT_SKID),
+    tgt: jtagPath(short,x1,x2,branch,mid,devArea,JS_PT_TGT) };
+}
+function jBuild(spec){ const rows=(spec.elements||[]).map(e=>jderive(e,spec.line)).filter(Boolean);
+  const rollers=rows.map(d=>({node:d.node,device:d.device,device_rb:d.device_rb,type:null,mid:null,branch:null}));
+  const points=rows.map(d=>({node:d.node,tag:d.tgt,kind:'target'}));
+  return { rows, rollers, points }; }
+
+// ---- S1 导出 spec（当前线 → 专属目录）----
+let pbar;
+function pending(msg){ pbar=$('fsStatus')||(function(){ const d=document.createElement('div');
+  d.id='fsStatus'; d.style.cssText='position:fixed;left:50%;top:46%;transform:translate(-50%,-50%);background:rgba(38,50,56,.95);color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;z-index:99;box-shadow:0 4px 16px rgba(0,0,0,.3)';
+  document.body.appendChild(d); return d; })(); pbar.textContent=msg; }
+function done(p){ if(p){ p.remove(); } }
+$('btnS1').onclick=()=> fsPickButton('S1', async ()=>{
+  const ln=curLine(); const s=buildSpec();
+  pending('S1 导出 spec → 专属目录…'); if(!window.showDirectoryPicker) return;
+  const r=await fsWrite(ln+'.json', JSON.stringify(s,null,2));
+  setTimeout(()=>done(pbar),1500);
+  if(r.ok) alert('✅ 已导出 '+ln+'.json → '+r.name);
+  else if(r.err==='denied') alert('已取消（未选文件夹）');
+  else alert('导出失败：'+r.err);
+});
+// ---- S2 点位生成（当前线 → deviceConfig\线.json + 线_tags.txt）----
+function tagsConfig(line,rows,rollers,points){ return { plc:JS_PLC+line,
+  _comment:'布局编辑器 S2 生成。rollers: 推导参数, 加载时重拼 车身(M1003_BodyID)+雪橇(I1030_RBDataSkidNo); device=X1 设备体, device_rb=X2 该位滚床; points: target 目标地址等。',
+  rollers, points }; }
+function tagsTxt(line,rows){ let t='#'+line+' tag 订阅点\n';
+  for(const d of rows){ t+=String(d.node).padEnd(22)+' X1='+String(d.device).padEnd(8)+' X2='+String(d.device_rb).padEnd(8)+'\n'
+    +'    body   '+d.body+'\n' +'    skid   '+d.skid+'\n' +'    target '+d.tgt+'\n'; }
+  return t; }
+$('btnS2').onclick=()=> fsPickButton('S2', async ()=>{
+  const ln=curLine(); const spec=buildSpec(); const {rows,rollers,points}=jBuild(spec);
+  pending('S2 生成点位 → 专属目录…'); if(!window.showDirectoryPicker) return;
+  const r1=await fsWrite('deviceConfig/'+ln+'.json', JSON.stringify(tagsConfig(ln,rows,rollers,points),null,2));
+  const r2=await fsWrite('deviceConfig/'+ln+'_tags.txt', tagsTxt(ln,rows));
+  setTimeout(()=>done(pbar),1500);
+  if(r1.ok&&r2.ok) alert('✅ '+ln+'：'+rows.length+' 台可停设备 → '+r1.name+' 及 _tags.txt');
+  else if(r1.err==='denied') alert('已取消（未选文件夹）');
+  else alert('部分导出失败：'+r1.err+' / '+r2.err);
+});
+// ---- S3 校验当前线：id/边/CP/partner（对齐 graph.py validate）----
+$('btnS3').onclick=()=>{
+  const issues=validateNow(buildSpec());
+  if(!issues.length){ alert('✅ 校验通过。id 唯一、边端点存在、CP 引用有效、partner 已填。'); return; }
+  const first=()=>alert('⚠ 校验发现 '+issues.length+' 个问题：\n\n'+issues.slice(0,12).map(o=>'· '+o.id+' — '+o.msg).join('\n')+'\n\n点确定后在面板内逐项定位。');
+  first(); const box=($('expErr')); if(box){ $('exportwrap').style.display='flex'; refreshExport(); renderErr(issues); }
+};
+</script>
+</body>
+</html>

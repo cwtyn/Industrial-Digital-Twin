@@ -1,0 +1,6 @@
+# 运行时与工具依赖（Python 3.10+）
+pymysql>=1.1.0
+websocket-client>=1.7.0
+Flask>=2.3.0
+networkx>=3.0
+openpyxl>=3.1.0

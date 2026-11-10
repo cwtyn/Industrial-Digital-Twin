@@ -1,0 +1,79 @@
+# ============================================================
+# FJSP-T / 产线智能调度系统 —— 版本库排除清单
+# 原则：运行期产物、日志、实时数据、本地凭据、机器/IDE 配置一律不入库
+# ============================================================
+
+# ---------- 日志（全部 logs/ 与常见日志后缀） ----------
+logs/
+*.log
+*.err
+*.out
+
+# ---------- 实时数据快照 / 运行期统计（体积大且含现场车辆数据） ----------
+vehicle_state.json
+edge_time_stats.json
+# 可视化页面由 make_line_viz.py 生成，内嵌当前车辆快照；运行时自动重生成，不入库
+conveyor_visual.html
+
+# ---------- 本地数据库凭据（严禁入库） ----------
+config/db.json
+*.env
+.env
+.env.*
+secrets.json
+
+# ---------- Python 编译缓存 / 测试缓存 ----------
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---------- 本地运行环境脚本（含本机绝对路径，不随仓库分发） ----------
+*.bat
+*.vbs
+*.ps1
+
+# ---------- 临时文件 / 办公软件锁文件 ----------
+_tmp_*
+*.tmp
+*.bak
+~$*
+
+# ---------- 大体量 / 含生产标识的源数据（按需保留，默认不入库） ----------
+*.xlsx
+*.xls
+# 办公文档元数据含第三方作者姓名/公司信息，不入库
+*.docx
+*.doc
+*.extracted.txt
+07_02_Partslist_*.xlsx
+# 轨迹体检报告含真实 PIN 码，不入库
+docs/traj_health_*.md
+docs/sub_coverage_*.md
+
+# ---------- 内部台账 / 调研 / 方案（不随仓库分发） ----------
+*设备清单*
+项目调研笔记.md
+*技术方案*
+equipment.csv
+待确认数据/
+L3F*.db
+
+# ---------- 一次性内部脚本（不随仓库分发） ----------
+codes/_dump_*.py
+codes/_gen_*.py
+codes/annotate_equipment.py
+codes/gen_equipment.py
+codes/gen_confirm_templates.py
+codes/extract_docx.py
+layout_editor/_c.js
+
+# ---------- 操作系统 / 编辑器 ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp

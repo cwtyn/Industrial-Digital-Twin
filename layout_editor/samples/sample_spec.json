@@ -1,0 +1,29 @@
+{
+  "line": "Line_5",
+  "comment": "演示复合LT站 + 多位置设备物化(TT/SL/HE/TC .1/.2 纵向60对齐) + CP绑定(有序stops+传送方向dir) + EXT；label 缺省=完整id(1A010RB)",
+  "elements": [
+    {"id": "Line_5_1A010RB", "kind": "RB", "type": "roller", "pos": {"x": 80, "y": 120}, "attrs": {"park": true, "dir": "fwd"}, "tag": {}},
+    {"id": "Line_5_1A015LT", "kind": "LT", "type": "load", "pos": {"x": 250, "y": 120}, "attrs": {"pair": "RB"}, "tag": {}},
+    {"id": "Line_5_1A020RB", "kind": "RB", "type": "roller", "pos": {"x": 420, "y": 120}, "attrs": {"park": true, "dir": "fwd"}, "tag": {}},
+    {"id": "Line_5_1A025LT", "kind": "LT", "type": "load", "pos": {"x": 590, "y": 120}, "attrs": {"pair": "WT"}, "tag": {}},
+    {"id": "Line_5_1A045LT", "kind": "LT", "type": "load", "pos": {"x": 250, "y": 260}, "attrs": {"pair": "RB"}, "tag": {}},
+    {"id": "Line_5_1A040TC.1", "kind": "TC", "type": "tc", "pos": {"x": 800, "y": 160}, "attrs": {}, "tag": {}},
+    {"id": "Line_5_1A040TC.2", "kind": "TC", "type": "tc", "pos": {"x": 800, "y": 220}, "attrs": {}, "tag": {}},
+    {"id": "Line_5_1A050HE.1", "kind": "HE", "type": "he", "pos": {"x": 800, "y": 300}, "attrs": {}, "tag": {}},
+    {"id": "Line_5_1A050HE.2", "kind": "HE", "type": "he", "pos": {"x": 800, "y": 360}, "attrs": {}, "tag": {}},
+    {"id": "Line_5_1A030CP", "kind": "CP", "type": "cross", "pos": {"x": 180, "y": 190}, "attrs": {"stops": ["Line_5_1A045LT", "Line_5_1A015LT", "Line_5_1A025LT"], "dir": "down"}, "tag": {}},
+    {"id": "Line_5_1A030TT", "kind": "TT", "type": "tt", "pos": {"x": 950, "y": 150}, "attrs": {"angles": [180, 90, 30]}, "tag": {}},
+    {"id": "Line_5_1A035XT", "kind": "EXT", "type": "ext", "pos": {"x": 1100, "y": 150}, "attrs": {}, "tag": {}}
+  ],
+  "edges": [
+    {"from": "Line_5_1A010RB", "to": "Line_5_1A015LT", "etri": "roller"},
+    {"from": "Line_5_1A015LT", "to": "Line_5_1A020RB", "etri": "roller"},
+    {"from": "Line_5_1A020RB", "to": "Line_5_1A025LT", "etri": "load"},
+    {"from": "Line_5_1A020RB", "to": "Line_5_1A040TC.1", "etri": "tc"},
+    {"from": "Line_5_1A040TC.1", "to": "Line_5_1A040TC.2", "etri": "tc"},
+    {"from": "Line_5_1A040TC.2", "to": "Line_5_1A050HE.1", "etri": "lift"},
+    {"from": "Line_5_1A050HE.1", "to": "Line_5_1A050HE.2", "etri": "lift"},
+    {"from": "Line_5_1A020RB", "to": "Line_5_1A030TT", "etri": "tt"},
+    {"from": "Line_5_1A030TT", "to": "Line_5_1A035XT", "etri": "tt"}
+  ]
+}

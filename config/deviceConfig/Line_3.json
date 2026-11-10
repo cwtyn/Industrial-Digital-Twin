@@ -1,0 +1,259 @@
+{
+  "plc": "L3L3",
+  "_comment": "滚床订阅配置(每条输送一个文件)。\n rollers: 每条只存 node/device/type/mid, 加载时自动生成 车身(M1003_BodyID)+雪橇(I1030_RBDataSkidNo) 两条, .IL. 分支;\n          device=X1 设备体(RB/LT/TT/SL/TC/HE), type 用于 X1 覆盖(LT/TT/SL/TC), mid=非标准中间段(如14AS/15AS).\n points:  额外点位订阅, tag 写完整(如位信号 .SB. 分支、非母本点位), kind 任取(如 pos), node=所属节点;\n          新增类型(如 TC 位置)只需在此加一条即可.",
+  "rollers": [
+    {
+      "node": "Line_3_1A230RB",
+      "device": "1A230RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A235RB",
+      "device": "1A235RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A240RB",
+      "device": "1A240RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A245RB",
+      "device": "1A245RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A250RB",
+      "device": "1A250RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A255RB",
+      "device": "1A255RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A260RB",
+      "device": "1A260RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A265RB",
+      "device": "1A265RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A340RB",
+      "device": "1A340RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A345RB",
+      "device": "1A345RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A350RB",
+      "device": "1A350RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A355RB",
+      "device": "1A355RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A360RB",
+      "device": "1A360RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A365RB",
+      "device": "1A365RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A370RB",
+      "device": "1A370RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1A375RB",
+      "device": "1A375RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1B270RB",
+      "device": "1B270RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1B275RB",
+      "device": "1B275RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1B280RB",
+      "device": "1B280RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1B285RB",
+      "device": "1B285RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1B290RB",
+      "device": "1B290RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1B295RB",
+      "device": "1B295RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1B300RB",
+      "device": "1B300RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1B380RB",
+      "device": "1B380RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1B385RB",
+      "device": "1B385RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1B390RB",
+      "device": "1B390RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1B395RB",
+      "device": "1B395RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1B400RB",
+      "device": "1B400RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1B405RB",
+      "device": "1B405RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1B410RB",
+      "device": "1B410RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1C305RB",
+      "device": "1C305RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1C310RB",
+      "device": "1C310RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1C315RB",
+      "device": "1C315RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1C320RB",
+      "device": "1C320RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1C325RB",
+      "device": "1C325RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1C330RB",
+      "device": "1C330RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1C415RB",
+      "device": "1C415RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1C420RB",
+      "device": "1C420RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1C425RB",
+      "device": "1C425RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1C430RB",
+      "device": "1C430RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1C435RB",
+      "device": "1C435RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_3_1C440RB",
+      "device": "1C440RB",
+      "type": "RB",
+      "mid": null
+    }
+  ],
+  "points": []
+}

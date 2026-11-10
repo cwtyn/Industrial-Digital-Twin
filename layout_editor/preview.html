@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>线路预览</title>
+<style>
+  body{margin:0;font-family:Consolas,"Microsoft YaHei",monospace;background:#f5f5f5}
+  #bar{background:#263238;color:#fff;padding:8px 12px;font-size:13px;display:flex;gap:16px;align-items:center}
+  #bar .hint{opacity:.75;font-size:12px}
+  #wrap{margin:10px;background:#fff;border:1px solid #ccc;border-radius:6px;overflow:auto}
+  svg{display:block}
+  #legend{position:fixed;right:14px;top:56px;background:rgba(38,50,56,.92);color:#fff;
+          padding:8px 10px;border-radius:6px;font-size:12px;line-height:1.7}
+  #legend b{display:inline-block;width:74px}
+  text{user-select:none}
+</style>
+</head>
+<body>
+<div id="bar">
+  <span id="line"><span class="hint">线路</span> <b>-</b></span>
+  <span id="stat"><span class="hint">节点</span> <b>0</b> · <span class="hint">边</span> <b>0</b></span>
+  <span class="hint">需先跑 <code>python graph.py spec.json</code> 生成 preview_data.js</span>
+</div>
+<div id="legend">
+  <div><span style="color:#E53935">■</span><b>RB</b>辊床</div>
+  <div><span style="color:#BDBDBD">■</span><b>WT</b>离线/上线</div>
+  <div><span style="color:#FB8C00">■</span><b>LT</b>升降</div>
+  <div><span style="color:#00897B">■</span><b>TT/SL</b>转台/剪车</div>
+  <div><span style="color:#8D6E63">■</span><b>HE</b>提升机</div>
+  <div><span style="color:#E53935">●</span><b>CP</b>横移链</div>
+  <div><span style="color:#AB47BC">◆</span><b>TC</b>横移车</div>
+  <div><span style="color:#29B6F6">■</span><b>DEC</b>决策点</div>
+  <div><span style="color:#616161">■</span><b>EXT</b>跨线</div>
+</div>
+<div id="wrap">
+  <svg id="svg" width="900" height="640"></svg>
+</div>
+<script src="preview_data.js"></script>
+<script>
+const D = window._PREVIEW_DATA;
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, text) {
+  const n = document.createElementNS(NS, tag);
+  for (const k in attrs) n.setAttribute(k, attrs[k]);
+  if (text != null) n.textContent = text;
+  return n;
+}
+function render() {
+  document.getElementById('line').querySelector('b').textContent = D.line || '-';
+  const ns = D.nodes.length, es = D.edges.length;
+  document.querySelector('#stat b:nth-of-type(1)').textContent = ns;
+  document.querySelector('#stat b:nth-of-type(2)').textContent = es;
+  if (!ns) return;
+  // 布局映射：世界坐标 1:1 渲染（保留真实间距与设备尺寸，超宽用滚动条/浏览器缩放看）
+  const xs = D.nodes.map(n => n.x), ys = D.nodes.map(n => n.y);
+  const minX = Math.min(...xs), maxX = Math.max(...xs);
+  const minY = Math.min(...ys), maxY = Math.max(...ys);
+  const W = Math.max(1, maxX - minX), H = Math.max(1, maxY - minY);
+  const pad = 60;
+  const scale = 1;
+  const ox = pad - minX, oy = pad - minY;
+  const px = (x, y) => [ox + x, oy + y];
+  const svg = document.getElementById('svg');
+  svg.setAttribute('width', W + pad * 2);
+  svg.setAttribute('height', H + pad * 2);
+  svg.setAttribute('viewBox', `0 0 ${W + pad * 2} ${H + pad * 2}`);
+  svg.setAttribute('style', 'width:'+(W+pad*2)+'px;height:'+(H+pad*2)+'px');
+  svg.innerHTML = '';
+  // 箭头 marker
+  const defs = el('defs'); svg.appendChild(defs);
+  const mk = el('marker', {id:'arrow', markerWidth:'10', markerHeight:'10',
+      refX:'9', refY:'3', orient:'auto', markerUnits:'strokeWidth'});
+  mk.appendChild(el('path', {d:'M0,0 L0,6 L9,3 z', fill:'#333'})); defs.appendChild(mk);
+  defs.appendChild(el('marker', {id:'arrow2', markerWidth:'10', markerHeight:'10',
+      refX:'9', refY:'3', orient:'auto', markerUnits:'strokeWidth'},
+      null).appendChild(el('path', {d:'M0,0 L0,6 L9,3 z', fill:'#E53935'})));
+  for (const e of D.edges) {
+    const a = D.nodes.find(n => n.id === e.from), b = D.nodes.find(n => n.id === e.to);
+    if (!a || !b) continue;
+    const [x1,y1] = px(a.x,a.y), [x2,y2] = px(b.x,b.y);
+    const line = el('line', {x1, y1, x2, y2, stroke: e.color,
+        'stroke-width': e.width,
+        'stroke-dasharray': e.dashes ? '6 4' : 'none',
+        'marker-end': 'url(#arrow)'});
+    svg.appendChild(line);
+  }
+  for (const n of D.nodes) {
+    const [x, y] = px(n.x, n.y);
+    const w = n.shape === 'ellipse' || n.shape === 'diamond' ? n.w : n.w;
+    const hh = n.shape === 'ellipse' || n.shape === 'diamond' ? n.h : n.h;
+    let shape;
+    if (n.shape === 'rect')      shape = el('rect', {x: x-w/2, y: y-hh/2, width: w, height: hh, rx: 3, fill: n.color});
+    else if (n.shape === 'ellipse') shape = el('ellipse', {cx: x, cy: y, rx: w/2, ry: hh/2, fill: n.color});
+    else if (n.shape === 'diamond') shape = el('path', {d: `M${x} ${y-hh/2} L${x+w/2} ${y} L${x} ${y+hh/2} L${x-w/2} ${y} Z`, fill: n.color});
+    else                       shape = el('rect', {x: x-w/2, y: y-hh/2, width: w, height: hh, rx: 2, fill: n.color});
+    shape.setAttribute('stroke', '#222'); shape.setAttribute('stroke-width', 1);
+    if (n.type === 'RB' && n.turn) shape.setAttribute('transform', `rotate(${n.turn} ${x} ${y})`); // RB 绕中心旋转
+    const title = el('title'); title.textContent = n.id;
+    shape.appendChild(title);
+    svg.appendChild(shape);
+    if (n.angles && n.angles.length) {   // TT 转台：各可到转角位为扇臂，绕中心旋转；0°接收位即节点本体
+      for (const a of n.angles) {
+        const arm = el('rect', {x: x-33, y: y-8, width: 66, height: 16, rx: 3, fill: n.color,
+            transform: 'rotate('+a+' '+x+' '+y+')'});
+        arm.setAttribute('stroke', '#222'); arm.setAttribute('stroke-width', 1);
+        svg.appendChild(arm);
+      }
+    }
+    const t = el('text', {x, y: y + 4, 'text-anchor': 'middle', fill: '#111',
+        'font-size': 11, 'font-family': 'Consolas'}, n.label);
+    svg.appendChild(t);
+  }
+}
+render();
+</script>
+</body>
+</html>

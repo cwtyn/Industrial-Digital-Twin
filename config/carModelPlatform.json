@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "车型与平台对应关系（模拟数据）",
+    "description": "项目演示用的车型代码、名称与平台归属关系。仓库内为模拟泛化数据，不代表任何真实工厂或车型。",
+    "updatedAt": "2026-11-10",
+    "platformOrder": ["P_A", "P_B", "P_C", "P_D"],
+    "modelOrder": ["2N", "IM", "IE", "VS", "VH", "SS", "YM", "YE", "XV", "DM", "3S", "3E"],
+    "bodyIdParse": {
+      "modelCode": "raw.slice(14, 16)",
+      "colorCode": "raw.slice(19, 23)",
+      "platformCode": "raw.slice(23, 26)",
+      "code": "raw.slice(26, 29)"
+    }
+  },
+  "platforms": [
+    {
+      "code": "P_A",
+      "name": "Platform_A",
+      "models": [
+        { "code": "2N", "name": "Sedan_01" },
+        { "code": "IM", "name": "Sedan_01_PHEV" },
+        { "code": "IE", "name": "Sedan_01_EV" }
+      ]
+    },
+    {
+      "code": "P_B",
+      "name": "Platform_B",
+      "models": [
+        { "code": "VS", "name": "Sedan_02" },
+        { "code": "VH", "name": "Sedan_02_Sport" },
+        { "code": "SS", "name": "Sedan_03" }
+      ]
+    },
+    {
+      "code": "P_C",
+      "name": "Platform_C",
+      "models": [
+        { "code": "YM", "name": "SUV_01" },
+        { "code": "YE", "name": "SUV_01_L" },
+        { "code": "XV", "name": "SUV_02" }
+      ]
+    },
+    {
+      "code": "P_D",
+      "name": "Platform_D",
+      "models": [
+        { "code": "DM", "name": "MPV_01" },
+        { "code": "3S", "name": "MPV_02" },
+        { "code": "3E", "name": "MPV_03" }
+      ]
+    }
+  ],
+  "models": [
+    { "code": "2N", "name": "Sedan_01", "platform": "P_A" },
+    { "code": "IM", "name": "Sedan_01_PHEV", "platform": "P_A" },
+    { "code": "IE", "name": "Sedan_01_EV", "platform": "P_A" },
+    { "code": "VS", "name": "Sedan_02", "platform": "P_B" },
+    { "code": "VH", "name": "Sedan_02_Sport", "platform": "P_B" },
+    { "code": "SS", "name": "Sedan_03", "platform": "P_B" },
+    { "code": "YM", "name": "SUV_01", "platform": "P_C" },
+    { "code": "YE", "name": "SUV_01_L", "platform": "P_C" },
+    { "code": "XV", "name": "SUV_02", "platform": "P_C" },
+    { "code": "DM", "name": "MPV_01", "platform": "P_D" },
+    { "code": "3S", "name": "MPV_02", "platform": "P_D" },
+    { "code": "3E", "name": "MPV_03", "platform": "P_D" }
+  ],
+  "modelToPlatform": {
+    "2N": "P_A",
+    "IM": "P_A",
+    "IE": "P_A",
+    "VS": "P_B",
+    "VH": "P_B",
+    "SS": "P_B",
+    "YM": "P_C",
+    "YE": "P_C",
+    "XV": "P_C",
+    "DM": "P_D",
+    "3S": "P_D",
+    "3E": "P_D"
+  }
+}

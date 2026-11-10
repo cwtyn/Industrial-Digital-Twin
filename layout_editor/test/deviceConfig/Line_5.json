@@ -1,0 +1,268 @@
+{
+  "plc": "L3L5",
+  "_comment": "布局编辑器 S2 生成。rollers: 推导参数, 加载时重拼 车身(M1003_BodyID)+雪橇(I1030_RBDataSkidNo); device=X1 设备体, device_rb=X2 该位滚床; points: target 目标地址等。",
+  "rollers": [
+    {
+      "node": "Line_5_1A005RB",
+      "device": "1A005RB",
+      "device_rb": "1A005RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A015LT",
+      "device": "1A015LT",
+      "device_rb": "1A015LT",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A030RB",
+      "device": "1A030RB",
+      "device_rb": "1A030RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A020LT",
+      "device": "1A020LT",
+      "device_rb": "1A020LT",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A025LT",
+      "device": "1A025LT",
+      "device_rb": "1A025LT",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A040TC.1",
+      "device": "1A040TC",
+      "device_rb": "1A040RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A040TC.2",
+      "device": "1A040TC",
+      "device_rb": "1A040RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A050HE.1",
+      "device": "1A050HE",
+      "device_rb": "1A050RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A050HE.2",
+      "device": "1A050HE",
+      "device_rb": "1A050RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A070SL.1",
+      "device": "1A070SL",
+      "device_rb": "1A070RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A070SL.2",
+      "device": "1A070SL",
+      "device_rb": "1A070RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A030TT",
+      "device": "1A030TT",
+      "device_rb": "1A030RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A075RB",
+      "device": "1A075RB",
+      "device_rb": "1A075RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A080TT",
+      "device": "1A080TT",
+      "device_rb": "1A080RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A085RB",
+      "device": "1A085RB",
+      "device_rb": "1A085RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A090RB",
+      "device": "1A090RB",
+      "device_rb": "1A090RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A095RB",
+      "device": "1A095RB",
+      "device_rb": "1A095RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A100RB",
+      "device": "1A100RB",
+      "device_rb": "1A100RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A105RB",
+      "device": "1A105RB",
+      "device_rb": "1A105RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    },
+    {
+      "node": "Line_5_1A115RB",
+      "device": "1A115RB",
+      "device_rb": "1A115RB",
+      "type": null,
+      "mid": null,
+      "branch": null
+    }
+  ],
+  "points": [
+    {
+      "node": "Line_5_1A005RB",
+      "tag": ".L3L5_1A_1A005RB_1A005RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A015LT",
+      "tag": ".L3L5_1A_1A015LT_1A015LT.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A030RB",
+      "tag": ".L3L5_1A_1A030RB_1A030RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A020LT",
+      "tag": ".L3L5_1A_1A020LT_1A020LT.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A025LT",
+      "tag": ".L3L5_1A_1A025LT_1A025LT.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A040TC.1",
+      "tag": ".L3L5_1A_1A040TC_1A040RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A040TC.2",
+      "tag": ".L3L5_1A_1A040TC_1A040RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A050HE.1",
+      "tag": ".L3L5_1A_1A050HE_1A050RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A050HE.2",
+      "tag": ".L3L5_1A_1A050HE_1A050RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A070SL.1",
+      "tag": ".L3L5_1A_1A070SL_1A070RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A070SL.2",
+      "tag": ".L3L5_1A_1A070SL_1A070RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A030TT",
+      "tag": ".L3L5_1A_1A030TT_1A030RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A075RB",
+      "tag": ".L3L5_1A_1A075RB_1A075RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A080TT",
+      "tag": ".L3L5_1A_1A080TT_1A080RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A085RB",
+      "tag": ".L3L5_1A_1A085RB_1A085RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A090RB",
+      "tag": ".L3L5_1A_1A090RB_1A090RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A095RB",
+      "tag": ".L3L5_1A_1A095RB_1A095RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A100RB",
+      "tag": ".L3L5_1A_1A100RB_1A100RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A105RB",
+      "tag": ".L3L5_1A_1A105RB_1A105RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_5_1A115RB",
+      "tag": ".L3L5_1A_1A115RB_1A115RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    }
+  ]
+}

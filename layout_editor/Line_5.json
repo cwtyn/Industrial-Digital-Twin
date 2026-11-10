@@ -1,0 +1,469 @@
+{
+  "line": "Line_5",
+  "comment": "由 layout_editor 生成",
+  "elements": [
+    {
+      "id": "Line_5_1A005RB",
+      "kind": "RB",
+      "type": "roller",
+      "label": "",
+      "pos": {
+        "x": 80,
+        "y": 120
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A015LT",
+      "kind": "LT",
+      "type": "lt",
+      "label": "",
+      "pos": {
+        "x": 214,
+        "y": 121
+      },
+      "attrs": {
+        "pair": "RB"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A030RB",
+      "kind": "RB",
+      "type": "roller",
+      "label": "",
+      "pos": {
+        "x": 358,
+        "y": 120
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A020LT",
+      "kind": "LT",
+      "type": "lt",
+      "label": "",
+      "pos": {
+        "x": 212,
+        "y": 197
+      },
+      "attrs": {
+        "pair": "WT"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A025LT",
+      "kind": "LT",
+      "type": "lt",
+      "label": "",
+      "pos": {
+        "x": 211,
+        "y": 261
+      },
+      "attrs": {
+        "pair": "RB"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A040TC.1",
+      "kind": "TC",
+      "type": "tc",
+      "label": "",
+      "pos": {
+        "x": 591,
+        "y": 120
+      },
+      "attrs": {},
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A040TC.2",
+      "kind": "TC",
+      "type": "tc",
+      "label": "",
+      "pos": {
+        "x": 592,
+        "y": 195
+      },
+      "attrs": {},
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A050HE.1",
+      "kind": "HE",
+      "type": "he",
+      "label": "",
+      "pos": {
+        "x": 800,
+        "y": 199
+      },
+      "attrs": {},
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A050HE.2",
+      "kind": "HE",
+      "type": "he",
+      "label": "",
+      "pos": {
+        "x": 803,
+        "y": 357
+      },
+      "attrs": {},
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A010CP",
+      "kind": "CP",
+      "type": "cp",
+      "label": "",
+      "pos": {
+        "x": 214,
+        "y": 58
+      },
+      "attrs": {
+        "stops": [
+          "Line_5_1A015LT",
+          "Line_5_1A020LT",
+          "Line_5_1A025LT"
+        ],
+        "dir": "down"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A030EXT",
+      "kind": "EXT",
+      "type": "ext",
+      "label": "1A030EXT",
+      "pos": {
+        "x": 1105,
+        "y": 119
+      },
+      "attrs": {
+        "partner": "Line_7_1A005ENT"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A070SL.1",
+      "kind": "SL",
+      "type": "sl",
+      "label": "1A070SL.1",
+      "pos": {
+        "x": 483,
+        "y": 194
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A070SL.2",
+      "kind": "SL",
+      "type": "sl",
+      "label": "1A070SL.2",
+      "pos": {
+        "x": 484,
+        "y": 262
+      },
+      "attrs": {},
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A030TT",
+      "kind": "TT",
+      "type": "tt",
+      "label": "",
+      "pos": {
+        "x": 986,
+        "y": 120
+      },
+      "attrs": {
+        "turn": 30,
+        "angles": [
+          90
+        ]
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A075RB",
+      "kind": "RB",
+      "type": "roller",
+      "label": "1A075RB",
+      "pos": {
+        "x": 987,
+        "y": 245
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "turn": 90
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A080TT",
+      "kind": "TT",
+      "type": "tt",
+      "label": "1A080TT",
+      "pos": {
+        "x": 990,
+        "y": 361
+      },
+      "attrs": {
+        "angles": [
+          90
+        ]
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A085RB",
+      "kind": "RB",
+      "type": "roller",
+      "label": "1A085RB",
+      "pos": {
+        "x": 1087,
+        "y": 361
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "turn": 0
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A090RB",
+      "kind": "RB",
+      "type": "roller",
+      "label": "1A090RB",
+      "pos": {
+        "x": 358,
+        "y": 195
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "turn": 0
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A095RB",
+      "kind": "RB",
+      "type": "roller",
+      "label": "1A095RB",
+      "pos": {
+        "x": 358,
+        "y": 264
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "turn": 0
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A100RB",
+      "kind": "RB",
+      "type": "roller",
+      "label": "1A100RB",
+      "pos": {
+        "x": 481,
+        "y": 120
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "turn": 0
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A105RB",
+      "kind": "RB",
+      "type": "roller",
+      "label": "1A105RB",
+      "pos": {
+        "x": 897,
+        "y": 357
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "turn": 0
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A085EXT",
+      "kind": "EXT",
+      "type": "ext",
+      "label": "1A085EXT",
+      "pos": {
+        "x": 1199,
+        "y": 360
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "partner": "Line_7_1A080ENT"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_5_1A115RB",
+      "kind": "RB",
+      "type": "roller",
+      "label": "1A115RB",
+      "pos": {
+        "x": 696,
+        "y": 199
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "turn": 0
+      },
+      "tag": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "Line_5_1A005RB",
+      "to": "Line_5_1A015LT",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A015LT",
+      "to": "Line_5_1A030RB",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A040TC.1",
+      "to": "Line_5_1A040TC.2",
+      "etri": "tc"
+    },
+    {
+      "from": "Line_5_1A050HE.1",
+      "to": "Line_5_1A050HE.2",
+      "etri": "lift"
+    },
+    {
+      "from": "Line_5_1A030TT",
+      "to": "Line_5_1A030TT",
+      "etri": "tt"
+    },
+    {
+      "from": "Line_5_1A030TT",
+      "to": "Line_5_1A030EXT",
+      "etri": "ext"
+    },
+    {
+      "from": "Line_5_1A080TT",
+      "to": "Line_5_1A085RB",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A015LT",
+      "to": "Line_5_1A020LT",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A020LT",
+      "to": "Line_5_1A025LT",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A030RB",
+      "to": "Line_5_1A100RB",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A020LT",
+      "to": "Line_5_1A090RB",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A025LT",
+      "to": "Line_5_1A095RB",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A095RB",
+      "to": "Line_5_1A070SL.2",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A090RB",
+      "to": "Line_5_1A070SL.1",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A100RB",
+      "to": "Line_5_1A040TC.1",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A070SL.1",
+      "to": "Line_5_1A040TC.2",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A040TC.2",
+      "to": "Line_5_1A115RB",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A115RB",
+      "to": "Line_5_1A050HE.1",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A050HE.2",
+      "to": "Line_5_1A105RB",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A105RB",
+      "to": "Line_5_1A080TT",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A085RB",
+      "to": "Line_5_1A085EXT",
+      "etri": "ext"
+    },
+    {
+      "from": "Line_5_1A070SL.1",
+      "to": "Line_5_1A070SL.2",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A075RB",
+      "to": "Line_5_1A030TT",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_5_1A080TT",
+      "to": "Line_5_1A075RB",
+      "etri": "roller"
+    }
+  ]
+}

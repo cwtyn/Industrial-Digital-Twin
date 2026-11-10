@@ -1,0 +1,26 @@
+﻿接口ID,from_line,from_node,to_line,to_node,类型,说明,状态
+Line_3-Line_1-1,Line_1,Line_1_1F425RB,Line_3,Line_3_1A340RB,ext,->Line_3 链2 入口,已接
+Line_3-Line_1-2,Line_1,Line_1_1F430RB,Line_3,Line_3_1A230RB,ext,->Line_3 链1 入口,已接
+Line_2-Line_1-1,Line_1,Line_1_1F445RB,Line_2,Line_2_1E487RB,ext,->Line_2 E487,已接
+Line_2-Line_1-2,Line_2,Line_2_1E487RB,Line_1,Line_1_1F445RB,ext,E487->445(双向),已接
+Line_2-Line_1-3,Line_1,Line_1_1F450RB,Line_2,Line_2_1E450RB,ext,->Line_2 E450,已接
+Line_2-Line_1-4,Line_2,Line_2_1E450RB,Line_1,Line_1_1F450RB,ext,E450->450(双向),已接
+Line_2-Line_1-5,Line_1,Line_1_1F455RB,Line_2,Line_2_1E440RB,ext,<-Line_2 E440(双向枢纽),已接
+Line_2-Line_1-6,Line_2,Line_2_1E440RB,Line_1,Line_1_1F455RB,ext,E440(链4返回线尾)->455(只连455),已接
+Line_2-Line_1-7,Line_1,Line_1_1F460RB,Line_2,Line_2_1A005RB,ext,->Line_2 A005(喂链3头),已接
+Line_6-Line_1-1,Line_1,Line_1_1D135RB,Line_6,Line_6_1H445RB,tt,135TT 转90 -> Line_6 外接,占位
+Line_4-Line_2-1,Line_2,Line_2_1D135RB,Line_4,Line_4_1A010RB,ext,链1尾 D135 -> Line_4,占位
+Line_4-Line_2-2,Line_2,Line_2_1D235RB,Line_4,Line_4_1A015RB,ext,链2尾 D235 -> Line_4,占位
+Line_4-Line_2-3,Line_2,Line_2_1D335RB,Line_4,Line_4_1A020RB,ext,链3尾 D335 -> Line_4,占位
+Line_4-Line_2-4,Line_2,Line_2_1H580RB,Line_4,Line_4_1A045RB,ext,链5尾 H580 -> Line_4(双向),占位
+Line_4-Line_2-5,Line_4,Line_4_1A045RB,Line_2,Line_2_1H580RB,ext,Line_4 -> H580(链5双向回),占位
+Line_4-Line_2-6,Line_2,Line_2_1H640RB,Line_4,Line_4_1A050RB,ext,链6尾 H640 -> Line_4(双向),占位
+Line_4-Line_2-7,Line_4,Line_4_1A050RB,Line_2,Line_2_1H640RB,ext,Line_4 -> H640(链6双向回),占位
+Line_4-Line_2-8,Line_4,Line_4_1A025RB,Line_2,Line_2_1H338RB,ext,Line_4 -> H338(链4返回线头),占位
+Line_6-Line_2-1,Line_6,Line_6_1G285RB,Line_2,Line_2_1A020RB,ext,Line_6 -> A020(链2头),占位
+Line_6-Line_2-2,Line_6,Line_6_1G280RB,Line_2,Line_2_1A030RB,ext,"Line_6 -> A030(链1头, 过渡滚床)",占位
+Line_4-Line_3-1,Line_3,Line_3_1C330RB,Line_4,Line_4_1B075RB,ext,链1尾 -> Line_4,占位
+Line_4-Line_3-2,Line_3,Line_3_1C440RB,Line_4,Line_4_1B080RB,ext,链2尾 -> Line_4,占位
+Exit_3-Line_4-1,Line_4,Line_4_1D255RB,Exit_3,Exit_3_1A005RB,ext,链3尾 255 -> L3Exit_3,占位
+Exit_2-Line_4-1,Line_4,Line_4_1E345RB,Exit_2,Exit_2_1A005RB,ext,链6尾 345 -> L3Exit_2,占位
+Exit_1-Line_4-1,Line_4,Line_4_1E360RB,Exit_1,Exit_1_1A005RB,ext,链8尾 360 -> L3Exit_1,占位

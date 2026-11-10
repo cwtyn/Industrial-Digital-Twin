@@ -1,0 +1,410 @@
+{
+  "plc": "L3L1",
+  "_comment": "滚床订阅配置(每条输送一个文件)。\n rollers: 每条只存 node/device/type/mid, 加载时自动生成 车身(M1003_BodyID)+雪橇(I1030_RBDataSkidNo) 两条, .IL. 分支;\n          device=X1 设备体(RB/LT/TT/SL/TC/HE), type 用于 X1 覆盖(LT/TT/SL/TC), mid=非标准中间段(如14AS/15AS).\n points:  额外点位订阅, tag 写完整(如位信号 .SB. 分支、非母本点位), kind 任取(如 pos), node=所属节点;\n          新增类型(如 TC 位置)只需在此加一条即可.",
+  "rollers": [
+    {
+      "node": "Line_1_1A010RB",
+      "device": "1A010LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1A015RB",
+      "device": "1A015LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1A020RB",
+      "device": "1A020RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1A025RB",
+      "device": "1A025RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1A030RB",
+      "device": "1A030RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1A035RB",
+      "device": "1A035RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1A045RB",
+      "device": "1A045LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1A050RB",
+      "device": "1A050LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1A060RB",
+      "device": "1A060RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1A065RB",
+      "device": "1A065RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1A160RB",
+      "device": "1A160RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1A165RB",
+      "device": "1A165RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1B070RB",
+      "device": "1B070RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1B075RB",
+      "device": "1B075RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1B080RB",
+      "device": "1B080RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1B085RB",
+      "device": "1B085RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1B090RB",
+      "device": "1B090RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1B095RB",
+      "device": "1B095RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1B100RB",
+      "device": "1B100RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1B170RB",
+      "device": "1B170RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1B175RB",
+      "device": "1B175RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1B180RB",
+      "device": "1B180RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1B185RB",
+      "device": "1B185RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1B190RB",
+      "device": "1B190RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1B195RB",
+      "device": "1B195RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1B200RB",
+      "device": "1B200RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1C105RB",
+      "device": "1C105RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1C110RB",
+      "device": "1C110RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1C115RB",
+      "device": "1C115RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1C120RB",
+      "device": "1C120RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1C125RB",
+      "device": "1C125RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1C130RB",
+      "device": "1C130RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1C205RB",
+      "device": "1C205RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1C210RB",
+      "device": "1C210RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1C215RB",
+      "device": "1C215RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1C220RB",
+      "device": "1C220RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1C225RB",
+      "device": "1C225RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1C230RB",
+      "device": "1C230RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1D135RB",
+      "device": "1D135TT",
+      "type": "TT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1D235RB",
+      "device": "1D235RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1D255RB",
+      "device": "1D255LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1D260RB",
+      "device": "1D260LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1D295RB",
+      "device": "1D295RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1D300RB",
+      "device": "1D300RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1D320RB",
+      "device": "1D320LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1D325RB",
+      "device": "1D325LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1D330RB",
+      "device": "1D330LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1E350RB",
+      "device": "1E350RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1E355RB",
+      "device": "1E355SL",
+      "type": "SL",
+      "mid": "14AS"
+    },
+    {
+      "node": "Line_1_1E365RB",
+      "device": "1E365TT",
+      "type": "TT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1E385RB",
+      "device": "1E385RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1E390RB",
+      "device": "1E390SL",
+      "type": "SL",
+      "mid": "15AS"
+    },
+    {
+      "node": "Line_1_1E395RB",
+      "device": "1E395RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1E400RB",
+      "device": "1E400TT",
+      "type": "TT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1F402RB",
+      "device": "1F402TC",
+      "type": "TC",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1F406RB",
+      "device": "1F406LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1F408RB",
+      "device": "1F408LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1F410RB",
+      "device": "1F410LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1F425RB",
+      "device": "1F425LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1F430RB",
+      "device": "1F430LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1F445RB",
+      "device": "1F445LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1F450RB",
+      "device": "1F450LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1F455RB",
+      "device": "1F455LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_1_1F460RB",
+      "device": "1F460LT",
+      "type": "LT",
+      "mid": null
+    }
+  ],
+  "points": [
+    {
+      "node": "Line_1_1E390RB",
+      "tag": ".L3L1_1E_15AS_1E390SL_1E390SL.SB.S1012_PDown",
+      "kind": "pos",
+      "_example": "位信号示例(SL390下降位, 实测回 '1'/'0'); 加 TC/TT 位置同理——先 probe_tag.py 探到真实 tag, 再在此加一条"
+    },
+    {
+      "node": "Line_1_1F402RB",
+      "tag": ".L3L1_1F_1F402TC_1F402TC.SB.S1069_PRev",
+      "kind": "tc_pos",
+      "node_role": "R位(链6承载体格)"
+    },
+    {
+      "node": "Line_1_F402RB_TC_F",
+      "tag": ".L3L1_1F_1F402TC_1F402TC.SB.S1068_PFwd",
+      "kind": "tc_pos",
+      "node_role": "F位(链5虚拟格)"
+    }
+  ]
+}

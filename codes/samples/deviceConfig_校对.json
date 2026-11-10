@@ -1,0 +1,2317 @@
+{
+  "server": "<EMOS_HOST>/ws/emosweb",
+  "_note": [
+    "合计=230 台",
+    "订阅可停靠 RB 位置: 纯RB + LT工位(X1=LT) + TT/SL类型覆盖 + TC承载体(X1=TC); 排除过渡辊床",
+    "X1=设备体(RB/LT/TT/SL/TC/HE), X2=该位置RB; 统一 .IL. 分支",
+    "非标准: Line_1 355/390 段号后多插 14AS/15AS (PLC程序笔误, 已实测可回数据)",
+    "每台两条: tag_body+tag_skid",
+    "30位分割: PIN[0:14] 车型[14:19] 颜色[19:23] 平台[23:26] Code[26:29]"
+  ],
+  "L3L1": [
+    {
+      "node": "Line_1_1A010RB",
+      "rb_index": "1A010RB",
+      "device": "1A010LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1A_1A010LT_1A010RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1A_1A010LT_1A010RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1A015RB",
+      "rb_index": "1A015RB",
+      "device": "1A015LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1A_1A015LT_1A015RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1A_1A015LT_1A015RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1A020RB",
+      "rb_index": "1A020RB",
+      "device": "1A020RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1A_1A020RB_1A020RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1A_1A020RB_1A020RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1A025RB",
+      "rb_index": "1A025RB",
+      "device": "1A025RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1A_1A025RB_1A025RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1A_1A025RB_1A025RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1A030RB",
+      "rb_index": "1A030RB",
+      "device": "1A030RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1A_1A030RB_1A030RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1A_1A030RB_1A030RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1A035RB",
+      "rb_index": "1A035RB",
+      "device": "1A035RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1A_1A035RB_1A035RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1A_1A035RB_1A035RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1A045RB",
+      "rb_index": "1A045RB",
+      "device": "1A045LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1A_1A045LT_1A045RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1A_1A045LT_1A045RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1A050RB",
+      "rb_index": "1A050RB",
+      "device": "1A050LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1A_1A050LT_1A050RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1A_1A050LT_1A050RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1A060RB",
+      "rb_index": "1A060RB",
+      "device": "1A060RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1A_1A060RB_1A060RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1A_1A060RB_1A060RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1A065RB",
+      "rb_index": "1A065RB",
+      "device": "1A065RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1A_1A065RB_1A065RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1A_1A065RB_1A065RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1A160RB",
+      "rb_index": "1A160RB",
+      "device": "1A160RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1A_1A160RB_1A160RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1A_1A160RB_1A160RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1A165RB",
+      "rb_index": "1A165RB",
+      "device": "1A165RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1A_1A165RB_1A165RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1A_1A165RB_1A165RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1B070RB",
+      "rb_index": "1B070RB",
+      "device": "1B070RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1B_1B070RB_1B070RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1B_1B070RB_1B070RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1B075RB",
+      "rb_index": "1B075RB",
+      "device": "1B075RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1B_1B075RB_1B075RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1B_1B075RB_1B075RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1B080RB",
+      "rb_index": "1B080RB",
+      "device": "1B080RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1B_1B080RB_1B080RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1B_1B080RB_1B080RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1B085RB",
+      "rb_index": "1B085RB",
+      "device": "1B085RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1B_1B085RB_1B085RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1B_1B085RB_1B085RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1B090RB",
+      "rb_index": "1B090RB",
+      "device": "1B090RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1B_1B090RB_1B090RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1B_1B090RB_1B090RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1B095RB",
+      "rb_index": "1B095RB",
+      "device": "1B095RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1B_1B095RB_1B095RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1B_1B095RB_1B095RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1B100RB",
+      "rb_index": "1B100RB",
+      "device": "1B100RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1B_1B100RB_1B100RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1B_1B100RB_1B100RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1B170RB",
+      "rb_index": "1B170RB",
+      "device": "1B170RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1B_1B170RB_1B170RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1B_1B170RB_1B170RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1B175RB",
+      "rb_index": "1B175RB",
+      "device": "1B175RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1B_1B175RB_1B175RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1B_1B175RB_1B175RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1B180RB",
+      "rb_index": "1B180RB",
+      "device": "1B180RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1B_1B180RB_1B180RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1B_1B180RB_1B180RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1B185RB",
+      "rb_index": "1B185RB",
+      "device": "1B185RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1B_1B185RB_1B185RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1B_1B185RB_1B185RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1B190RB",
+      "rb_index": "1B190RB",
+      "device": "1B190RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1B_1B190RB_1B190RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1B_1B190RB_1B190RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1B195RB",
+      "rb_index": "1B195RB",
+      "device": "1B195RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1B_1B195RB_1B195RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1B_1B195RB_1B195RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1B200RB",
+      "rb_index": "1B200RB",
+      "device": "1B200RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1B_1B200RB_1B200RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1B_1B200RB_1B200RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1C105RB",
+      "rb_index": "1C105RB",
+      "device": "1C105RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1C_1C105RB_1C105RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1C_1C105RB_1C105RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1C110RB",
+      "rb_index": "1C110RB",
+      "device": "1C110RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1C_1C110RB_1C110RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1C_1C110RB_1C110RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1C115RB",
+      "rb_index": "1C115RB",
+      "device": "1C115RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1C_1C115RB_1C115RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1C_1C115RB_1C115RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1C120RB",
+      "rb_index": "1C120RB",
+      "device": "1C120RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1C_1C120RB_1C120RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1C_1C120RB_1C120RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1C125RB",
+      "rb_index": "1C125RB",
+      "device": "1C125RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1C_1C125RB_1C125RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1C_1C125RB_1C125RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1C130RB",
+      "rb_index": "1C130RB",
+      "device": "1C130RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1C_1C130RB_1C130RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1C_1C130RB_1C130RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1C205RB",
+      "rb_index": "1C205RB",
+      "device": "1C205RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1C_1C205RB_1C205RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1C_1C205RB_1C205RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1C210RB",
+      "rb_index": "1C210RB",
+      "device": "1C210RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1C_1C210RB_1C210RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1C_1C210RB_1C210RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1C215RB",
+      "rb_index": "1C215RB",
+      "device": "1C215RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1C_1C215RB_1C215RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1C_1C215RB_1C215RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1C220RB",
+      "rb_index": "1C220RB",
+      "device": "1C220RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1C_1C220RB_1C220RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1C_1C220RB_1C220RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1C225RB",
+      "rb_index": "1C225RB",
+      "device": "1C225RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1C_1C225RB_1C225RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1C_1C225RB_1C225RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1C230RB",
+      "rb_index": "1C230RB",
+      "device": "1C230RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1C_1C230RB_1C230RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1C_1C230RB_1C230RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1D135RB",
+      "rb_index": "1D135RB",
+      "device": "1D135TT",
+      "type": "TT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1D_1D135TT_1D135RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1D_1D135TT_1D135RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1D235RB",
+      "rb_index": "1D235RB",
+      "device": "1D235RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1D_1D235RB_1D235RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1D_1D235RB_1D235RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1D255RB",
+      "rb_index": "1D255RB",
+      "device": "1D255LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1D_1D255LT_1D255RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1D_1D255LT_1D255RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1D260RB",
+      "rb_index": "1D260RB",
+      "device": "1D260LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1D_1D260LT_1D260RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1D_1D260LT_1D260RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1D295RB",
+      "rb_index": "1D295RB",
+      "device": "1D295RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1D_1D295RB_1D295RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1D_1D295RB_1D295RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1D300RB",
+      "rb_index": "1D300RB",
+      "device": "1D300RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1D_1D300RB_1D300RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1D_1D300RB_1D300RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1D320RB",
+      "rb_index": "1D320RB",
+      "device": "1D320LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1D_1D320LT_1D320RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1D_1D320LT_1D320RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1D325RB",
+      "rb_index": "1D325RB",
+      "device": "1D325LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1D_1D325LT_1D325RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1D_1D325LT_1D325RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1D330RB",
+      "rb_index": "1D330RB",
+      "device": "1D330LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1D_1D330LT_1D330RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1D_1D330LT_1D330RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1E350RB",
+      "rb_index": "1E350RB",
+      "device": "1E350RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1E_1E350RB_1E350RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1E_1E350RB_1E350RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1E355RB",
+      "rb_index": "1E355RB",
+      "device": "1E355SL",
+      "type": "SL",
+      "mid": "14AS",
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1E_14AS_1E355SL_1E355RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1E_14AS_1E355SL_1E355RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1E365RB",
+      "rb_index": "1E365RB",
+      "device": "1E365TT",
+      "type": "TT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1E_1E365TT_1E365RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1E_1E365TT_1E365RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1E385RB",
+      "rb_index": "1E385RB",
+      "device": "1E385RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1E_1E385RB_1E385RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1E_1E385RB_1E385RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1E390RB",
+      "rb_index": "1E390RB",
+      "device": "1E390SL",
+      "type": "SL",
+      "mid": "15AS",
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1E_15AS_1E390SL_1E390RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1E_15AS_1E390SL_1E390RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1E395RB",
+      "rb_index": "1E395RB",
+      "device": "1E395RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1E_1E395RB_1E395RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1E_1E395RB_1E395RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1E400RB",
+      "rb_index": "1E400RB",
+      "device": "1E400TT",
+      "type": "TT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1E_1E400TT_1E400RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1E_1E400TT_1E400RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1F402RB",
+      "rb_index": "1F402RB",
+      "device": "1F402TC",
+      "type": "TC",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1F_1F402TC_1F402RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1F_1F402TC_1F402RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1F406RB",
+      "rb_index": "1F406RB",
+      "device": "1F406LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1F_1F406LT_1F406RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1F_1F406LT_1F406RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1F408RB",
+      "rb_index": "1F408RB",
+      "device": "1F408LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1F_1F408LT_1F408RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1F_1F408LT_1F408RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1F410RB",
+      "rb_index": "1F410RB",
+      "device": "1F410LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1F_1F410LT_1F410RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1F_1F410LT_1F410RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1F425RB",
+      "rb_index": "1F425RB",
+      "device": "1F425LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1F_1F425LT_1F425RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1F_1F425LT_1F425RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1F430RB",
+      "rb_index": "1F430RB",
+      "device": "1F430LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1F_1F430LT_1F430RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1F_1F430LT_1F430RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1F445RB",
+      "rb_index": "1F445RB",
+      "device": "1F445LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1F_1F445LT_1F445RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1F_1F445LT_1F445RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1F450RB",
+      "rb_index": "1F450RB",
+      "device": "1F450LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1F_1F450LT_1F450RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1F_1F450LT_1F450RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1F455RB",
+      "rb_index": "1F455RB",
+      "device": "1F455LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1F_1F455LT_1F455RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1F_1F455LT_1F455RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_1_1F460RB",
+      "rb_index": "1F460RB",
+      "device": "1F460LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L1",
+      "tag_body": ".L3L1_1F_1F460LT_1F460RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L1_1F_1F460LT_1F460RB.IL.SD.I1030_RBDataSkidNo"
+    }
+  ],
+  "L3L2": [
+    {
+      "node": "Line_2_1A005RB",
+      "rb_index": "1A005RB",
+      "device": "1A005RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1A_1A005RB_1A005RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1A_1A005RB_1A005RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1A015RB",
+      "rb_index": "1A015RB",
+      "device": "1A015LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1A_1A015LT_1A015RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1A_1A015LT_1A015RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1A020RB",
+      "rb_index": "1A020RB",
+      "device": "1A020LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1A_1A020LT_1A020RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1A_1A020LT_1A020RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1A025RB",
+      "rb_index": "1A025RB",
+      "device": "1A025LT",
+      "type": "LT",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1A_1A025LT_1A025RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1A_1A025LT_1A025RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1A040RB",
+      "rb_index": "1A040RB",
+      "device": "1A040RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1A_1A040RB_1A040RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1A_1A040RB_1A040RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1A140RB",
+      "rb_index": "1A140RB",
+      "device": "1A140RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1A_1A140RB_1A140RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1A_1A140RB_1A140RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1A240RB",
+      "rb_index": "1A240RB",
+      "device": "1A240RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1A_1A240RB_1A240RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1A_1A240RB_1A240RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B045RB",
+      "rb_index": "1B045RB",
+      "device": "1B045RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B045RB_1B045RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B045RB_1B045RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B050RB",
+      "rb_index": "1B050RB",
+      "device": "1B050RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B050RB_1B050RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B050RB_1B050RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B055RB",
+      "rb_index": "1B055RB",
+      "device": "1B055RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B055RB_1B055RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B055RB_1B055RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B060RB",
+      "rb_index": "1B060RB",
+      "device": "1B060RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B060RB_1B060RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B060RB_1B060RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B065RB",
+      "rb_index": "1B065RB",
+      "device": "1B065RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B065RB_1B065RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B065RB_1B065RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B070RB",
+      "rb_index": "1B070RB",
+      "device": "1B070RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B070RB_1B070RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B070RB_1B070RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B145RB",
+      "rb_index": "1B145RB",
+      "device": "1B145RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B145RB_1B145RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B145RB_1B145RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B150RB",
+      "rb_index": "1B150RB",
+      "device": "1B150RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B150RB_1B150RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B150RB_1B150RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B155RB",
+      "rb_index": "1B155RB",
+      "device": "1B155RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B155RB_1B155RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B155RB_1B155RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B160RB",
+      "rb_index": "1B160RB",
+      "device": "1B160RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B160RB_1B160RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B160RB_1B160RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B165RB",
+      "rb_index": "1B165RB",
+      "device": "1B165RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B165RB_1B165RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B165RB_1B165RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B170RB",
+      "rb_index": "1B170RB",
+      "device": "1B170RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B170RB_1B170RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B170RB_1B170RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B245RB",
+      "rb_index": "1B245RB",
+      "device": "1B245RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B245RB_1B245RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B245RB_1B245RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B250RB",
+      "rb_index": "1B250RB",
+      "device": "1B250RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B250RB_1B250RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B250RB_1B250RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B255RB",
+      "rb_index": "1B255RB",
+      "device": "1B255RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B255RB_1B255RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B255RB_1B255RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B260RB",
+      "rb_index": "1B260RB",
+      "device": "1B260RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B260RB_1B260RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B260RB_1B260RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B265RB",
+      "rb_index": "1B265RB",
+      "device": "1B265RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B265RB_1B265RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B265RB_1B265RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1B270RB",
+      "rb_index": "1B270RB",
+      "device": "1B270RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1B_1B270RB_1B270RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1B_1B270RB_1B270RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C075RB",
+      "rb_index": "1C075RB",
+      "device": "1C075RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C075RB_1C075RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C075RB_1C075RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C080RB",
+      "rb_index": "1C080RB",
+      "device": "1C080RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C080RB_1C080RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C080RB_1C080RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C085RB",
+      "rb_index": "1C085RB",
+      "device": "1C085RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C085RB_1C085RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C085RB_1C085RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C090RB",
+      "rb_index": "1C090RB",
+      "device": "1C090RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C090RB_1C090RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C090RB_1C090RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C095RB",
+      "rb_index": "1C095RB",
+      "device": "1C095RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C095RB_1C095RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C095RB_1C095RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C100RB",
+      "rb_index": "1C100RB",
+      "device": "1C100RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C100RB_1C100RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C100RB_1C100RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C105RB",
+      "rb_index": "1C105RB",
+      "device": "1C105RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C105RB_1C105RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C105RB_1C105RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C175RB",
+      "rb_index": "1C175RB",
+      "device": "1C175RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C175RB_1C175RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C175RB_1C175RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C180RB",
+      "rb_index": "1C180RB",
+      "device": "1C180RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C180RB_1C180RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C180RB_1C180RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C185RB",
+      "rb_index": "1C185RB",
+      "device": "1C185RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C185RB_1C185RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C185RB_1C185RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C190RB",
+      "rb_index": "1C190RB",
+      "device": "1C190RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C190RB_1C190RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C190RB_1C190RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C195RB",
+      "rb_index": "1C195RB",
+      "device": "1C195RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C195RB_1C195RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C195RB_1C195RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C200RB",
+      "rb_index": "1C200RB",
+      "device": "1C200RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C200RB_1C200RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C200RB_1C200RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C205RB",
+      "rb_index": "1C205RB",
+      "device": "1C205RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C205RB_1C205RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C205RB_1C205RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C275RB",
+      "rb_index": "1C275RB",
+      "device": "1C275RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C275RB_1C275RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C275RB_1C275RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C280RB",
+      "rb_index": "1C280RB",
+      "device": "1C280RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C280RB_1C280RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C280RB_1C280RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C285RB",
+      "rb_index": "1C285RB",
+      "device": "1C285RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C285RB_1C285RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C285RB_1C285RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C290RB",
+      "rb_index": "1C290RB",
+      "device": "1C290RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C290RB_1C290RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C290RB_1C290RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C295RB",
+      "rb_index": "1C295RB",
+      "device": "1C295RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C295RB_1C295RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C295RB_1C295RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C300RB",
+      "rb_index": "1C300RB",
+      "device": "1C300RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C300RB_1C300RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C300RB_1C300RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1C305RB",
+      "rb_index": "1C305RB",
+      "device": "1C305RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1C_1C305RB_1C305RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1C_1C305RB_1C305RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D110RB",
+      "rb_index": "1D110RB",
+      "device": "1D110RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D110RB_1D110RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D110RB_1D110RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D115RB",
+      "rb_index": "1D115RB",
+      "device": "1D115RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D115RB_1D115RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D115RB_1D115RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D120RB",
+      "rb_index": "1D120RB",
+      "device": "1D120RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D120RB_1D120RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D120RB_1D120RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D125RB",
+      "rb_index": "1D125RB",
+      "device": "1D125RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D125RB_1D125RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D125RB_1D125RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D130RB",
+      "rb_index": "1D130RB",
+      "device": "1D130RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D130RB_1D130RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D130RB_1D130RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D135RB",
+      "rb_index": "1D135RB",
+      "device": "1D135RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D135RB_1D135RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D135RB_1D135RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D210RB",
+      "rb_index": "1D210RB",
+      "device": "1D210RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D210RB_1D210RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D210RB_1D210RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D215RB",
+      "rb_index": "1D215RB",
+      "device": "1D215RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D215RB_1D215RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D215RB_1D215RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D220RB",
+      "rb_index": "1D220RB",
+      "device": "1D220RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D220RB_1D220RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D220RB_1D220RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D225RB",
+      "rb_index": "1D225RB",
+      "device": "1D225RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D225RB_1D225RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D225RB_1D225RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D230RB",
+      "rb_index": "1D230RB",
+      "device": "1D230RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D230RB_1D230RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D230RB_1D230RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D235RB",
+      "rb_index": "1D235RB",
+      "device": "1D235RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D235RB_1D235RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D235RB_1D235RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D310RB",
+      "rb_index": "1D310RB",
+      "device": "1D310RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D310RB_1D310RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D310RB_1D310RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D315RB",
+      "rb_index": "1D315RB",
+      "device": "1D315RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D315RB_1D315RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D315RB_1D315RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D320RB",
+      "rb_index": "1D320RB",
+      "device": "1D320RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D320RB_1D320RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D320RB_1D320RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D325RB",
+      "rb_index": "1D325RB",
+      "device": "1D325RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D325RB_1D325RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D325RB_1D325RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D330RB",
+      "rb_index": "1D330RB",
+      "device": "1D330RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D330RB_1D330RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D330RB_1D330RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1D335RB",
+      "rb_index": "1D335RB",
+      "device": "1D335RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1D_1D335RB_1D335RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1D_1D335RB_1D335RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1E425RB",
+      "rb_index": "1E425RB",
+      "device": "1E425RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1E_1E425RB_1E425RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1E_1E425RB_1E425RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1E430RB",
+      "rb_index": "1E430RB",
+      "device": "1E430RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1E_1E430RB_1E430RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1E_1E430RB_1E430RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1E435RB",
+      "rb_index": "1E435RB",
+      "device": "1E435RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1E_1E435RB_1E435RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1E_1E435RB_1E435RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1E440RB",
+      "rb_index": "1E440RB",
+      "device": "1E440RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1E_1E440RB_1E440RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1E_1E440RB_1E440RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1E450RB",
+      "rb_index": "1E450RB",
+      "device": "1E450RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1E_1E450RB_1E450RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1E_1E450RB_1E450RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1E455RB",
+      "rb_index": "1E455RB",
+      "device": "1E455RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1E_1E455RB_1E455RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1E_1E455RB_1E455RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1E460RB",
+      "rb_index": "1E460RB",
+      "device": "1E460RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1E_1E460RB_1E460RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1E_1E460RB_1E460RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1E465RB",
+      "rb_index": "1E465RB",
+      "device": "1E465RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1E_1E465RB_1E465RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1E_1E465RB_1E465RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1E487RB",
+      "rb_index": "1E487RB",
+      "device": "1E487RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1E_1E487RB_1E487RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1E_1E487RB_1E487RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1E489RB",
+      "rb_index": "1E489RB",
+      "device": "1E489RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1E_1E489RB_1E489RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1E_1E489RB_1E489RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1E490RB",
+      "rb_index": "1E490RB",
+      "device": "1E490RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1E_1E490RB_1E490RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1E_1E490RB_1E490RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1E495RB",
+      "rb_index": "1E495RB",
+      "device": "1E495RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1E_1E495RB_1E495RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1E_1E495RB_1E495RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1F400RB",
+      "rb_index": "1F400RB",
+      "device": "1F400RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1F_1F400RB_1F400RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1F_1F400RB_1F400RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1F405RB",
+      "rb_index": "1F405RB",
+      "device": "1F405RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1F_1F405RB_1F405RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1F_1F405RB_1F405RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1F410RB",
+      "rb_index": "1F410RB",
+      "device": "1F410RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1F_1F410RB_1F410RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1F_1F410RB_1F410RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1F415RB",
+      "rb_index": "1F415RB",
+      "device": "1F415RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1F_1F415RB_1F415RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1F_1F415RB_1F415RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1F420RB",
+      "rb_index": "1F420RB",
+      "device": "1F420RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1F_1F420RB_1F420RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1F_1F420RB_1F420RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1F470RB",
+      "rb_index": "1F470RB",
+      "device": "1F470RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1F_1F470RB_1F470RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1F_1F470RB_1F470RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1F475RB",
+      "rb_index": "1F475RB",
+      "device": "1F475RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1F_1F475RB_1F475RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1F_1F475RB_1F475RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1F480RB",
+      "rb_index": "1F480RB",
+      "device": "1F480RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1F_1F480RB_1F480RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1F_1F480RB_1F480RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1F485RB",
+      "rb_index": "1F485RB",
+      "device": "1F485TC",
+      "type": "TC",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1F_1F485TC_1F485RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1F_1F485TC_1F485RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1F500RB",
+      "rb_index": "1F500RB",
+      "device": "1F500RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1F_1F500RB_1F500RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1F_1F500RB_1F500RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1F505RB",
+      "rb_index": "1F505RB",
+      "device": "1F505RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1F_1F505RB_1F505RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1F_1F505RB_1F505RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1F510RB",
+      "rb_index": "1F510RB",
+      "device": "1F510RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1F_1F510RB_1F510RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1F_1F510RB_1F510RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1F520RB",
+      "rb_index": "1F520RB",
+      "device": "1F520RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1F_1F520RB_1F520RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1F_1F520RB_1F520RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1G370RB",
+      "rb_index": "1G370RB",
+      "device": "1G370RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1G_1G370RB_1G370RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1G_1G370RB_1G370RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1G375RB",
+      "rb_index": "1G375RB",
+      "device": "1G375RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1G_1G375RB_1G375RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1G_1G375RB_1G375RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1G380RB",
+      "rb_index": "1G380RB",
+      "device": "1G380RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1G_1G380RB_1G380RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1G_1G380RB_1G380RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1G385RB",
+      "rb_index": "1G385RB",
+      "device": "1G385RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1G_1G385RB_1G385RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1G_1G385RB_1G385RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1G390RB",
+      "rb_index": "1G390RB",
+      "device": "1G390RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1G_1G390RB_1G390RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1G_1G390RB_1G390RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1G395RB",
+      "rb_index": "1G395RB",
+      "device": "1G395RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1G_1G395RB_1G395RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1G_1G395RB_1G395RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1G525RB",
+      "rb_index": "1G525RB",
+      "device": "1G525RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1G_1G525RB_1G525RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1G_1G525RB_1G525RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1G530RB",
+      "rb_index": "1G530RB",
+      "device": "1G530TC",
+      "type": "TC",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1G_1G530TC_1G530RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1G_1G530TC_1G530RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1G535RB",
+      "rb_index": "1G535RB",
+      "device": "1G535RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1G_1G535RB_1G535RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1G_1G535RB_1G535RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1G540RB",
+      "rb_index": "1G540RB",
+      "device": "1G540RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1G_1G540RB_1G540RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1G_1G540RB_1G540RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1G545RB",
+      "rb_index": "1G545RB",
+      "device": "1G545RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1G_1G545RB_1G545RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1G_1G545RB_1G545RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1G585RB",
+      "rb_index": "1G585RB",
+      "device": "1G585RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1G_1G585RB_1G585RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1G_1G585RB_1G585RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1G590RB",
+      "rb_index": "1G590RB",
+      "device": "1G590RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1G_1G590RB_1G590RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1G_1G590RB_1G590RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1G595RB",
+      "rb_index": "1G595RB",
+      "device": "1G595RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1G_1G595RB_1G595RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1G_1G595RB_1G595RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H338RB",
+      "rb_index": "1H338RB",
+      "device": "1H338RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H338RB_1H338RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H338RB_1H338RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H340RB",
+      "rb_index": "1H340RB",
+      "device": "1H340RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H340RB_1H340RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H340RB_1H340RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H345RB",
+      "rb_index": "1H345RB",
+      "device": "1H345RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H345RB_1H345RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H345RB_1H345RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H350RB",
+      "rb_index": "1H350RB",
+      "device": "1H350RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H350RB_1H350RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H350RB_1H350RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H355RB",
+      "rb_index": "1H355RB",
+      "device": "1H355RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H355RB_1H355RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H355RB_1H355RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H360RB",
+      "rb_index": "1H360RB",
+      "device": "1H360RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H360RB_1H360RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H360RB_1H360RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H365RB",
+      "rb_index": "1H365RB",
+      "device": "1H365RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H365RB_1H365RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H365RB_1H365RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H550RB",
+      "rb_index": "1H550RB",
+      "device": "1H550RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H550RB_1H550RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H550RB_1H550RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H555RB",
+      "rb_index": "1H555RB",
+      "device": "1H555RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H555RB_1H555RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H555RB_1H555RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H560RB",
+      "rb_index": "1H560RB",
+      "device": "1H560RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H560RB_1H560RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H560RB_1H560RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H565RB",
+      "rb_index": "1H565RB",
+      "device": "1H565RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H565RB_1H565RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H565RB_1H565RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H570RB",
+      "rb_index": "1H570RB",
+      "device": "1H570RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H570RB_1H570RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H570RB_1H570RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H575RB",
+      "rb_index": "1H575RB",
+      "device": "1H575RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H575RB_1H575RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H575RB_1H575RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H580RB",
+      "rb_index": "1H580RB",
+      "device": "1H580RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H580RB_1H580RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H580RB_1H580RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H600RB",
+      "rb_index": "1H600RB",
+      "device": "1H600RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H600RB_1H600RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H600RB_1H600RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H605RB",
+      "rb_index": "1H605RB",
+      "device": "1H605RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H605RB_1H605RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H605RB_1H605RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H610RB",
+      "rb_index": "1H610RB",
+      "device": "1H610RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H610RB_1H610RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H610RB_1H610RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H615RB",
+      "rb_index": "1H615RB",
+      "device": "1H615RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H615RB_1H615RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H615RB_1H615RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H620RB",
+      "rb_index": "1H620RB",
+      "device": "1H620RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H620RB_1H620RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H620RB_1H620RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H625RB",
+      "rb_index": "1H625RB",
+      "device": "1H625RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H625RB_1H625RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H625RB_1H625RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_2_1H640RB",
+      "rb_index": "1H640RB",
+      "device": "1H640RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L2",
+      "tag_body": ".L3L2_1H_1H640RB_1H640RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L2_1H_1H640RB_1H640RB.IL.SD.I1030_RBDataSkidNo"
+    }
+  ],
+  "L3L3": [
+    {
+      "node": "Line_3_1A230RB",
+      "rb_index": "1A230RB",
+      "device": "1A230RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A230RB_1A230RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A230RB_1A230RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A235RB",
+      "rb_index": "1A235RB",
+      "device": "1A235RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A235RB_1A235RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A235RB_1A235RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A240RB",
+      "rb_index": "1A240RB",
+      "device": "1A240RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A240RB_1A240RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A240RB_1A240RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A245RB",
+      "rb_index": "1A245RB",
+      "device": "1A245RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A245RB_1A245RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A245RB_1A245RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A250RB",
+      "rb_index": "1A250RB",
+      "device": "1A250RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A250RB_1A250RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A250RB_1A250RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A255RB",
+      "rb_index": "1A255RB",
+      "device": "1A255RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A255RB_1A255RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A255RB_1A255RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A260RB",
+      "rb_index": "1A260RB",
+      "device": "1A260RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A260RB_1A260RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A260RB_1A260RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A265RB",
+      "rb_index": "1A265RB",
+      "device": "1A265RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A265RB_1A265RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A265RB_1A265RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A340RB",
+      "rb_index": "1A340RB",
+      "device": "1A340RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A340RB_1A340RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A340RB_1A340RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A345RB",
+      "rb_index": "1A345RB",
+      "device": "1A345RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A345RB_1A345RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A345RB_1A345RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A350RB",
+      "rb_index": "1A350RB",
+      "device": "1A350RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A350RB_1A350RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A350RB_1A350RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A355RB",
+      "rb_index": "1A355RB",
+      "device": "1A355RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A355RB_1A355RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A355RB_1A355RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A360RB",
+      "rb_index": "1A360RB",
+      "device": "1A360RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A360RB_1A360RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A360RB_1A360RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A365RB",
+      "rb_index": "1A365RB",
+      "device": "1A365RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A365RB_1A365RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A365RB_1A365RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A370RB",
+      "rb_index": "1A370RB",
+      "device": "1A370RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A370RB_1A370RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A370RB_1A370RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1A375RB",
+      "rb_index": "1A375RB",
+      "device": "1A375RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1A_1A375RB_1A375RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1A_1A375RB_1A375RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1B270RB",
+      "rb_index": "1B270RB",
+      "device": "1B270RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1B_1B270RB_1B270RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1B_1B270RB_1B270RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1B275RB",
+      "rb_index": "1B275RB",
+      "device": "1B275RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1B_1B275RB_1B275RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1B_1B275RB_1B275RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1B280RB",
+      "rb_index": "1B280RB",
+      "device": "1B280RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1B_1B280RB_1B280RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1B_1B280RB_1B280RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1B285RB",
+      "rb_index": "1B285RB",
+      "device": "1B285RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1B_1B285RB_1B285RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1B_1B285RB_1B285RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1B290RB",
+      "rb_index": "1B290RB",
+      "device": "1B290RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1B_1B290RB_1B290RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1B_1B290RB_1B290RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1B295RB",
+      "rb_index": "1B295RB",
+      "device": "1B295RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1B_1B295RB_1B295RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1B_1B295RB_1B295RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1B300RB",
+      "rb_index": "1B300RB",
+      "device": "1B300RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1B_1B300RB_1B300RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1B_1B300RB_1B300RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1B380RB",
+      "rb_index": "1B380RB",
+      "device": "1B380RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1B_1B380RB_1B380RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1B_1B380RB_1B380RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1B385RB",
+      "rb_index": "1B385RB",
+      "device": "1B385RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1B_1B385RB_1B385RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1B_1B385RB_1B385RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1B390RB",
+      "rb_index": "1B390RB",
+      "device": "1B390RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1B_1B390RB_1B390RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1B_1B390RB_1B390RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1B395RB",
+      "rb_index": "1B395RB",
+      "device": "1B395RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1B_1B395RB_1B395RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1B_1B395RB_1B395RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1B400RB",
+      "rb_index": "1B400RB",
+      "device": "1B400RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1B_1B400RB_1B400RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1B_1B400RB_1B400RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1B405RB",
+      "rb_index": "1B405RB",
+      "device": "1B405RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1B_1B405RB_1B405RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1B_1B405RB_1B405RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1B410RB",
+      "rb_index": "1B410RB",
+      "device": "1B410RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1B_1B410RB_1B410RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1B_1B410RB_1B410RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1C305RB",
+      "rb_index": "1C305RB",
+      "device": "1C305RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1C_1C305RB_1C305RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1C_1C305RB_1C305RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1C310RB",
+      "rb_index": "1C310RB",
+      "device": "1C310RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1C_1C310RB_1C310RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1C_1C310RB_1C310RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1C315RB",
+      "rb_index": "1C315RB",
+      "device": "1C315RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1C_1C315RB_1C315RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1C_1C315RB_1C315RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1C320RB",
+      "rb_index": "1C320RB",
+      "device": "1C320RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1C_1C320RB_1C320RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1C_1C320RB_1C320RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1C325RB",
+      "rb_index": "1C325RB",
+      "device": "1C325RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1C_1C325RB_1C325RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1C_1C325RB_1C325RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1C330RB",
+      "rb_index": "1C330RB",
+      "device": "1C330RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1C_1C330RB_1C330RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1C_1C330RB_1C330RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1C415RB",
+      "rb_index": "1C415RB",
+      "device": "1C415RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1C_1C415RB_1C415RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1C_1C415RB_1C415RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1C420RB",
+      "rb_index": "1C420RB",
+      "device": "1C420RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1C_1C420RB_1C420RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1C_1C420RB_1C420RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1C425RB",
+      "rb_index": "1C425RB",
+      "device": "1C425RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1C_1C425RB_1C425RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1C_1C425RB_1C425RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1C430RB",
+      "rb_index": "1C430RB",
+      "device": "1C430RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1C_1C430RB_1C430RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1C_1C430RB_1C430RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1C435RB",
+      "rb_index": "1C435RB",
+      "device": "1C435RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1C_1C435RB_1C435RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1C_1C435RB_1C435RB.IL.SD.I1030_RBDataSkidNo"
+    },
+    {
+      "node": "Line_3_1C440RB",
+      "rb_index": "1C440RB",
+      "device": "1C440RB",
+      "type": "RB",
+      "mid": null,
+      "plc": "L3L3",
+      "tag_body": ".L3L3_1C_1C440RB_1C440RB.IL.SD.M1003_BodyID",
+      "tag_skid": ".L3L3_1C_1C440RB_1C440RB.IL.SD.I1030_RBDataSkidNo"
+    }
+  ]
+}

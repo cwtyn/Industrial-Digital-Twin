@@ -1,0 +1,38 @@
+﻿TYPE "ud_Sf_DecPointRow"
+VERSION : 0.1
+   STRUCT
+      SB : Struct
+         S9999_Data1Match : Bool;   //  Data 01  Match
+         S9999_Data2Match : Bool;   //  Data 02  Match
+         S9999_Data3Match : Bool;   //  Data 03  Match
+         S9999_Data4Match : Bool;   //  Data 04  Match
+         S9999_Data5Match : Bool;   //  Data 05  Match
+         S9999_FullMatch : Bool;   //  Full row Match
+         S9999_Use : Bool := FALSE;   //  Use Filter
+         S9999_Prior : Bool := FALSE;   //  Priority record
+      END_STRUCT;
+      CB : Struct
+         C9999_Use : Bool := FALSE;   //  Use Filter
+         C9999_Clear : Bool := FALSE;   //  Clear filter
+         C9999_Lock : Bool := FALSE;   //  Filter lock
+         C9999_Edit : Bool := FALSE;   //  Edit row
+         C9999_Up : Bool := FALSE;   //  Move UP
+         C9999_Down : Bool := FALSE;   //  Move Down
+         C9999_Prior : Bool := FALSE;   //  Priority record
+      END_STRUCT;
+      AS : Struct
+         I9999_Filtr01 : String[20];   //  data 01
+         I9999_Filtr02 : String[20];   //  data 02
+         I9999_Filtr03 : String[20];   //  data 03
+         I9999_Filtr04 : String[20];   //  data 04
+         I9999_Filtr05 : String[20];   //  data 05
+         I9999_Dest : Int := 1;   //  Select Destination
+      END_STRUCT;
+      AA : Struct
+         A9999_LastSearch : Date_And_Time;
+         A9999_LastModeChange : Date_And_Time;
+      END_STRUCT;
+   END_STRUCT;
+
+END_TYPE
+

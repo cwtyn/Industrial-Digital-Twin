@@ -1,0 +1,151 @@
+{
+  "plc": "L3L7",
+  "_comment": "布局编辑器 tags.py 生成。rollers: 推导参数, 加载时重拼 车身(M1003_BodyID)+雪橇(I1030_RBDataSkidNo); device=X1 设备体, device_rb=X2 该位滚床, branch=台体分支(IL/ILO); points: target 目标地址等手写/派生点。",
+  "rollers": [
+    {
+      "node": "Line_7_1A015LT",
+      "device": "1A015LT",
+      "device_rb": "1A015LT",
+      "type": null,
+      "mid": null,
+      "branch": "IL"
+    },
+    {
+      "node": "Line_7_1A030RB",
+      "device": "1A030RB",
+      "device_rb": "1A030RB",
+      "type": null,
+      "mid": null,
+      "branch": "IL"
+    },
+    {
+      "node": "Line_7_1A025LT",
+      "device": "1A025LT",
+      "device_rb": "1A025LT",
+      "type": null,
+      "mid": null,
+      "branch": "IL"
+    },
+    {
+      "node": "Line_7_1A020LT",
+      "device": "1A020LT",
+      "device_rb": "1A020LT",
+      "type": null,
+      "mid": null,
+      "branch": "IL"
+    },
+    {
+      "node": "Line_7_1A040TC.1",
+      "device": "1A040TC",
+      "device_rb": "1A040RB",
+      "type": null,
+      "mid": null,
+      "branch": "IL"
+    },
+    {
+      "node": "Line_7_1A040TC.2",
+      "device": "1A040TC",
+      "device_rb": "1A040RB",
+      "type": null,
+      "mid": null,
+      "branch": "IL"
+    },
+    {
+      "node": "Line_7_1A035RB",
+      "device": "1A035RB",
+      "device_rb": "1A035RB",
+      "type": null,
+      "mid": null,
+      "branch": "IL"
+    },
+    {
+      "node": "Line_7_1A045HE.1",
+      "device": "1A045HE",
+      "device_rb": "1A045RB",
+      "type": null,
+      "mid": null,
+      "branch": "IL"
+    },
+    {
+      "node": "Line_7_1A045HE.2",
+      "device": "1A045HE",
+      "device_rb": "1A045RB",
+      "type": null,
+      "mid": null,
+      "branch": "IL"
+    },
+    {
+      "node": "Line_7_1A080RB",
+      "device": "1A080RB",
+      "device_rb": "1A080RB",
+      "type": null,
+      "mid": null,
+      "branch": "IL"
+    },
+    {
+      "node": "Line_7_1A005RB",
+      "device": "1A005RB",
+      "device_rb": "1A005RB",
+      "type": null,
+      "mid": null,
+      "branch": "IL"
+    }
+  ],
+  "points": [
+    {
+      "node": "Line_7_1A015LT",
+      "tag": ".L3L7_1A_1A015LT_1A015LT.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_7_1A030RB",
+      "tag": ".L3L7_1A_1A030RB_1A030RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_7_1A025LT",
+      "tag": ".L3L7_1A_1A025LT_1A025LT.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_7_1A020LT",
+      "tag": ".L3L7_1A_1A020LT_1A020LT.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_7_1A040TC.1",
+      "tag": ".L3L7_1A_1A040TC_1A040RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_7_1A040TC.2",
+      "tag": ".L3L7_1A_1A040TC_1A040RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_7_1A035RB",
+      "tag": ".L3L7_1A_1A035RB_1A035RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_7_1A045HE.1",
+      "tag": ".L3L7_1A_1A045HE_1A045RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_7_1A045HE.2",
+      "tag": ".L3L7_1A_1A045HE_1A045RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_7_1A080RB",
+      "tag": ".L3L7_1A_1A080RB_1A080RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    },
+    {
+      "node": "Line_7_1A005RB",
+      "tag": ".L3L7_1A_1A005RB_1A005RB.IL.SD.I1031_RBDataTarget",
+      "kind": "target"
+    }
+  ]
+}

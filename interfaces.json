@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "desc": "跨线接口权威注册表_(单一数据源)。_由 codes/interface_registry.py 加载,_按 owner 线注入 EXT_EXITS/EXT_INBOUND/EXT_TURN。_line_meta.csv 由本表重新生成,_无需手工维护。",
+    "schema": {
+      "owner": "声明该边一侧的线(单侧申明, 去重约定: 一对线只在其中一侧声明)",
+      "dir": "exit=本线 dev -> 邻线 ext;  inbound=邻线 ext -> 本线 dev;  tt=转台出线",
+      "dev": "owner 线的设备号(辊床号)",
+      "ext": "另一端的完整节点 ID(真实邻线节点, 或占位/外接节点)",
+      "kind": "real=两端都是已建真实线;  tt=转台分支出线;  placeholder=目标线未建(Line_4/Line_6 占位)",
+      "note": "说明",
+      "status": "已接 / 占位"
+    }
+  },
+  "edges": [
+    {"owner": "Line_1", "dir": "exit",    "dev": 425, "ext": "Line_3_1A340RB", "kind": "real",       "note": "->Line_3 链2 入口",             "status": "已接"},
+    {"owner": "Line_1", "dir": "exit",    "dev": 430, "ext": "Line_3_1A230RB", "kind": "real",       "note": "->Line_3 链1 入口",             "status": "已接"},
+    {"owner": "Line_1", "dir": "exit",    "dev": 445, "ext": "Line_2_1E487RB", "kind": "real",       "note": "->Line_2 E487",                 "status": "已接"},
+    {"owner": "Line_1", "dir": "inbound", "dev": 445, "ext": "Line_2_1E487RB", "kind": "real",       "note": "E487->445(双向)",             "status": "已接"},
+    {"owner": "Line_1", "dir": "exit",    "dev": 450, "ext": "Line_2_1E450RB", "kind": "real",       "note": "->Line_2 E450",                 "status": "已接"},
+    {"owner": "Line_1", "dir": "inbound", "dev": 450, "ext": "Line_2_1E450RB", "kind": "real",       "note": "E450->450(双向)",             "status": "已接"},
+    {"owner": "Line_1", "dir": "exit",    "dev": 455, "ext": "Line_2_1E440RB", "kind": "real",       "note": "<-Line_2 E440(双向枢纽)",        "status": "已接"},
+    {"owner": "Line_1", "dir": "inbound", "dev": 455, "ext": "Line_2_1E440RB", "kind": "real",       "note": "E440(链4返回线尾)->455(只连455)", "status": "已接"},
+    {"owner": "Line_1", "dir": "exit",    "dev": 460, "ext": "Line_2_1A005RB", "kind": "real",       "note": "->Line_2 A005(喂链3头)",        "status": "已接"},
+
+    {"owner": "Line_1", "dir": "tt",      "dev": 135, "ext": "Line_6_1H445RB", "kind": "tt",         "note": "135TT 转90 -> Line_6 外接",      "status": "占位"},
+
+    {"owner": "Line_2", "dir": "exit",    "dev": 135, "ext": "Line_4_1A010RB", "kind": "placeholder","note": "链1尾 D135 -> Line_4",            "status": "占位"},
+    {"owner": "Line_2", "dir": "exit",    "dev": 235, "ext": "Line_4_1A015RB", "kind": "placeholder","note": "链2尾 D235 -> Line_4",            "status": "占位"},
+    {"owner": "Line_2", "dir": "exit",    "dev": 335, "ext": "Line_4_1A020RB", "kind": "placeholder","note": "链3尾 D335 -> Line_4",            "status": "占位"},
+    {"owner": "Line_2", "dir": "exit",    "dev": 580, "ext": "Line_4_1A045RB", "kind": "placeholder","note": "链5尾 H580 -> Line_4(双向)",      "status": "占位"},
+    {"owner": "Line_2", "dir": "inbound", "dev": 580, "ext": "Line_4_1A045RB", "kind": "placeholder","note": "Line_4 -> H580(链5双向回)",       "status": "占位"},
+    {"owner": "Line_2", "dir": "exit",    "dev": 640, "ext": "Line_4_1A050RB", "kind": "placeholder","note": "链6尾 H640 -> Line_4(双向)",      "status": "占位"},
+    {"owner": "Line_2", "dir": "inbound", "dev": 640, "ext": "Line_4_1A050RB", "kind": "placeholder","note": "Line_4 -> H640(链6双向回)",       "status": "占位"},
+    {"owner": "Line_2", "dir": "inbound", "dev": 338, "ext": "Line_4_1A025RB", "kind": "placeholder","note": "Line_4 -> H338(链4返回线头)",     "status": "占位"},
+    {"owner": "Line_2", "dir": "inbound", "dev": 20,  "ext": "Line_6_1G285RB", "kind": "placeholder","note": "Line_6 -> A020(链2头)",           "status": "占位"},
+    {"owner": "Line_2", "dir": "inbound", "dev": 30,  "ext": "Line_6_1G280RB", "kind": "placeholder","note": "Line_6 -> A030(链1头, 过渡滚床)", "status": "占位"},
+
+    {"owner": "Line_3", "dir": "exit",    "dev": 330, "ext": "Line_4_1B075RB", "kind": "placeholder","note": "链1尾 -> Line_4",                "status": "占位"},
+    {"owner": "Line_3", "dir": "exit",    "dev": 440, "ext": "Line_4_1B080RB", "kind": "placeholder","note": "链2尾 -> Line_4",                "status": "占位"},
+
+    {"owner": "Line_4", "dir": "exit",    "dev": 255, "ext": "Exit_3_1A005RB", "kind": "placeholder","note": "链3尾 255 -> L3Exit_3",         "status": "占位"},
+    {"owner": "Line_4", "dir": "exit",    "dev": 345, "ext": "Exit_2_1A005RB", "kind": "placeholder","note": "链6尾 345 -> L3Exit_2",         "status": "占位"},
+    {"owner": "Line_4", "dir": "exit",    "dev": 360, "ext": "Exit_1_1A005RB", "kind": "placeholder","note": "链8尾 360 -> L3Exit_1",         "status": "占位"}
+  ]
+}

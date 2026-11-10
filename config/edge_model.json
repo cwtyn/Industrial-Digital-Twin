@@ -1,0 +1,17 @@
+{
+  "comment": "三期边耗时【实测类别基准表】替代秒级自动采集。用户现场实测:相邻RB→RB=14s全线统一;RB→LT=14s/LT→RB=12s;LT升降(lift)默认6s;LT⇄CP交付=18s;CP→CP色线行走=18s(CP作用=LT/LT或LT/WT间传送);TT=10s;SL=10s;TC横移车R↔F=16s;跨线按跳,过渡+6。exceptions:用户实测的长跳/过渡边显式给。",
+  "roller": 14,
+  "tt": 10,
+  "sl": 10,
+  "rb_lt": 14,
+  "lt_rb": 12,
+  "lt_cp": 18,
+  "tc": 16,
+  "cross": 18,
+  "cross_line": 14,
+  "cross_penalty": 6,
+  "lift": 6,
+  "exceptions": {
+    "Line_4_1A025RB→Line_4_1A045RB": 24
+  }
+}

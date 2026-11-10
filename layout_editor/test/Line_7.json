@@ -1,0 +1,339 @@
+{
+  "line": "Line_7",
+  "comment": "由 layout_editor 生成",
+  "elements": [
+    {
+      "id": "Line_7_1A015LT",
+      "kind": "LT",
+      "type": "lt",
+      "label": "1A015LT",
+      "pos": {
+        "x": 250,
+        "y": 120
+      },
+      "attrs": {
+        "pair": "RB"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A030RB",
+      "kind": "RB",
+      "type": "roller",
+      "label": "1A030RB",
+      "pos": {
+        "x": 420,
+        "y": 120
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "turn": 0
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A025LT",
+      "kind": "LT",
+      "type": "lt",
+      "label": "1A025LT",
+      "pos": {
+        "x": 258,
+        "y": 275
+      },
+      "attrs": {
+        "pair": "WT"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A020LT",
+      "kind": "LT",
+      "type": "lt",
+      "label": "1A020LT",
+      "pos": {
+        "x": 254,
+        "y": 197
+      },
+      "attrs": {
+        "pair": "RB"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A040TC.1",
+      "kind": "TC",
+      "type": "tc",
+      "label": "1A040TC.1",
+      "pos": {
+        "x": 611,
+        "y": 122
+      },
+      "attrs": {},
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A040TC.2",
+      "kind": "TC",
+      "type": "tc",
+      "label": "1A040TC.2",
+      "pos": {
+        "x": 612,
+        "y": 279
+      },
+      "attrs": {},
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A010CP",
+      "kind": "CP",
+      "type": "cp",
+      "label": "1A010CP",
+      "pos": {
+        "x": 253,
+        "y": 62
+      },
+      "attrs": {
+        "stops": [
+          "Line_7_1A015LT",
+          "Line_7_1A020LT",
+          "Line_7_1A025LT"
+        ],
+        "dir": "down"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A045.1EXT",
+      "kind": "EXT",
+      "type": "ext",
+      "label": "1A045.1EXT",
+      "pos": {
+        "x": 918,
+        "y": 116
+      },
+      "attrs": {
+        "partner": "F32_1A005RB"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A035RB",
+      "kind": "RB",
+      "type": "roller",
+      "label": "1A035RB",
+      "pos": {
+        "x": 417,
+        "y": 274
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "turn": 0
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A045HE.1",
+      "kind": "HE",
+      "type": "he",
+      "label": "1A045HE.1",
+      "pos": {
+        "x": 754,
+        "y": 119
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A045HE.2",
+      "kind": "HE",
+      "type": "he",
+      "label": "1A045HE.2",
+      "pos": {
+        "x": 753,
+        "y": 288
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A045.2EXT",
+      "kind": "EXT",
+      "type": "ext",
+      "label": "1A045.2EXT",
+      "pos": {
+        "x": 920,
+        "y": 289
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "partner": "Line_6_1A010RB"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A080ENT",
+      "kind": "ENT",
+      "type": "ent",
+      "label": "1A080ENT",
+      "pos": {
+        "x": -29,
+        "y": 195
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "partner": "Line_5_1A085EXT"
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A080RB",
+      "kind": "RB",
+      "type": "roller",
+      "label": "1A080RB",
+      "pos": {
+        "x": 110,
+        "y": 193
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "turn": 0
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A005RB",
+      "kind": "RB",
+      "type": "roller",
+      "label": "1A005RB",
+      "pos": {
+        "x": 115,
+        "y": 120
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "turn": 0
+      },
+      "tag": {}
+    },
+    {
+      "id": "Line_7_1A005ENT",
+      "kind": "ENT",
+      "type": "ent",
+      "label": "1A005ENT",
+      "pos": {
+        "x": -26,
+        "y": 118
+      },
+      "attrs": {
+        "park": true,
+        "dir": "fwd",
+        "partner": "Line_5_1A030EXT"
+      },
+      "tag": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "Line_7_1A015LT",
+      "to": "Line_7_1A030RB",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_7_1A040TC.1",
+      "to": "Line_7_1A040TC.2",
+      "etri": "tc"
+    },
+    {
+      "from": "Line_7_1A015LT",
+      "to": "Line_7_1A020LT",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_7_1A020LT",
+      "to": "Line_7_1A025LT",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_7_1A080ENT",
+      "to": "Line_7_1A080RB",
+      "etri": "ext"
+    },
+    {
+      "from": "Line_7_1A080RB",
+      "to": "Line_7_1A020LT",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_7_1A025LT",
+      "to": "Line_7_1A035RB",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_7_1A035RB",
+      "to": "Line_7_1A040TC.2",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_7_1A030RB",
+      "to": "Line_7_1A040TC.1",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_7_1A040TC.1",
+      "to": "Line_7_1A045HE.1",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_7_1A040TC.2",
+      "to": "Line_7_1A045HE.2",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_7_1A045HE.1",
+      "to": "Line_7_1A045.1EXT",
+      "etri": "ext"
+    },
+    {
+      "from": "Line_7_1A045HE.2",
+      "to": "Line_7_1A045.2EXT",
+      "etri": "ext"
+    },
+    {
+      "from": "Line_7_1A045HE.1",
+      "to": "Line_7_1A045HE.2",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_7_1A045HE.2",
+      "to": "Line_7_1A045HE.1",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_7_1A040TC.2",
+      "to": "Line_7_1A040TC.1",
+      "etri": "roller"
+    },
+    {
+      "from": "Line_7_1A005ENT",
+      "to": "Line_7_1A005RB",
+      "etri": "ext"
+    },
+    {
+      "from": "Line_7_1A005RB",
+      "to": "Line_7_1A015LT",
+      "etri": "roller"
+    }
+  ]
+}

@@ -1,0 +1,776 @@
+{
+  "plc": "L3L2",
+  "_comment": "滚床订阅配置(每条输送一个文件)。\n rollers: 每条只存 node/device/type/mid, 加载时自动生成 车身(M1003_BodyID)+雪橇(I1030_RBDataSkidNo) 两条, .IL. 分支;\n          device=X1 设备体(RB/LT/TT/SL/TC/HE), type 用于 X1 覆盖(LT/TT/SL/TC), mid=非标准中间段(如14AS/15AS).\n points:  额外点位订阅, tag 写完整(如位信号 .SB. 分支、非母本点位), kind 任取(如 pos), node=所属节点;\n          新增类型(如 TC 位置)只需在此加一条即可.",
+  "rollers": [
+    {
+      "node": "Line_2_1A005RB",
+      "device": "1A005RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1A015RB",
+      "device": "1A015LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1A020RB",
+      "device": "1A020LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1A025RB",
+      "device": "1A025LT",
+      "type": "LT",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1A040RB",
+      "device": "1A040RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1A140RB",
+      "device": "1A140RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1A240RB",
+      "device": "1A240RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B045RB",
+      "device": "1B045RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B050RB",
+      "device": "1B050RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B055RB",
+      "device": "1B055RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B060RB",
+      "device": "1B060RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B065RB",
+      "device": "1B065RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B070RB",
+      "device": "1B070RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B145RB",
+      "device": "1B145RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B150RB",
+      "device": "1B150RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B155RB",
+      "device": "1B155RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B160RB",
+      "device": "1B160RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B165RB",
+      "device": "1B165RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B170RB",
+      "device": "1B170RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B245RB",
+      "device": "1B245RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B250RB",
+      "device": "1B250RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B255RB",
+      "device": "1B255RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B260RB",
+      "device": "1B260RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B265RB",
+      "device": "1B265RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1B270RB",
+      "device": "1B270RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C075RB",
+      "device": "1C075RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C080RB",
+      "device": "1C080RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C085RB",
+      "device": "1C085RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C090RB",
+      "device": "1C090RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C095RB",
+      "device": "1C095RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C100RB",
+      "device": "1C100RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C105RB",
+      "device": "1C105RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C175RB",
+      "device": "1C175RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C180RB",
+      "device": "1C180RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C185RB",
+      "device": "1C185RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C190RB",
+      "device": "1C190RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C195RB",
+      "device": "1C195RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C200RB",
+      "device": "1C200RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C205RB",
+      "device": "1C205RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C275RB",
+      "device": "1C275RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C280RB",
+      "device": "1C280RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C285RB",
+      "device": "1C285RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C290RB",
+      "device": "1C290RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C295RB",
+      "device": "1C295RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C300RB",
+      "device": "1C300RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1C305RB",
+      "device": "1C305RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D110RB",
+      "device": "1D110RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D115RB",
+      "device": "1D115RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D120RB",
+      "device": "1D120RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D125RB",
+      "device": "1D125RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D130RB",
+      "device": "1D130RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D135RB",
+      "device": "1D135RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D210RB",
+      "device": "1D210RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D215RB",
+      "device": "1D215RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D220RB",
+      "device": "1D220RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D225RB",
+      "device": "1D225RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D230RB",
+      "device": "1D230RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D235RB",
+      "device": "1D235RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D310RB",
+      "device": "1D310RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D315RB",
+      "device": "1D315RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D320RB",
+      "device": "1D320RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D325RB",
+      "device": "1D325RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D330RB",
+      "device": "1D330RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1D335RB",
+      "device": "1D335RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1E425RB",
+      "device": "1E425RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1E430RB",
+      "device": "1E430RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1E435RB",
+      "device": "1E435RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1E440RB",
+      "device": "1E440RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1E450RB",
+      "device": "1E450RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1E455RB",
+      "device": "1E455RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1E460RB",
+      "device": "1E460RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1E465RB",
+      "device": "1E465RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1E487RB",
+      "device": "1E487RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1E489RB",
+      "device": "1E489RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1E490RB",
+      "device": "1E490RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1E495RB",
+      "device": "1E495RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1F400RB",
+      "device": "1F400RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1F405RB",
+      "device": "1F405RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1F410RB",
+      "device": "1F410RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1F415RB",
+      "device": "1F415RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1F420RB",
+      "device": "1F420RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1F470RB",
+      "device": "1F470RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1F475RB",
+      "device": "1F475RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1F480RB",
+      "device": "1F480RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1F485RB",
+      "device": "1F485TC",
+      "type": "TC",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1F500RB",
+      "device": "1F500RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1F505RB",
+      "device": "1F505RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1F510RB",
+      "device": "1F510RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1F520RB",
+      "device": "1F520RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1G370RB",
+      "device": "1G370RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1G375RB",
+      "device": "1G375RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1G380RB",
+      "device": "1G380RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1G385RB",
+      "device": "1G385RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1G390RB",
+      "device": "1G390RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1G395RB",
+      "device": "1G395RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1G525RB",
+      "device": "1G525RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1G530RB",
+      "device": "1G530TC",
+      "type": "TC",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1G535RB",
+      "device": "1G535RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1G540RB",
+      "device": "1G540RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1G545RB",
+      "device": "1G545RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1G585RB",
+      "device": "1G585RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1G590RB",
+      "device": "1G590RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1G595RB",
+      "device": "1G595RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H338RB",
+      "device": "1H338RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H340RB",
+      "device": "1H340RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H345RB",
+      "device": "1H345RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H350RB",
+      "device": "1H350RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H355RB",
+      "device": "1H355RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H360RB",
+      "device": "1H360RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H365RB",
+      "device": "1H365RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H550RB",
+      "device": "1H550RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H555RB",
+      "device": "1H555RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H560RB",
+      "device": "1H560RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H565RB",
+      "device": "1H565RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H570RB",
+      "device": "1H570RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H575RB",
+      "device": "1H575RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H580RB",
+      "device": "1H580RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H600RB",
+      "device": "1H600RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H605RB",
+      "device": "1H605RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H610RB",
+      "device": "1H610RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H615RB",
+      "device": "1H615RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H620RB",
+      "device": "1H620RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H625RB",
+      "device": "1H625RB",
+      "type": "RB",
+      "mid": null
+    },
+    {
+      "node": "Line_2_1H640RB",
+      "device": "1H640RB",
+      "type": "RB",
+      "mid": null
+    }
+  ],
+  "points": [
+    {
+      "node": "Line_2_1F485RB",
+      "tag": ".L3L2_1F_1F485TC_1F485TC.SB.S1421_DrPos1",
+      "kind": "tc_pos",
+      "node_role": "R位(链6承载体格)"
+    },
+    {
+      "node": "Line_2_F485RB_TC_F",
+      "tag": ".L3L2_1F_1F485TC_1F485TC.SB.S1422_DrPos2",
+      "kind": "tc_pos",
+      "node_role": "F位(链5虚拟格)"
+    },
+    {
+      "node": "Line_2_1G530RB",
+      "tag": ".L3L2_1G_1G530TC_1G530TC.SB.S1421_DrPos1",
+      "kind": "tc_pos",
+      "node_role": "R位(链6承载体格)"
+    },
+    {
+      "node": "Line_2_F530RB_TC_F",
+      "tag": ".L3L2_1G_1G530TC_1G530TC.SB.S1422_DrPos2",
+      "kind": "tc_pos",
+      "node_role": "F位(链5虚拟格)"
+    }
+  ]
+}

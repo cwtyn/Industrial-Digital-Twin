@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Line_4 · 现场实时决策演示</title>
+<style>
+  body{margin:0;font-family:Microsoft YaHei,sans-serif;background:#121212;color:#eee}
+  /* 顶部工具条(白底, 巧 Line_1-28 观感; 图例/统计任何情况下可见) */
+  #topbar{background:#ffffff;color:#000;padding:6px 14px;box-shadow:0 2px 6px rgba(0,0,0,.4);line-height:1.7}
+  #topbar .t1{font-size:15px;font-weight:bold}
+  #topbar .t1 .leg{font-weight:normal;font-size:13px;margin-left:10px}
+  #topbar .t2{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:13px}
+  #stats{color:#0a7d2f;font-weight:bold}
+  .sw{display:inline-block;width:13px;height:13px;border-radius:3px;vertical-align:-2px;margin:0 2px;border:1px solid #666}
+  #net{background:#121212;position:relative;width:100vw;height:calc(100vh - 52px)}
+  #net canvas{background:#121212}
+  #hint{position:fixed;right:10px;bottom:14px;z-index:99999;background:#fafafa;color:#333;
+    padding:6px 10px;border-radius:8px;font-size:12px}
+  #search{position:fixed;left:12px;bottom:10px;z-index:99999;width:330px;padding:7px 10px;
+    border:1px solid #666;border-radius:6px;background:#fff;color:#000;font-size:13px}
+  #stdout{position:fixed;left:12px;bottom:206px;z-index:99998;width:340px;color:#7CFC94;font:12px mono;pointer-events:none}
+  /* 对话式问答历史区(搜索框上方) */
+  #qachat{position:fixed;left:12px;bottom:54px;z-index:99997;width:330px;max-height:34vh;
+    overflow:auto;background:#1a1a1a;border:1px solid #333;border-radius:8px;
+    padding:6px 10px;font-size:12px;box-sizing:border-box}
+  #qachat .qa-q{color:#FFD600;font-weight:bold;margin-top:8px}
+  #qachat .qa-a{color:#eee;white-space:pre-wrap;margin:2px 0 4px}
+  #qachat .qa-q:first-child{margin-top:2px}
+  /* 决策表富浮层(vis tooltip 仅 innerText, 放不下 4页×12行, 用独立 HTML 覆盖层) */
+  #pop{position:fixed;display:none;background:#0d141c;border:1px solid #33506a;border-radius:8px;
+       z-index:30;box-shadow:0 6px 26px rgba(0,0,0,.6);padding:10px;font-size:11px;width:720px;max-height:82vh;overflow:auto}
+  #pop h4{margin:0 0 6px;font-size:13px;color:#9cd0ff}
+  #poptab{display:flex;gap:4px;margin-bottom:8px;position:sticky;top:0;background:#0d141c;padding:2px 0}
+  #poptab button{background:#1c2a3a;color:#cfe3ff;border:1px solid #2e4670;padding:3px 10px;border-radius:4px;cursor:pointer;font-size:11px}
+  #poptab button.on{background:#2f6fae;border-color:#4c9dff;color:#fff}
+  #decgrid table{width:100%;border-collapse:collapse;font-size:10.5px}
+  th,td{border:1px solid #22303f;padding:2px 3px;text-align:center;white-space:nowrap}
+  th{background:#182638;color:#9db8d6}
+  td.f{max-width:60px;overflow:hidden;text-overflow:ellipsis}
+  .hit{background:#114a28;color:#b6ffc8;font-weight:700} .empty{color:#5a6b7d}
+  .use-on{color:#6ef09a;font-weight:700} .use-off{color:#e06f6f}
+  .cond{background:#0c2b45;color:#8fd3ff;font-weight:700}   /* 有内容的判断条件 */
+  th.g{background:#12263f;color:#dfeaff;font-size:9px}      /* 条件/结果/匹配 分组表头 */
+  tr.use-row td{background:rgba(110,240,154,.06)}            /* 启用行淡绿底 */
+  #popsum{display:flex;gap:6px;margin:7px 0 4px;align-items:center;font-size:11px;color:#c9d7e8;flex-wrap:wrap}
+  .chip{background:#223144;border:1px solid #34475f;padding:1px 7px;border-radius:10px;color:#d5e4f5}
+</style>
+</head>
+<body>
+<div id="topbar">
+  <div class="t1">Line_4 · 现场实时决策演示
+    <span class="leg">
+      <span class="sw" style="background:#9E9E9E"></span>辊床(空)
+      <span class="sw" style="background:#4CAF50;border-color:#2E7D32"></span>辊床(有车)
+      <span class="sw" style="background:#FFB74D"></span>LT
+      <span class="sw" style="background:#E53935"></span>CP
+      <span class="sw" style="background:#607D8B"></span>入口/外接
+      <span class="sw" style="background:#00E6FF"></span>决策表<i>(悬停/点击→4页决策)</i>
+    </span>
+  </div>
+  <div class="t2"><span id="stats">加载中…</span>
+    <span id="verchk" style="font-size:11px;color:#888">build-v10</span>
+</div>
+<div id="net"></div>
+<div id="pop"></div>
+<div id="hint">双击路线：先点起点，再点终点；DEC 决策点悬停/点击弹出决策表 · 左下搜索车辆/设备</div>
+<div id="qachat" style="color:#666">在此输入雪橇号/车身/设备号，回车提问</div>
+<input id="search" placeholder="问：雪橇6363 / 782026644145 / 1A025 · 回车提问(支持设备定位)">
+<div id="stdout"></div>
+
+<script src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+<script>
+/* ---------- 布局渲染数据(来自 /spec) ---------- */
+const PARK=['RB','LT','WT','TT','SL','HE','TC','ENT'];   // 可停设备类别(有实时订阅)
+let SPEC=null, ALL_NODES=[], ALL_EDGES=[], NODE_DS=null, EDGE_DS=null, net=null;
+let VISIBLE_ID=new Set(), NTYPE={}, NPARK={}, ETYPE={}, IS_DEC={}, LABEL={};
+let VEHICLE={};             // 由 /data.dev 组装的车占映射 {node:{body_no,skid,tgt}}
+let LV={dev:{},dec:{},dec_meta:null};   // 最新 /data 快照(供决策浮层用)
+let HP=0;                   // DEC 浮层悬停关闭定时器
+
+/* ---------- vis 渲染 ---------- */
+async function build(){
+  SPEC=await (await fetch('/spec')).json();
+  const els=SPEC.elements||[];
+  // 坐标归一(spec 坐标 → 网络坐标), 网络原点居中即可, 负坐标允许
+  const xs=els.map(e=>e.pos.x), ys=els.map(e=>e.pos.y);
+  const minX=Math.min(...xs)-60, minY=Math.min(...ys)-80;
+  const nx=(e)=>e.pos.x-minX, ny=(e)=>e.pos.y-minY;
+  const BASE={'RB':'#9E9E9E','LT':'#FFB74D','CP':'#E53935','ENT':'#607D8B','DEC':'#29B6F6','TT':'#5C6BC0'};
+  ALL_NODES=els.map(e=>{
+    const k=e.kind, id=e.id;
+    const parkAttr = e.attrs ? e.attrs.park : undefined;
+    const canPark = PARK.includes(k) && parkAttr !== false;
+    NTYPE[id]=k; NPARK[id]=canPark;
+    const isDec=(k==='DEC');
+    const node={
+      id, label:(e.label||id), x:nx(e), y:ny(e), fixed:{x:true,y:true},
+      shape:'box',
+      font:{size:10,color:'#eee'},
+      color:{background:BASE[k]||'#888888',border:'#333'},
+      _baseTitle:id, _vehpos:canPark
+    };
+    if(isDec){                          // 决策点: 高大亮 + 边框, 一眼可辨(决策表下钻入口)
+      node.borderWidth=3; node.borderWidthSelected=3;
+      node.color={background:'#00E6FF',border:'#00668A',
+                  highlight:{background:'#33EEFF',border:'#7CFC00'}};
+      node.font={size:9,color:'#00121C',bold:true};
+      node.widthConstraint={minimum:34,maximum:34};
+      node.heightConstraint={minimum:34,maximum:34};   // 正方形决策点(小)
+    }
+    return node;
+  });
+  ALL_NODES.forEach(n=>{ LABEL[n.id]=n.label; IS_DEC[n.id]=(SPEC.elements.find(e=>e.id===n.id)||{kind:''}).kind==='DEC'; });
+  // 边(spec.edges 直连, 统一 roller 绿)
+  ALL_EDGES=(SPEC.edges||[]).map(ed=>({from:ed.from,to:ed.to,color:{color:'#2E7D32'},arrows:{to:{enabled:true,scaleFactor:0.5}} }));
+  ALL_EDGES.forEach(e=>ETYPE[e.from+'→'+e.to]='roller');
+  VISIBLE_ID=new Set(ALL_NODES.map(n=>n.id));
+
+  const opt={
+    background:{background:'#121212'},
+    nodes:{shape:'box',borderWidth:1,font:{size:10,color:'#eee'},color:{border:'#333'}},
+    edges:{smooth:{type:'continuous'}},
+    physics:false,
+    interaction:{hover:true,tooltipDelay:120,navigationButtons:true,keyboard:true}
+  };
+  NODE_DS=new vis.DataSet(ALL_NODES.slice());
+  EDGE_DS=new vis.DataSet(ALL_EDGES.slice());
+  net=new vis.Network(document.getElementById('net'),{nodes:NODE_DS,edges:EDGE_DS},opt);
+  try{net.fit({animation:false});}catch(e){}
+  wireNet();
+  tick();
+  setInterval(tick,1000);
+}
+
+/* ---------- 实时 /data 轮询: 只改色/标题, 不重建 ---------- */
+async function tick(){
+  try{
+    LV=await (await fetch('/data')).json();
+    const dev=LV.dev||{}; VEHICLE={};
+    if(NODE_DS){
+      const upd=[];
+      for(const n of ALL_NODES){
+        if(!n._vehpos) continue;                 // 仅可停设备实时着色(过渡RB等保持基础色)
+        const d=dev[n.id]||{};
+        if(d.nosub){                            // 现场无 tag 的设备: 标"无数据源"
+          upd.push({id:n.id,color:{background:'#616161',border:'#333'},
+            title:n._baseTitle+'\n· 现场无此设备 tag(无数据源)'});
+          continue;
+        }
+        const occupied=!!(d.body&&!/^-+$/.test(d.body));
+        if(occupied) VEHICLE[n.id]={body_no:d.body,skid:d.skid,tgt:d.tgt};
+        const v=VEHICLE[n.id];
+        upd.push({id:n.id,
+          color:v?{background:'#4CAF50',border:'#2E7D32'}:{background:'#9E9E9E',border:'#333'},
+          borderWidth:v?2:1,
+          title:(v? (n._baseTitle+'\n'+vehCard(n,v)) : n._baseTitle)});
+      }
+      NODE_DS.update(upd);
+    }
+    // 统计
+    const nCars=Object.keys(VEHICLE).length;
+    document.getElementById('stats').textContent =
+      'Line_4 · ' + ALL_NODES.length + ' 节点 · ' + ALL_EDGES.length + ' 边 · 有车 ' + nCars +
+      ' · 决策行 ' + Object.keys(LV.dec||{}).length +
+      ' · ' + new Date().toLocaleTimeString();
+  }catch(e){ document.getElementById('stats').textContent='…连接中'; }
+}
+
+/* 30 位车身号拆分: PIN[0:14] 车型[14:19] 颜色[19:23] 平台[23:26] Code[26:29](末字符忽略)
+   例 '78202664514492YM33J1F1FP_A010-' → '78202664514492' 'YM33J' '1F1F' 'P_A' '010' */
+function parseBody(b){
+  const t=(''+ (b||'')).replace(/\n/g,'').trim().padEnd(29,' ');
+  return {pin:t.slice(0,14).trim(), vt:t.slice(14,19).trim(),
+          color:t.slice(19,23).trim(), platform:t.slice(23,26).trim(), code:t.slice(26,29).trim()};
+}
+/* vis tooltip 只走 innerText, 只能用换行拼 (6 行恒显, 同 make_line_viz _veh_card) */
+function vehCard(n,v){
+  const f=parseBody(v.body_no);
+  const r=x=> (x==null||x===''||/^-+$/.test(String(x)))?'-':String(x).trim();
+  const lines=['🚗 '+r(f.pin||'-')];
+  lines.push('颜色 '+r(f.color));
+  lines.push('车型 '+r(f.vt));
+  lines.push('平台 '+r(f.platform));
+  lines.push('雪橇 '+r(v.skid));
+  const tg=r(v.tgt);
+  lines.push('目标→ '+(tg==='0'?'-':tg));
+  return lines.join('\n');
+}
+
+/* ---------- 路径(单位权, 占位供后续 edge_model) ---------- */
+function baseOf(u,v){return 1;}
+function outVal(v){ const es=ALL_EDGES.filter(e=>e.from===v); return es.length?1:0; }
+function dijkstra(s,t){
+  const adj={}; for(const e of ALL_EDGES)(adj[e.from]=adj[e.from]||[]).push(e.to);
+  const dist={},prev={},done=new Set(); dist[s]=0;
+  for(;;){
+    let u=null,best=Infinity;
+    for(const k in dist) if(!done.has(k)&&dist[k]<best){best=dist[k];u=k;}
+    if(u==null||u===t) break; done.add(u);
+    for(const v of (adj[u]||[])){
+      if(done.has(v)) continue;
+      let w=baseOf(u,v);
+      if(VEHICLE[v]) w+=outVal(v);
+      if(dist[u]+w<((v in dist)?dist[v]:Infinity)){dist[v]=dist[u]+w;prev[v]=u;}
+    }
+  }
+  if(!(t in dist)||!isFinite(dist[t])) return null;
+  const ns=[t]; let c=t; while(c!==s){c=prev[c];ns.push(c);} ns.reverse();
+  return {nodes:ns,cost:Math.round(dist[t])};
+}
+const out=s=>document.getElementById('stdout').innerText=s;
+const locate=id=>{ if(!net||!VISIBLE_ID.has(id))return false; try{net.selectNodes([id]);net.focus(id,{scale:1.35});}catch(e){} return true; };
+
+/* ---------- 交互: 双击路径 + 搜索 + DEC 浮层 ---------- */
+let r0=null;
+function wireNet(){
+  net.on('doubleClick',p=>{
+    let id=p.nodes[0];
+    if(id&&IS_DEC[id]){ showPopAt(id); return; }
+    if(!id){ // 吸附最近节点
+      const dp=p.pointer.DOM; let near=null,best=48;
+      for(const n of ALL_NODES){ try{const dom=net.canvas.coordinateToDOM(net.getPosition(n.id));
+        const d=Math.hypot(dom.x-dp.x,dom.y-dp.y); if(d<best){best=d;near=n.id;}}catch(e){} }
+      id=near;
+    }
+    if(!id){out('未点中设备, 请双击画面上的节点');return;}
+    if(r0==null){r0=id;net.selectNodes([id]);out('起点 '+LABEL[id]+' — 请双击终点');return;}
+    const path=dijkstra(r0,id);
+    try{net.selectNodes((path?path.nodes:[id]).filter(x=>VISIBLE_ID.has(x)));}catch(e){}
+    if(path){out('可达 · 约耗时'+path.cost+'s · '+path.nodes.length+'步: '+path.nodes.map(x=>LABEL[x]||x).join(' → '));}
+    else out('不可达: '+(LABEL[r0]||r0)+' → '+(LABEL[id]||id));
+    r0=null;
+  });
+  const inp=document.getElementById('search');
+  inp.addEventListener('input',e=>{
+    const q=e.target.value.trim(); out('');
+    if(!q){net.unselectAll();return;}
+    const m=ALL_NODES.filter(n=>n.id.includes(q)||n.label.includes(q));
+    try{net.selectNodes(m.map(n=>n.id).filter(x=>VISIBLE_ID.has(x)));}catch(err){}
+    out('匹配 '+m.length+' 个: '+m.map(n=>n.label).slice(0,12).join(' '));
+  });
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();ask(inp.value);}});
+  // DEC 悬停/点击 → 决策表富浮层(vis tooltip 放不下)
+  // 注意: hoverNode/blurNode 事件参数是 node(单数), 非 nodes 数组(点击才是 nodes)
+  net.on('hoverNode',p=>{ const id=p.node; if(id&&IS_DEC[id]){clearTimeout(HP);HP=setTimeout(()=>showPopAt(id),0);} });
+  net.on('blurNode',()=>{clearTimeout(HP);HP=setTimeout(hidePop,350);});
+  net.on('click',p=>{ const id=p.nodes && p.nodes[0];
+    if(id&&IS_DEC[id]){clearTimeout(HP);showPopAt(id);} else hidePop(); });
+}
+
+/* ---------- 决策表浮层(4页×12行 + dest_map) ---------- */
+const PLATE={'Filtr01':'VIN','Filtr02':'CodeF','Filtr03':'CodeB','Filtr04':'车型','Filtr05':'平台',
+  'Dest':'道号','Use':'启用','FullMatch':'全配','Prior':'优先',
+  'Data1Match':'D1','Data2Match':'D2','Data3Match':'D3','Data4Match':'D4','Data5Match':'D5'};
+const ORDER=['Filtr01','Filtr02','Filtr03','Filtr04','Filtr05','Dest','Use','Data1Match','Data2Match',
+  'Data3Match','Data4Match','Data5Match','FullMatch','Prior'];
+function showPopAt(decId){
+  const dec=LV.dec_meta, d=LV.dec; if(!dec) return;
+  const pop=document.getElementById('pop');
+  let html='<h4>'+dec.id+' · '+dec.db+'</h4>';
+  html+='<div id="popsum">'+((dec.dest_map||[]).map(x=>'<span class="chip">道'+x.dest+'→'+x.to.split('_').pop()+'</span>').join('')||'<span class="empty">无 dest_map</span>')+'</div>';
+  html+='<div id="poptab">'+[1,2,3,4].map(p=>'<button data-p="'+p+'" '+(p===1?'class="on"':'')+'>页'+p+'</button>').join('')+'</div>';
+  html+='<div id="decgrid"></div>';
+  pop.innerHTML=html;
+  // 定位: DEC 节点屏幕坐标(用 Line_1-28 实测可行的方法 net.canvas.coordinateToDOM, make_line_viz.py:781 同款);
+  // 失败时兜底到视口中心, 保证浮层照样弹出有数据
+  let x=Math.round(window.innerWidth/2), y=Math.round(window.innerHeight/3);
+  try {
+    const pos=net.canvas.coordinateToDOM(net.getPosition(decId));
+    const r=document.getElementById('net').getBoundingClientRect();
+    x=r.left+pos.x; y=r.top+pos.y;
+  } catch(e){}
+  pop.style.display='block';
+  pop.style.left=(x<window.innerWidth/2? x+70 : x-720-16)+'px';
+  pop.style.top=Math.min(window.innerHeight-40,Math.max(8,y))+'px';
+  // 浮层内 hover 保持(可点 tab), 离开关闭
+  pop.onmouseenter=()=>clearTimeout(HP);
+  pop.onmouseleave=()=>hidePop();
+  pop.querySelectorAll('#poptab button').forEach(b=>b.onclick=()=>{
+    pop.querySelectorAll('#poptab button').forEach(z=>z.classList.remove('on'));
+    b.classList.add('on'); renderDecPage(+b.dataset.p); });
+  renderDecPage(1);
+}
+const COND=['Filtr01','Filtr02','Filtr03','Filtr04','Filtr05'];
+const GROUPS=[COND,['Dest'],['Use'],['Data1Match','Data2Match','Data3Match','Data4Match','Data5Match'],['FullMatch'],['Prior']];
+const GNAME=['判断条件','结果','启用','命中','全配','优先级'];
+function renderDecPage(p){
+  const d=LV.dec||{}, grid=document.getElementById('decgrid'); if(!grid)return;
+  let h='<table><tr><th>行</th>';
+  for(let gi=0;gi<GROUPS.length;gi++) h+='<th class="g" colspan="'+GROUPS[gi].length+'">'+GNAME[gi]+'</th>';
+  h+='</tr><tr><th></th>';
+  for(const g of GROUPS){ for(const f of g) h+='<th>'+PLATE[f]+'</th>'; }
+  h+='</tr>';
+  for(let r=1;r<=12;r++){
+    const row=d[p+','+r]||{};
+    const use=(row.Use==='1'||row.Use===true);
+    h+='<tr class="'+(use?'use-row':'')+'"><td>'+r+'</td>';
+    for(const g of GROUPS){ for(const f of g){
+      const v=row[f];
+      if(f==='Use'){h+='<td class="'+(use?'use-on':'use-off')+'">'+(use?'●':'○')+'</td>';continue;}
+      if(f.startsWith('Data')){const on=(v==='1'||v===true);h+='<td class="'+(on?'hit':'empty')+'">'+(on?'■':'·')+'</td>';continue;}
+      if(f==='FullMatch'){const on=(v==='1'||v===true);h+='<td class="'+(on?'hit':'empty')+'">'+(on?'✓':'·')+'</td>';continue;}
+      if(f==='Prior'){const on=(v==='1'||v===true);h+='<td class="'+(on?'hit':'empty')+'">'+(on?'★':'·')+'</td>';continue;}
+      if(f==='Dest'){h+='<td class="hit">'+((v==null||v==='')?'−':v)+'</td>';continue;}
+      if(f==='Filtr01'||f==='Filtr02'||f==='Filtr03'||f==='Filtr04'||f==='Filtr05'){
+        if(v==null||v===''){h+='<td class="empty">−</td>';continue;}
+        h+='<td class="cond" title="'+String(v).replace(/"/g,'')+'">'+String(v).slice(0,10)+'</td>';continue;
+      }
+      if(v==null||v===''){h+='<td class="empty">−</td>';continue;}
+      h+='<td class="f">'+String(v).slice(0,10)+'</td>';
+    }}
+    h+='</tr>';
+  }
+  h+='</table>';
+  grid.innerHTML=h;
+}
+function hidePop(){document.getElementById('pop').style.display='none';}
+
+/* ---------- 对话式问答(车辆查询 / 设备定位, 纯前端本地反查) ---------- */
+const QABOX=document.getElementById('qachat');
+function qa(t){
+  if(QABOX.innerHTML==='<div style="color:#666">在此输入雪橇号/车身/设备号，回车提问</div>')QABOX.innerHTML='';
+  QABOX.innerHTML+='<div class="qa-q">问: '+t.q+'</div><div class="qa-a">'+t.a+'</div>';
+  QABOX.scrollTop=QABOX.scrollHeight;
+}
+const norm=s=>String(s||'').replace(/[\s-]+/g,'').toUpperCase();
+function ask(qraw){
+  const q=String(qraw||'').trim(); if(!q) return;
+  const nums=(q.match(/\d{2,}/g)||[]).filter(s=>s.length<=6||s.length>=8);
+  const idx=[];
+  for(const id in VEHICLE){ const v=VEHICLE[id];
+    idx.push({node:id,label:LABEL[id]||id,v,body:norm(v.body_no),sled:norm(v.skid)}); }
+  let hit=null,kind=null;
+  for(const n of nums){
+    let m=null;
+    const cS=idx.filter(x=>x.sled===n); if(cS.length){m=cS[0];kind='sled';}
+    if(!m){const cB=idx.filter(x=>x.body===n); if(cB.length){m=cB[0];kind='body';}}
+    if(m){hit=m;break;}
+  }
+  let node_hits=[];
+  if(!hit) node_hits=ALL_NODES.filter(n=>n.id.toUpperCase().includes(norm(q))||n.label.toUpperCase().includes(norm(q)));
+  let a='';
+  if(hit){ locate(hit.node);
+    a=(kind==='sled'?'雪橇 '+hit.v.skid+' 在 ':'车身 '+hit.v.body_no+' 在 ')+hit.label+'('+hit.node+')<br>'+vehCard(hit.node,hit.v).replace(/\n/g,'<br>');
+  } else if(node_hits.length){
+    const vis=node_hits.filter(x=>VISIBLE_ID.has(x.id));
+    if(vis.length===1){const id=vis[0].id;locate(id);const v=VEHICLE[id];
+      a=(v?LABEL[id]+' 有车:<br>'+vehCard(id,v).replace(/\n/g,'<br>'):LABEL[id]+'('+id+') 当前无车停靠');}
+    else if(vis.length>1)a='匹配设备 '+vis.length+' 个: '+vis.map(x=>LABEL[x.id]).slice(0,8).join('、');
+    else a='匹配到节点但不在当前视图';
+  } else {
+    a='未找到 '+q+'。可输入 雪橇号(如 6363) / 车身号 / 设备号(如 1A025)。';
+  }
+  qa({q:q,a:a});
+}
+
+build();
+</script>
+</body>
+</html>
